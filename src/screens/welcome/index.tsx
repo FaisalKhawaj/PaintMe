@@ -6,10 +6,13 @@ import { globalstyles } from "@/src/styles/globalstyles";
 import { Dimensions, Image, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
+import { router } from "expo-router";
 
 export const Welcome = () => {
   const { height } = Dimensions.get("screen");
-  const handleClickPhone = () => {};
+  const handleClickPhone = () => {
+    router.replace("/(auth)/enter-number");
+  };
   const handleClickEmail = () => {};
   return (
     <SafeAreaView style={globalstyles.mainWrap}>
