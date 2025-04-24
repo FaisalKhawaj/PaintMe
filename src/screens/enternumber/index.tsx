@@ -63,6 +63,7 @@ export const EnterNumber = () => {
                 value={value}
                 // defaultCode="DM"
                 layout="first"
+                defaultCode="US"
                 onChangeText={(text) => {
                   setValue(text);
                 }}
