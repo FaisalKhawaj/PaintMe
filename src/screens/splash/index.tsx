@@ -1,61 +1,66 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
-import Swiper from "react-native-swiper";
-// import { styles } from './styles';
-const styles = StyleSheet.create({
-  wrapper: {},
-  slide1: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#9DD6EB",
+import React, { useRef } from 'react';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
+import Swiper from 'react-native-swiper';
+import { styles } from './styles';
+
+const slides = [
+  {
+    title: 'Ultra Resolution',
+    description: 'No more pixelated graphics or low-quality visuals. Every image is crafted for maximum impact.',
+    backgroundColor: '#F97316',
+    image: require('../../../assets/images/splash1.png'),
   },
-  slide2: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#97CAE5",
+  {
+    title: 'Premium Images',
+    description: 'Unlock unlimited images by a world of global creators.',
+    backgroundColor: '#9CA3AF',
+    image: require('../../../assets/images/splash2.png'),
   },
-  slide3: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#92BBD9",
+  {
+    title: 'Effortless Image Generation',
+    description: 'Simply type a prompt, choose a style, and watch as it brings it to life.',
+    backgroundColor: '#3B82F6',
+    image: require('../../../assets/images/splash3.png'),
   },
-  text: {
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold",
-  },
-});
+];
+
 export const Splash = () => {
+  const swiperRef = useRef(null);
+
+  const handleNext = (index) => {
+    if (swiperRef.current && index < slides.length - 1) {
+      swiperRef.current.scrollBy(1); // move to next slide
+    }
+  };
+
   return (
-    <Swiper style={styles.wrapper} showsButtons={true}>
-      <View style={styles.slide1}>
+    <Swiper
+      ref={swiperRef}
+      loop={false}
+      dotStyle={styles.dot}
+      activeDotStyle={styles.activeDot}
+      paginationStyle={{ bottom: 100 }}
+    >
+      {slides.map((slide, index) => (
         <ImageBackground
-          source={require("../../../assets/images/welcome.png")}
-          style={styles.wrapper} // Make the image take full space
-        ></ImageBackground>
-      </View>
-      <View style={styles.slide2}>
-        <ImageBackground
-          source={require("../../../assets/images/welcome.png")}
-          style={styles.wrapper} // Make the image take full space
-        ></ImageBackground>
-      </View>
-      <View style={styles.slide3}>
-        <ImageBackground
-          source={require("../../../assets/images/welcome.png")}
-          style={styles.wrapper} // Make the image take full space
-        ></ImageBackground>
-      </View>
+          key={index}
+          style={styles.slide}
+          imageStyle={{ resizeMode: 'cover' }}
+          source={slide.image}
+        >
+          <View style={styles.content}>
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>{slide.title}</Text>
+              <Text style={styles.description}>{slide.description}</Text>
+              <Text style={styles.intro}>intro</Text>
+            </View>
+
+            <TouchableOpacity style={styles.iconButton} onPress={() => handleNext(index)}>
+              <Text style={styles.iconText}>→</Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      ))}
     </Swiper>
   );
 };

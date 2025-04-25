@@ -1,45 +1,73 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
   slide: {
     flex: 1,
-    justifyContent: 'center',
+    width,
+    height,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    paddingVertical: 80,
   },
-  image: {
-    width: '100%',
-    height: 300,
-    resizeMode: 'cover',
-    borderRadius: 20,
+  textContainer: {
+    alignItems: 'flex-start',
+    paddingHorizontal: 24,
+    marginTop: 120, // push text down
   },
-  heading: {
-    fontSize: 24,
+  title: {
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#fff',
-    marginTop: 20,
+    marginBottom: 15,
   },
   description: {
     fontSize: 16,
-    color: '#fff',
+    color: '#f1f1f1',
+  },
+  intro: {
     marginTop: 10,
-    textAlign: 'center',
-    paddingHorizontal: 20,
-  },
-  button: {
-    marginTop: 30,
-    backgroundColor: '#7e57c2',
-    paddingVertical: 10,
-    paddingHorizontal: 40,
-    borderRadius: 30,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  buttonText: {
+    borderRadius: 5,
     fontSize: 18,
+    color: '#8D61D7',
+    fontWeight: '600',
+    padding: 14,
+    backgroundColor: '#DFD3F4',
+  },
+  iconButton: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#000',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 40,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  iconText: {
     color: '#fff',
+    fontSize: 28,
+    fontWeight: 'bold',
+  },
+  dot: {
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    width: 6,
+    height: 6,
+    borderRadius: 2,
+    marginHorizontal: 8,
+  },
+  activeDot: {
+    backgroundColor: '#fff',
+    width: 20,
+    height: 6,
+    borderRadius: 2,
+    marginHorizontal: 8,
   },
 });
