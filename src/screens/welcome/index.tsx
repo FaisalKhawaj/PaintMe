@@ -13,7 +13,9 @@ export const Welcome = () => {
   const handleClickPhone = () => {
     router.replace("/(auth)/enter-number");
   };
-  const handleClickEmail = () => {};
+  const handleClickEmail = () => {
+    router.replace("/(auth)/enter-email");
+  };
   return (
     <SafeAreaView style={globalstyles.mainWrap}>
       <View style={globalstyles.innerWrap}>
@@ -39,12 +41,12 @@ export const Welcome = () => {
         <View style={{ gap: 10 }}>
           <LabelButton
             title="Continue with Phone"
-            handleClick={handleClickEmail}
+            handleClick={handleClickPhone}
             variation={ButtonVariation.default}
           />
           <LabelButton
-            title="Continue with Phone"
-            handleClick={handleClickPhone}
+            title="Continue with Email"
+            handleClick={handleClickEmail}
             variation={ButtonVariation.secondary}
           />
           <Row gap={10} alignItems="center">

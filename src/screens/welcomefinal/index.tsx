@@ -9,7 +9,7 @@ import { styles } from "./styles"
 import { MotiView } from "moti";
 import { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { OtpInput } from "react-native-otp-entry";
 
 export const WelcomeFinal = () => {
@@ -19,6 +19,7 @@ export const WelcomeFinal = () => {
   const [valid, setValid] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const phoneInput = useRef<PhoneInput>(null);
+  const { isEmail = false } = useLocalSearchParams();
   const handlePhone = () => {
     router.replace("/(auth)/enter-otp");
   };
@@ -51,7 +52,7 @@ export const WelcomeFinal = () => {
                     alignSelf: "center",
                     marginBottom: 20
                   }}
-                  source={require("../../../assets/images/heart.png")}
+                  source={isEmail ? require("../../../assets/images/MailScreen.png") : require("../../../assets/images/heart.png")}
                 />
                 <MotiView
                   style={styles.tagAccessControl}

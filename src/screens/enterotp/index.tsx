@@ -1,6 +1,4 @@
-import { AppleIcon, GoogleIcon } from "@/assets/svg";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
-import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { Dimensions, Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
@@ -9,7 +7,7 @@ import { styles } from "./styles"
 import { MotiView } from "moti";
 import { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
-import { router } from "expo-router";
+import { router, useLocalSearchParams, useRouter } from "expo-router";
 import { OtpInput } from "react-native-otp-entry";
 
 export const EnterOtp = () => {
@@ -19,11 +17,9 @@ export const EnterOtp = () => {
   const [valid, setValid] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const phoneInput = useRef<PhoneInput>(null);
-  const handlePhone = () => {
-    router.replace("/(auth)/enter-otp");
-  };
-  const handleOtp = () => { 
-    router.replace("/(auth)/welcome-final");
+  const { isEmail = false } = useLocalSearchParams();
+  const handleOtp = () => {
+    router.push({ pathname: "/(auth)/welcome-final", params: { isEmail: isEmail } })
   };
 
   return (
@@ -53,9 +49,9 @@ export const EnterOtp = () => {
                   <Image
                     style={{
                       alignSelf: "center",
-                      marginBottom: 20,
+                      marginBottom: 20
                     }}
-                    source={require("../../../assets/images/heart.png")}
+                    source={isEmail ? require("../../../assets/images/MailScreen.png") : require("../../../assets/images/heart.png")}
                   />
                   <MotiView
                     style={styles.tagAccessControl}
@@ -72,7 +68,7 @@ export const EnterOtp = () => {
                     transition={{ delay: 400, duration: 500 }}
                   >
                     <Text style={[globalstyles.description, { fontSize: 26 }]}>
-                      We’ve sent a 5-digit code to your number
+                      We’ve sent a 5-digit code to your {isEmail ? 'email' : 'number'}
                     </Text>
                   </MotiView>
                   <Spacer marginTop={50} />
@@ -112,12 +108,12 @@ export const EnterOtp = () => {
                 </MotiView>
               </MotiView>
             </ScrollView>
-  
+
             {/* Fixed Bottom Button */}
             <View style={{ padding: 16 }}>
               <LabelButton
                 title="Resend Code"
-                handleClick={() => {}}
+                handleClick={() => { }}
                 variation={ButtonVariation.secondary}
               />
               <Spacer marginTop={10} />
@@ -132,5 +128,5 @@ export const EnterOtp = () => {
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
-  
+
 }
