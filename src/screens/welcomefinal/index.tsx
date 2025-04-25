@@ -22,7 +22,9 @@ export const WelcomeFinal = () => {
   const handlePhone = () => {
     router.replace("/(auth)/enter-otp");
   };
-  const handleClickEmail = () => { };
+  const handleSplash = () => {
+    router.replace("/(auth)/splash");
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -72,7 +74,7 @@ export const WelcomeFinal = () => {
                 <Spacer marginTop={20} />
                 <LabelButton
                   title="Get Cracking ✨"
-                  handleClick={() => { }}
+                  handleClick={handleSplash}
                   variation={ButtonVariation.default}
                 // disabled={value === ""}
                 />
