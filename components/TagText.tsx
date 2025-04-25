@@ -6,18 +6,21 @@ type TagTextProps = {
   title: string;
   tagBgColor: string;
   tagTextColor: string;
+  rotate?: string;
 };
 
 export const TagText: React.FC<TagTextProps> = ({
   title,
   tagBgColor = "#C8B6FF",
   tagTextColor = "#2B2D42",
+  rotate = "-20deg",
 }) => {
   return (
     <View
       style={[
         styles.tagContainer,
         {
+          transform: [{ rotate: rotate }],
           backgroundColor: tagBgColor,
         },
       ]}

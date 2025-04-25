@@ -5,9 +5,11 @@ import { RFValue } from "react-native-responsive-fontsize";
 import * as ImagePicker from "expo-image-picker";
 import { StyleSheet } from "react-native";
 import { fonts } from "@/hooks/useCacheResources";
+import DefaultView from "./components/DefaultView";
+import { NewProfile } from "./components/NewProfile";
 import { router } from "expo-router";
 
-export const EditProfile = () => {
+export const EditPic = () => {
   const [image, setImage] = useState<string | null>(null);
 
   const pickImage = async () => {
@@ -37,7 +39,16 @@ export const EditProfile = () => {
         animate={{ opacity: 1, translateY: 0 }}
         transition={{ type: "timing", duration: 600 }}
         style={styles.mainView}
-      ></MotiView>
+      >
+        {!image && <DefaultView handleAddPhoto={pickImage} />}
+        {image && (
+          <NewProfile
+            image={image}
+            handleAddPhoto={pickImage}
+            handleConfirm={handleConfirm}
+          />
+        )}
+      </MotiView>
     </SafeAreaView>
   );
 };

@@ -33,7 +33,7 @@ export const Profile = () => {
         >
           <Pressable
             style={globalstyles.roundedIconButton}
-            onPress={() => router.push("/(main)/edit-profile")}
+            onPress={() => router.push("/(main)/edit-pic")}
           >
             <MotiView
               animate={{
@@ -81,7 +81,10 @@ export const Profile = () => {
                   tagTextColor="#3A3335"
                 />
               </Pressable>
-              <Pressable style={styles.bottomLeftButton} onPress={() => {}}>
+              <Pressable
+                style={styles.bottomLeftButton}
+                onPress={() => router.push("/settings")}
+              >
                 <MaterialIcons name="settings" color={"#242424"} size={25} />
                 <TagText
                   title="settings"

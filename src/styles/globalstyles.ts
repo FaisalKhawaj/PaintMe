@@ -7,6 +7,12 @@ export const globalstyles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.light.screenBg,
   },
+  mainView: {
+    flexGrow: 1,
+    backgroundColor: "#fff",
+    gap: 10,
+    padding: 10,
+  },
   innerWrap: {
     flexGrow: 1,
     paddingHorizontal: 20,
