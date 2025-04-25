@@ -1,3 +1,3 @@
-import { CameraAccess } from "../src/screens/cameraaccess";
+import { Splash } from "../src/screens/splash";
 
-export default CameraAccess;
+export default Splash;

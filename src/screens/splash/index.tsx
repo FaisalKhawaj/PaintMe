@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { styles } from './styles';
+import { router } from 'expo-router';
 
 const slides = [
   {
@@ -28,8 +29,13 @@ export const Splash = () => {
   const swiperRef = useRef(null);
 
   const handleNext = (index) => {
-    if (swiperRef.current && index < slides.length - 1) {
-      swiperRef.current.scrollBy(1); // move to next slide
+    if (swiperRef.current) {
+      if (index < slides.length - 1) {
+        swiperRef.current.scrollBy(1); // Move to next slide
+      } else {
+        // Reached last slide, trigger router.push to navigate to camera screen
+        router.replace("/(auth)/camera-access");
+      }
     }
   };
 
