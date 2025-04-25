@@ -4,7 +4,7 @@ import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { RFValue } from "react-native-responsive-fontsize";
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 import {
   Dimensions,
@@ -35,9 +35,10 @@ export const EnterEmail = () => {
   const phoneInput = useRef<PhoneInput>(null);
   const router = useRouter();
   const handleEmailOtp = () => {
-    router.push({ pathname: "/(auth)/enter-otp", params: { isEmail: true } })
+    router.push({ pathname: "/(auth)/enter-otp", params: { isEmail: true } });
+    // router.replace(`/(auth)/${updatedUserData.email}/verify-otp`);
   };
-  const handleClickEmail = () => { };
+  const handleClickEmail = () => {};
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -124,7 +125,7 @@ export const EnterEmail = () => {
                 title="Continue"
                 handleClick={handleEmailOtp}
                 variation={ButtonVariation.default}
-              // disabled={value === ""}
+                // disabled={value === ""}
               />
             </MotiView>
           </MotiView>

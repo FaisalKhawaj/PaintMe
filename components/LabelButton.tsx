@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     borderRadius: 12,
     paddingVertical: 13,
-    height: 52,
+    height: 60,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
