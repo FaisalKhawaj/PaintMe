@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 const { height, width } = Dimensions.get("screen");
 export const Profile = () => {
@@ -30,7 +31,10 @@ export const Profile = () => {
           style={styles.img}
           source={{ uri: "https://picsum.photos/200" }}
         >
-          <Pressable style={globalstyles.rounedIconButton} onPress={() => {}}>
+          <Pressable
+            style={globalstyles.roundedIconButton}
+            onPress={() => router.push("/(main)/edit-profile")}
+          >
             <MotiView
               animate={{
                 scale: [1, 1.1, 1],

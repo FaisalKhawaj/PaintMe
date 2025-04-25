@@ -18,9 +18,9 @@ export const globalstyles = StyleSheet.create({
     alignSelf: "center",
     fontFamily: fonts.primary.semibold,
   },
-  rounedIconButton: {
-    backgroundColor: "#9ea0a4",
-    opacity: 0.8,
+  roundedIconButton: {
+    backgroundColor: "#EDEBEE33",
+    opacity: 0.3,
     height: 55,
     margin: 15,
     width: 55,
