@@ -18,4 +18,15 @@ export const globalstyles = StyleSheet.create({
     alignSelf: "center",
     fontFamily: fonts.primary.semibold,
   },
+  rounedIconButton: {
+    backgroundColor: "#9ea0a4",
+    opacity: 0.8,
+    height: 55,
+    margin: 15,
+    width: 55,
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "flex-end",
+  },
 });
