@@ -3,9 +3,20 @@ import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
-import { Dimensions, Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "./styles"
+import { styles } from "./styles";
 import { MotiView } from "moti";
 import { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
@@ -34,7 +45,10 @@ export const WelcomeFinal = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1 }}
         >
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            keyboardShouldPersistTaps="handled"
+          >
             <MotiView
               style={globalstyles.innerWrap}
               from={{ opacity: 0 }}
@@ -50,7 +64,7 @@ export const WelcomeFinal = () => {
                 <Image
                   style={{
                     alignSelf: "center",
-                    marginBottom: 20
+                    marginBottom: 20,
                   }}
                   source={isEmail ? require("../../../assets/images/MailScreen.png") : require("../../../assets/images/heart.png")}
                 />
@@ -77,15 +91,13 @@ export const WelcomeFinal = () => {
                   title="Get Cracking ✨"
                   handleClick={handleSplash}
                   variation={ButtonVariation.default}
-                // disabled={value === ""}
+                  // disabled={value === ""}
                 />
-
               </MotiView>
-
             </MotiView>
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
-}
+};

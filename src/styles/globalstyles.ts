@@ -7,6 +7,12 @@ export const globalstyles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.light.screenBg,
   },
+  mainView: {
+    flexGrow: 1,
+    backgroundColor: "#fff",
+    gap: 10,
+    padding: 10,
+  },
   innerWrap: {
     flexGrow: 1,
     paddingHorizontal: 20,
@@ -17,5 +23,16 @@ export const globalstyles = StyleSheet.create({
     width: "80%",
     alignSelf: "center",
     fontFamily: fonts.primary.semibold,
+  },
+  roundedIconButton: {
+    backgroundColor: "#EDEBEE33",
+    opacity: 0.3,
+    height: 55,
+    margin: 15,
+    width: 55,
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "flex-end",
   },
 });
