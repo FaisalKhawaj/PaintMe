@@ -26,6 +26,8 @@ export * from "./GoogleIcon";
 
 // L
 export * from "./LicenseIcon";
+export * from "./LogoutIcon";
+export * from "./LockIcon";
 // M
 export * from "./MasterCIcon";
 // N
@@ -41,6 +43,7 @@ export * from "./PrivacyIcon";
 
 // S
 export * from "./SupportIcon";
+export * from "./ShieldIcon";
 
 // T
 

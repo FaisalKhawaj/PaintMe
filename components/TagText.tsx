@@ -4,8 +4,8 @@ import { fonts } from "@/hooks/useCacheResources";
 
 type TagTextProps = {
   title: string;
-  tagBgColor: string;
-  tagTextColor: string;
+  tagBgColor?: string;
+  tagTextColor?: string;
   rotate?: string;
 };
 

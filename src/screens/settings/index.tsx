@@ -13,7 +13,9 @@ export const Settings = () => {
     router.push("/connected-accounts");
   };
   const handleContactSupport = () => {};
-  const handleAccount = () => {};
+  const handleAccount = () => {
+    router.push("/account");
+  };
   const handlePrivacy = () => {};
   const handleLicense = () => {};
   return (

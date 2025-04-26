@@ -23,6 +23,8 @@ type ButtonProps = {
   borderColor?: any;
   variation?: ButtonVariation;
   style?: any;
+  alignItems?: any;
+  paddingHorizontal?: number;
 };
 
 export const LabelButton = ({
@@ -34,6 +36,8 @@ export const LabelButton = ({
   btnWidth = "100%",
   borderColor,
   variation = ButtonVariation.default,
+  alignItems = "center",
+  paddingHorizontal = 0,
 }: ButtonProps) => {
   // const Icon = SVGs[iconName];
   let buttonBackgroundColor = disabled
@@ -53,6 +57,8 @@ export const LabelButton = ({
         style={[
           styles.buttonWrapper,
           {
+            paddingHorizontal: paddingHorizontal,
+            alignItems: alignItems,
             borderColor: borderColor ? borderColor : Colors.light.primaryButton,
             width: btnWidth,
             backgroundColor: buttonBackgroundColor,
@@ -115,7 +121,7 @@ const styles = StyleSheet.create({
 const buttonColors: { [key in ButtonVariation]: string } = {
   default: "#000000",
   secondary: "#EDEBEE",
-  destructive: "red",
+  destructive: "rgba(255, 0, 0, 0.2)",
   success: "green",
   transparent: "transparent",
 };
@@ -123,7 +129,7 @@ const buttonColors: { [key in ButtonVariation]: string } = {
 const textColors: { [key in ButtonVariation]: string } = {
   default: "#fff",
   secondary: "#242424",
-  destructive: "red",
+  destructive: "#FF0000",
   success: "green",
   transparent: "#242424",
 };

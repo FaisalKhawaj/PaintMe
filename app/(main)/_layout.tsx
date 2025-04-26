@@ -62,6 +62,28 @@ export default function RootLayout() {
           headerTitle: () => <HeaderTitle title="connected accounts" />,
         }}
       />
+
+      <Stack.Screen
+        name="alert"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => (
+            <TagText rotate="-10deg" title="alert" tagBgColor="#C8B6FF" />
+          ),
+        }}
+      />
+
+      <Stack.Screen
+        name="account"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => <HeaderTitle title="account" />,
+        }}
+      />
     </Stack>
   );
 }
