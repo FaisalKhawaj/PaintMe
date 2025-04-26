@@ -52,6 +52,16 @@ export default function RootLayout() {
           headerTitle: () => <HeaderTitle title="payment methods" />,
         }}
       />
+
+      <Stack.Screen
+        name="connected-accounts"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => <HeaderTitle title="connected accounts" />,
+        }}
+      />
     </Stack>
   );
 }

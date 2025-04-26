@@ -9,7 +9,9 @@ export const Settings = () => {
   const handlePaymentMethods = () => {
     router.push("/payment-methods");
   };
-  const handleConnectedMethods = () => {};
+  const handleConnectedMethods = () => {
+    router.push("/connected-accounts");
+  };
   const handleContactSupport = () => {};
   const handleAccount = () => {};
   const handlePrivacy = () => {};
