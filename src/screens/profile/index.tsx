@@ -94,7 +94,10 @@ export const Profile = () => {
               </Pressable>
             </MotiView>
 
-            <Pressable style={styles.bottomRightLgButton} onPress={() => {}}>
+            <Pressable
+              style={styles.bottomRightLgButton}
+              onPress={() => router.push("/alert")}
+            >
               <Ionicons name="notifications" size={25} color={"#242424"} />
               <TagText
                 title="alert"

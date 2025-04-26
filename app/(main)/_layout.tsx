@@ -38,16 +38,50 @@ export default function RootLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerStyle: {
-            backgroundColor: "#fff",
-          },
-          headerTransparent: true,
-          contentStyle: {
-            paddingTop: 50,
-            overflow: "hidden",
-            backgroundColor: "transparent",
-          },
+
           headerTitle: () => <HeaderTitle title="payment methods" />,
+        }}
+      />
+
+      <Stack.Screen
+        name="add-payment-method"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => <HeaderTitle title="payment methods" />,
+        }}
+      />
+
+      <Stack.Screen
+        name="connected-accounts"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => <HeaderTitle title="connected accounts" />,
+        }}
+      />
+
+      <Stack.Screen
+        name="alert"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => (
+            <TagText rotate="-10deg" title="alert" tagBgColor="#C8B6FF" />
+          ),
+        }}
+      />
+
+      <Stack.Screen
+        name="account"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => <HeaderTitle title="account" />,
         }}
       />
     </Stack>
