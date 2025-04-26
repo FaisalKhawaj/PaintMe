@@ -27,7 +27,7 @@ export * from "./GoogleIcon";
 // L
 export * from "./LicenseIcon";
 // M
-
+export * from "./MasterCIcon";
 // N
 
 // O
@@ -47,7 +47,7 @@ export * from "./SupportIcon";
 // U
 
 //V
-
+export * from "./VisaCIcon";
 // W
 
 // X

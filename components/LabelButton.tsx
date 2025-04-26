@@ -1,7 +1,6 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import { ThemedText } from "./ThemedText";
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { Colors } from "@/constants/Colors";
 import { fonts } from "@/hooks/useCacheResources";
 import * as Haptics from "expo-haptics";
@@ -45,7 +44,7 @@ export const LabelButton = ({
 
   return (
     <>
-      <TouchableOpacity
+      <Pressable
         disabled={disabled}
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -67,7 +66,7 @@ export const LabelButton = ({
         >
           {title}
         </ThemedText>
-      </TouchableOpacity>
+      </Pressable>
     </>
   );
 };

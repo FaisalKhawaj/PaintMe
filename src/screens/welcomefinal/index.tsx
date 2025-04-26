@@ -20,8 +20,9 @@ import { styles } from "./styles";
 import { MotiView } from "moti";
 import { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
-import { router, useLocalSearchParams } from "expo-router";
+import { Redirect, router, useLocalSearchParams } from "expo-router";
 import { OtpInput } from "react-native-otp-entry";
+import { useAuth } from "@/src/context/AuthProvider";
 
 export const WelcomeFinal = () => {
   const { height } = Dimensions.get("screen");
@@ -34,10 +35,15 @@ export const WelcomeFinal = () => {
   const handlePhone = () => {
     router.replace("/(auth)/enter-otp");
   };
-  const handleSplash = () => {
-    router.replace("/(auth)/splash");
-  };
 
+  const { isLoggedin, setIsLoggedin }: any = useAuth();
+  const handleSplash = () => {
+    setIsLoggedin(true);
+  };
+  console.log("isLoggedin>>", isLoggedin);
+  if (isLoggedin) {
+    return <Redirect href="/(main)/tabs" />;
+  }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={globalstyles.mainWrap}>
@@ -66,7 +72,11 @@ export const WelcomeFinal = () => {
                     alignSelf: "center",
                     marginBottom: 20,
                   }}
-                  source={isEmail ? require("../../../assets/images/MailScreen.png") : require("../../../assets/images/heart.png")}
+                  source={
+                    isEmail
+                      ? require("../../../assets/images/MailScreen.png")
+                      : require("../../../assets/images/heart.png")
+                  }
                 />
                 <MotiView
                   style={styles.tagAccessControl}
@@ -91,7 +101,7 @@ export const WelcomeFinal = () => {
                   title="Get Cracking ✨"
                   handleClick={handleSplash}
                   variation={ButtonVariation.default}
-                  // disabled={value === ""}
+                  disabled={false}
                 />
               </MotiView>
             </MotiView>

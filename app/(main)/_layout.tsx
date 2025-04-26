@@ -38,15 +38,17 @@ export default function RootLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerStyle: {
-            backgroundColor: "#fff",
-          },
-          headerTransparent: true,
-          contentStyle: {
-            paddingTop: 50,
-            overflow: "hidden",
-            backgroundColor: "transparent",
-          },
+
+          headerTitle: () => <HeaderTitle title="payment methods" />,
+        }}
+      />
+
+      <Stack.Screen
+        name="add-payment-method"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
           headerTitle: () => <HeaderTitle title="payment methods" />,
         }}
       />

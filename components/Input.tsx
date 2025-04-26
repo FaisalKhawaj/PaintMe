@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, TextInputProps } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  TextInputProps,
+  ViewStyle,
+} from "react-native";
 
 interface InputProps extends TextInputProps {
-  icon: React.ReactNode; // Can be either an icon or image component
+  icon?: React.ReactNode; // Can be either an icon or image component
   placeholder: string;
+  style?: ViewStyle; // Allow custom styles to be passed as a prop
 }
 
-const Input: React.FC<InputProps> = ({ icon, placeholder, ...rest }) => {
+const Input: React.FC<InputProps> = ({ icon, placeholder, style, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -14,9 +21,13 @@ const Input: React.FC<InputProps> = ({ icon, placeholder, ...rest }) => {
 
   return (
     <View
-      style={[styles.inputContainer, isFocused ? styles.focusedContainer : {}]}
+      style={[
+        styles.inputContainer,
+        isFocused ? styles.focusedContainer : {},
+        style,
+      ]}
     >
-      <View style={styles.iconWrapper}>{icon}</View>
+      {icon && <View style={styles.iconWrapper}>{icon}</View>}
       <TextInput
         style={[styles.input, isFocused ? { backgroundColor: "white" } : {}]}
         placeholder={placeholder}
