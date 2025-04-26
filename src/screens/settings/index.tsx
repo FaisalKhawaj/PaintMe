@@ -16,8 +16,12 @@ export const Settings = () => {
   const handleAccount = () => {
     router.push("/account");
   };
-  const handlePrivacy = () => {};
-  const handleLicense = () => {};
+  const handlePrivacy = () => {
+    router.push("/privacy-policy");
+  };
+  const handleLicense = () => {
+    router.push("/license");
+  };
   return (
     <SafeAreaView edges={["bottom"]} style={{ flex: 1 }}>
       <MotiView

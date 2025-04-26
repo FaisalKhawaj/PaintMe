@@ -84,6 +84,26 @@ export default function RootLayout() {
           headerTitle: () => <HeaderTitle title="account" />,
         }}
       />
+
+      <Stack.Screen
+        name="privacy-policy"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => <HeaderTitle title="privacy policy" />,
+        }}
+      />
+
+      <Stack.Screen
+        name="license"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => <HeaderTitle title="license" />,
+        }}
+      />
     </Stack>
   );
 }

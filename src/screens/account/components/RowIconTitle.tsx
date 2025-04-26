@@ -8,16 +8,18 @@ import * as SVGs from "../../../../assets/svg";
 type RowIconTitleProps = {
   title: string;
   icon: string;
+  handlePress: () => void;
 };
 
 export const RowIconTitle: React.FC<RowIconTitleProps> = ({
   title,
   icon = "LogoutIcon",
+  handlePress,
 }) => {
   const Icon = SVGs[icon as keyof typeof SVGs];
 
   return (
-    <Pressable style={styles.buttonWrap}>
+    <Pressable onPress={handlePress} style={styles.buttonWrap}>
       <Icon />
       <Text style={styles.title}>{title}</Text>
     </Pressable>

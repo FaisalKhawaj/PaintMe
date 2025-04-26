@@ -8158,6 +8158,7 @@ __metadata:
     react-dom: 18.3.1
     react-native: 0.76.9
     react-native-gesture-handler: ~2.20.2
+    react-native-modal: ^14.0.0-rc.1
     react-native-otp-entry: ^1.8.4
     react-native-paper: ^5.13.3
     react-native-phone-number-input: ^2.1.0
@@ -8494,7 +8495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.7, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.5.7, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -8680,6 +8681,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-animatable@npm:1.4.0":
+  version: 1.4.0
+  resolution: "react-native-animatable@npm:1.4.0"
+  dependencies:
+    prop-types: ^15.8.1
+  checksum: a1b211aff745b97351d78643d641fa298f7d71524eaf22fee8a69257ce52e85d6b3caf8e7fd26a521af34984fba7402b7c632c35ea69d618769387d1dcb6b32a
+  languageName: node
+  linkType: hard
+
 "react-native-country-picker-modal@npm:^2.0.0":
   version: 2.0.0
   resolution: "react-native-country-picker-modal@npm:2.0.0"
@@ -8743,6 +8753,18 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 4cdf2b2fb5b131f2015c26d2cb7688b4a0c5f3c8474b1bf0ddfa9eabb0263df440c87262ae8f812a6ecab0d5310df0373bddad4b51f53dabb2ffee01e9ef0f44
+  languageName: node
+  linkType: hard
+
+"react-native-modal@npm:^14.0.0-rc.1":
+  version: 14.0.0-rc.1
+  resolution: "react-native-modal@npm:14.0.0-rc.1"
+  dependencies:
+    react-native-animatable: 1.4.0
+  peerDependencies:
+    react: "*"
+    react-native: ">=0.70.0"
+  checksum: 19bca96dde148c14ed4cc0e52fedd0a12ca952815e4dcbea31d0a98962d75dc3c011c677f5f9cd15f2b88f78ccd03134647b280724bc6de148c25e28eea1a7e4
   languageName: node
   linkType: hard
 
