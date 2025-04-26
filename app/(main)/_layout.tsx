@@ -104,6 +104,18 @@ export default function RootLayout() {
           headerTitle: () => <HeaderTitle title="license" />,
         }}
       />
+
+      <Stack.Screen
+        name="my-profile"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerTitle: () => (
+            <TagText rotate="-10deg" title="my profile" tagBgColor="#FDE2E4" />
+          ),
+        }}
+      />
     </Stack>
   );
 }

@@ -73,7 +73,10 @@ export const Profile = () => {
               animate={{ translateX: 0, opacity: 1 }}
               transition={{ type: "timing", duration: 500 }}
             >
-              <Pressable style={styles.bottomLeftButton} onPress={() => {}}>
+              <Pressable
+                style={styles.bottomLeftButton}
+                onPress={() => router.push("/my-profile")}
+              >
                 <FontAwesome5 name="user-alt" size={25} color={"#242424"} />
                 <TagText
                   title="my profile"
