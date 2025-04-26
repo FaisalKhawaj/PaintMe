@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, SafeAreaView, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, SafeAreaView, Dimensions, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // for icons
 import { router, useNavigation } from 'expo-router';
 import { fonts } from '@/hooks/useCacheResources';
@@ -25,16 +25,28 @@ export const ImageSelect = () => {
   return (
     <>
       {showFullScreen ? (
-        // FULL SCREEN MODE
-        <View style={styles.fullscreenContainer}>
-          <TouchableOpacity
-            activeOpacity={1}
+        // FULL SCREEN MODE WITH Moti ANIMATION
+        <MotiView
+          style={styles.fullscreenContainer}
+          from={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: 'timing', duration: 800 }}
+        >
+          <Pressable
+            // activeOpacity={1}
             onPress={() => setShowFullScreen(false)}
             style={{ flex: 1 }}
           >
-            <Image source={{ uri: imageUrl }} style={styles.fullscreenImage} />
-          </TouchableOpacity>
-        </View>
+            <MotiView
+              style={styles.fullscreenImageContainer}
+              from={{ scale: 1, opacity: 1 }}
+              animate={{ scale: 1.1, opacity: 1 }} // Slightly zoom in the image
+              transition={{ type: 'timing', duration: 500 }}
+            >
+              <Image source={{ uri: imageUrl }} style={styles.fullscreenImage} />
+            </MotiView>
+          </Pressable>
+        </MotiView>
       ) : (
         // NORMAL MODE
         <SafeAreaView style={styles.safeArea}>
@@ -214,6 +226,12 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     resizeMode: 'cover',
     paddingHorizontal: 10
+  },
+  fullscreenImageContainer: {
+    flex: 1,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalImage: {
     width: '100%',
