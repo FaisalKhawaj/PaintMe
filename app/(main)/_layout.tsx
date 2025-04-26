@@ -84,6 +84,27 @@ export default function RootLayout() {
           headerTitle: () => <HeaderTitle title="account" />,
         }}
       />
+
+      <Stack.Screen
+        name="image-select"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerShown: false,
+          headerTitle: () => <HeaderTitle title="image-select" />,
+        }}
+      />
+      <Stack.Screen
+        name="retouch-image"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerShown: false,
+          headerTitle: () => <HeaderTitle title="retouch-image" />,
+        }}
+      />
     </Stack>
   );
 }

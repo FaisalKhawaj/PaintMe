@@ -19,7 +19,10 @@ export const EnterOtp = () => {
   const phoneInput = useRef<PhoneInput>(null);
   const { isEmail = false } = useLocalSearchParams();
   const handleOtp = () => {
-    router.push({ pathname: "/(auth)/welcome-final", params: { isEmail: isEmail } })
+    router.replace({
+      pathname: "/(auth)/welcome-final",
+      params: { isEmail: isEmail }
+    });
   };
 
   return (
