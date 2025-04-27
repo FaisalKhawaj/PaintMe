@@ -1,7 +1,7 @@
 export * from "./AppleIcon";
-
+export * from "./ArrowLeftIcon";
 // B
-
+export * from "./BrushIcon";
 // C
 export * from "./CreditCardIcon";
 export * from "./ConnectedCardIcon";
@@ -17,7 +17,7 @@ export * from "./EditIcon";
 export * from "./GoogleIcon";
 
 // H
-
+export * from "./HeartIcon";
 // I
 
 // J
@@ -28,6 +28,7 @@ export * from "./GoogleIcon";
 export * from "./LicenseIcon";
 export * from "./LogoutIcon";
 export * from "./LockIcon";
+export * from "./LayerIcon";
 // M
 export * from "./MasterCIcon";
 // N
@@ -44,7 +45,7 @@ export * from "./PrivacyIcon";
 // S
 export * from "./SupportIcon";
 export * from "./ShieldIcon";
-
+export * from "./SendIcon";
 // T
 
 // U

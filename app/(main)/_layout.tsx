@@ -97,10 +97,11 @@ export default function RootLayout() {
       <Stack.Screen
         name="image-select"
         options={{
-          headerLeft: () => <HeaderRoundedBack />,
-          headerShadowVisible: false,
-          title: "",
-          headerTitle: () => <HeaderTitle title="image-select" />,
+          headerShown: false,
+          // headerLeft: () => <HeaderRoundedBack />,
+          // headerShadowVisible: false,
+          // title: "",
+          // headerTitle: () => <HeaderTitle title="image-select" />,
         }}
       />
 
@@ -118,7 +119,7 @@ export default function RootLayout() {
         name="my-profile"
         options={{
           headerShown: false,
-          headerTitle: () => <HeaderTitle title="image-select" />,
+          headerTitle: () => <HeaderTitle title="my profile" />,
         }}
       />
       <Stack.Screen
