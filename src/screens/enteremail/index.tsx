@@ -35,7 +35,7 @@ export const EnterEmail = () => {
   const phoneInput = useRef<PhoneInput>(null);
   const router = useRouter();
   const handleEmailOtp = () => {
-    router.push({ pathname: "/(auth)/enter-otp", params: { isEmail: true } });
+    router.replace({ pathname: "/(auth)/enter-otp", params: { isEmail: true } });
     // router.replace(`/(auth)/${updatedUserData.email}/verify-otp`);
   };
   const handleClickEmail = () => {};

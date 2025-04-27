@@ -87,6 +87,7 @@ export default function RootLayout() {
 
       <Stack.Screen
         name="privacy-policy"
+        name="image-select"
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
@@ -107,6 +108,12 @@ export default function RootLayout() {
 
       <Stack.Screen
         name="my-profile"
+          headerShown: false,
+          headerTitle: () => <HeaderTitle title="image-select" />,
+        }}
+      />
+      <Stack.Screen
+        name="retouch-image"
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
@@ -114,6 +121,8 @@ export default function RootLayout() {
           headerTitle: () => (
             <TagText rotate="-10deg" title="my profile" tagBgColor="#FDE2E4" />
           ),
+          headerShown: false,
+          headerTitle: () => <HeaderTitle title="retouch-image" />,
         }}
       />
     </Stack>
