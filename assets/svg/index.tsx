@@ -5,6 +5,7 @@ export * from "./BrushIcon";
 // C
 export * from "./CreditCardIcon";
 export * from "./ConnectedCardIcon";
+export * from "./CancelIcon";
 
 // D
 

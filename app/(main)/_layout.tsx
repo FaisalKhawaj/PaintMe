@@ -133,6 +133,49 @@ export default function RootLayout() {
           headerTitle: () => <HeaderTitle title="retouch-image" />,
         }}
       />
+      <Stack.Screen
+        name="create-similar"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+
+          headerShown: false,
+          headerTitle: () => <HeaderTitle title="create-similar" />,
+        }}
+      />
+      <Stack.Screen
+        name="create-image"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+
+          headerShown: false,
+          headerTitle: () => <HeaderTitle title="create-image" />,
+        }}
+      />
+      <Stack.Screen
+        name="choose-style"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+
+          headerShown: false,
+          headerTitle: () => <HeaderTitle title="choose-style" />,
+        }}
+      />
+      <Stack.Screen
+        name="generated-image-selected"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerShown:false,
+          headerTitle: () => <HeaderTitle title="Generated Image Selected" />,
+        }}
+      />
     </Stack>
   );
 }

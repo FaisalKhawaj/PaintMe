@@ -28,7 +28,7 @@ export const BlurredRoundedIcon: React.FC<BlurredRoundedIconProps> = ({
         },
       ]}
     >
-      <BlurView intensity={100} style={styles.blurContainer} tint="light">
+      <BlurView intensity={40} style={styles.blurContainer} tint="light">
         <TouchableOpacity style={styles.backButton} onPress={handleClick}>
           <Icon />
         </TouchableOpacity>

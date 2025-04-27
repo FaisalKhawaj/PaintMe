@@ -30,7 +30,7 @@ import { IconButton } from "@/components/IconButton";
 
 const { width, height } = Dimensions.get("window");
 
-export const ImageSelect = () => {
+export const GeneratedImageSelect = () => {
   const navigation = useNavigation();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const [showImageAdded, setShowImageAdded] = useState(false);
@@ -76,20 +76,34 @@ export const ImageSelect = () => {
           transition={{ type: "timing", duration: 800 }}
         >
           <Pressable
-            // activeOpacity={1}
             onPress={() => setShowFullScreen(false)}
             style={{ flex: 1 }}
           >
             <MotiView
               style={styles.fullscreenImageContainer}
               from={{ scale: 1, opacity: 1 }}
-              animate={{ scale: 1.1, opacity: 1 }} // Slightly zoom in the image
+              animate={{ scale: 1.1, opacity: 1 }}
               transition={{ type: "timing", duration: 500 }}
             >
               <Image
                 source={{ uri: imageUrl }}
                 style={styles.fullscreenImage}
               />
+            </MotiView>
+
+            {/* Add this close button */}
+            <MotiView
+              style={styles.fullscreenCloseButton}
+              from={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 300 }}
+            >
+              <Pressable
+                onPress={() => setShowFullScreen(false)}
+                style={styles.closeButton}
+              >
+                <Ionicons name="close" size={24} color="white" />
+              </Pressable>
             </MotiView>
           </Pressable>
         </MotiView>
@@ -149,12 +163,12 @@ export const ImageSelect = () => {
                 <BlurredRoundedIcon
                   position="relative"
                   icon="SendIcon"
-                  handleClick={handleShare}
+                  handleClick={handleBack}
                 />
                 <BlurredRoundedIcon
                   position="relative"
                   icon="HeartIcon"
-                  handleClick={() => setShowOptionsModal(true)}
+                  handleClick={handleBack}
                 />
               </MotiView>
               {/* Floating Buttons inside image */}
@@ -181,11 +195,10 @@ export const ImageSelect = () => {
 
             {/* Details Section */}
             <View style={styles.detailsContainer}>
-              <View style={{ width: "78%" }}>
-                <Text style={styles.title}>Avant-Garde Runway Model</Text>
+              <View style={{ width: "70%" }}>
+                <Text style={styles.title}>Person with Laptop</Text>
                 <Text style={styles.description}>
-                  Model in a yellow jumpsuit with oversized pockets, red glossy
-                  headpiece, and white visor on a runway with blurred audience.
+                  Person coding on a laptop with a red panel in the background, wearing a cap and an overall.
                 </Text>
               </View>
 
@@ -196,131 +209,13 @@ export const ImageSelect = () => {
                   animate={{ scale: 1, rotate: "-10deg" }}
                   transition={{ delay: 300, type: "spring" }}
                 >
-                  <Text style={styles.tagText}>runway</Text>
+                  <Text style={styles.tagText}>generated</Text>
                 </MotiView>
               </View>
             </View>
           </View>
         </SafeAreaView>
       )}
-
-      {/* Modal */}
-      <Modal visible={showOptionsModal} transparent animationType="slide">
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setShowOptionsModal(false)}
-          activeOpacity={1}
-        >
-          <View style={styles.modalContent}>
-            <View style={styles.tagStylesModal}>
-              <MotiView
-                style={styles.tag}
-                from={{ scale: 0, rotate: "0deg" }}
-                animate={{ scale: 1, rotate: "0deg" }}
-                transition={{ delay: 300, type: "spring" }}
-              >
-                <Text style={styles.tagTextNormal}>add to collection</Text>
-              </MotiView>
-            </View>
-            <Text
-              style={[
-                styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              Your collection is your own curated list of images collected over
-              time.
-            </Text>
-            <Image source={{ uri: imageUrl }} style={styles.modalImage} />
-            <Spacer marginBottom={10} marginTop={10} />
-            <View style={styles.tagStylesModal}>
-              <MotiView
-                style={styles.tag}
-                from={{ scale: 0, rotate: "0deg" }}
-                animate={{ scale: 1, rotate: "0deg" }}
-                transition={{ delay: 300, type: "spring" }}
-              >
-                <Text style={styles.tagTextNormal}>pixel parade</Text>
-              </MotiView>
-            </View>
-            <Text
-              style={[
-                styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              20 images
-            </Text>
-            <Spacer marginBottom={10} marginTop={30} />
-            <LabelButton
-              title="Add to Collection"
-              handleClick={handleImageAddhandler}
-              variation={ButtonVariation.default}
-            />
-          </View>
-        </TouchableOpacity>
-      </Modal>
-      <Modal visible={showImageAdded} transparent animationType="slide">
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setShowImageAdded(false)}
-          activeOpacity={1}
-        >
-          <View style={styles.modalContent}>
-            <View style={styles.tagStylesModal}>
-              <MotiView
-                style={styles.tag}
-                from={{ scale: 0, rotate: "0deg" }}
-                animate={{ scale: 1, rotate: "0deg" }}
-                transition={{ delay: 300, type: "spring" }}
-              >
-                <Text style={styles.tagTextNormal}>add to collection</Text>
-              </MotiView>
-            </View>
-            <Text
-              style={[
-                styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              Avant-Garde... has been added to your collection .
-            </Text>
-            <Image
-              source={require("../../../assets/images/imageAdded.png")}
-              style={styles.addedImage}
-            />
-
-            <Spacer marginBottom={10} marginTop={30} />
-            <LabelButton
-              title="Close"
-              handleClick={() => {
-                setShowImageAdded(false);
-                router.push({
-                  pathname: "/retouch-image",
-                  // pathname: "/create-similar", //here you can test create profile page
-                  // params: { imageUrl: imgUri }, // <-- pass image url as param
-                });
-              }}
-              variation={ButtonVariation.default}
-            />
-          </View>
-        </TouchableOpacity>
-      </Modal>
     </>
   );
 };
@@ -335,7 +230,7 @@ const styles = StyleSheet.create({
   },
   tagStyles: {
     borderRadius: 10,
-    backgroundColor: "#F8D4B2",
+    backgroundColor: "#FDFCDC",
     alignSelf: "center",
     transform: [{ rotate: "10deg" }],
   },
@@ -464,5 +359,19 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
     resizeMode: "cover",
+  },
+  fullscreenCloseButton: {
+    position: 'absolute',
+    bottom: 40,
+    alignSelf: 'center',
+    backgroundColor: 'black',
+    borderRadius: 40,
+    padding: 10,
+  },
+  closeButton: {
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

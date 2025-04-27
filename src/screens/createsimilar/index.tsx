@@ -10,7 +10,7 @@ import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
 
 const { width, height } = Dimensions.get('window');
 
-export const RetouchImage = () => {
+export const CreateSimilar = () => {
   const navigation = useNavigation();
   const [count, setCount] = useState(1);
   const [images, setImages] = useState<string[]>([]);
@@ -67,7 +67,7 @@ export const RetouchImage = () => {
                 animate={{ scale: 1, rotate: "0deg" }}
                 transition={{ delay: 300, type: "spring" }}
               >
-                <Text style={styles.tagTextNormal}>retouch image</Text>
+                <Text style={styles.tagTextNormal}>create similar</Text>
               </MotiView>
             </View>
 
@@ -107,7 +107,7 @@ export const RetouchImage = () => {
                 <View style={styles.detailsContainer}>
                   <TextArea
                     containerStyle={{ height: 100 }}
-                    placeholder="Describe the changes you want made."
+                    placeholder="Describe the subject or action"
                     keyboardType="default"
                   />
                 </View>
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
   tagStylesModal: {
     borderRadius: 10,
-    backgroundColor: "#F0F4F0",
+    backgroundColor: "#E0FBFD",
     marginVertical: 10,
     alignSelf: "center",
   },
