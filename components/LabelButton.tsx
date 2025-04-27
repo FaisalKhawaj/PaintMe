@@ -11,6 +11,7 @@ export enum ButtonVariation {
   destructive = "destructive",
   success = "success",
   transparent = "transparent",
+  disabled = "disabled",
 }
 
 type ButtonProps = {
@@ -40,12 +41,10 @@ export const LabelButton = ({
   paddingHorizontal = 0,
 }: ButtonProps) => {
   // const Icon = SVGs[iconName];
-  let buttonBackgroundColor = disabled
-    ? Colors.light.disabled
-    : buttonColors[variation];
+  let buttonBackgroundColor = buttonColors[variation];
 
   let textColor = textColors[variation];
-
+  console.log("disabled", disabled);
   return (
     <>
       <Pressable
@@ -121,6 +120,7 @@ const styles = StyleSheet.create({
 const buttonColors: { [key in ButtonVariation]: string } = {
   default: "#000000",
   secondary: "#EDEBEE",
+  disabled: "#808080",
   destructive: "rgba(255, 0, 0, 0.2)",
   success: "green",
   transparent: "transparent",
@@ -129,6 +129,7 @@ const buttonColors: { [key in ButtonVariation]: string } = {
 const textColors: { [key in ButtonVariation]: string } = {
   default: "#fff",
   secondary: "#242424",
+  disabled: "#fff",
   destructive: "#FF0000",
   success: "green",
   transparent: "#242424",
