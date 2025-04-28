@@ -176,6 +176,26 @@ export default function RootLayout() {
           headerTitle: () => <HeaderTitle title="Generated Image Selected" />,
         }}
       />
+      <Stack.Screen
+        name="collection-name"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerShown:false,
+          headerTitle: () => <HeaderTitle title="Collection Name" />,
+        }}
+      />
+      <Stack.Screen
+        name="color-picker"
+        options={{
+          headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          title: "",
+          headerShown:false,
+          headerTitle: () => <HeaderTitle title="Color picker" />,
+        }}
+      />
     </Stack>
   );
 }

@@ -1,6 +1,7 @@
 import { Colors } from "@/constants/Colors";
 import { fonts } from "@/hooks/useCacheResources";
 import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const globalstyles = StyleSheet.create({
   mainWrap: {
@@ -34,5 +35,12 @@ export const globalstyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "flex-end",
+  },
+  headingText: {
+    marginTop: 10,
+    fontSize: RFValue(22),
+    textAlign: 'center',
+    fontFamily: fonts.primary.semibold,
+    color: "black",
   },
 });

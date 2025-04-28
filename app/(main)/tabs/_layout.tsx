@@ -49,10 +49,17 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="plus" color={color} />,
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="pencil.and.list.clipboard.rtl" color={color} />,
+        }}
+      /> */}
+      <Tabs.Screen
+        name="collection"
+        options={{
+          title: 'Collection',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="pencil.and.list.clipboard.rtl" color={color} />,
         }}
       />
