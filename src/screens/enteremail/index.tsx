@@ -20,7 +20,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { MotiView } from "moti";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
 import { router, useRouter } from "expo-router";
 import Input from "@/components/Input";
@@ -35,9 +35,29 @@ export const EnterEmail = () => {
   const phoneInput = useRef<PhoneInput>(null);
   const router = useRouter();
   const handleEmailOtp = () => {
-    router.replace({ pathname: "/(auth)/enter-otp", params: { isEmail: true } });
+    router.replace({
+      pathname: "/(auth)/enter-otp",
+      params: { isEmail: true },
+    });
     // router.replace(`/(auth)/${updatedUserData.email}/verify-otp`);
   };
+
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const showListener = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true);
+    });
+    const hideListener = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      showListener.remove();
+      hideListener.remove();
+    };
+  }, []);
+  console.log("isKeyboardVisible", isKeyboardVisible);
   const handleClickEmail = () => {};
   return (
     <KeyboardAvoidingView
@@ -45,7 +65,7 @@ export const EnterEmail = () => {
       style={{ flex: 1 }}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <SafeAreaView style={globalstyles.mainWrap}>
+        <SafeAreaView edges={["bottom"]} style={globalstyles.mainWrap}>
           <MotiView
             style={globalstyles.innerWrap}
             from={{ opacity: 0 }}
@@ -98,7 +118,7 @@ export const EnterEmail = () => {
               </Text>
             </MotiView>
             <MotiView
-              style={{ gap: 10 }}
+              style={{ gap: 10, bottom: !isKeyboardVisible ? 30 : 0 }}
               from={{ translateY: 50, opacity: 0 }}
               animate={{ translateY: 0, opacity: 1 }}
               transition={{ delay: 600, duration: 500 }}
