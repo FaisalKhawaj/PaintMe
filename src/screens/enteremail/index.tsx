@@ -1,10 +1,7 @@
-import { AppleIcon, GoogleIcon } from "@/assets/svg";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
-import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { RFValue } from "react-native-responsive-fontsize";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 import {
   Dimensions,
