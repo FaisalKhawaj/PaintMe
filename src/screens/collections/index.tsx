@@ -11,25 +11,31 @@ import {
   Platform,
   Pressable,
   ScrollView,
+  StyleSheet,
   Text,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "./styles";
 import { MotiView } from "moti";
 import { useEffect, useRef, useState } from "react";
-import PhoneInput from "react-native-phone-number-input";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
-import { OtpInput } from "react-native-otp-entry";
-import { useAuth } from "@/src/context/AuthProvider";
 import { fonts } from "@/hooks/useCacheResources";
+import { RFValue } from "react-native-responsive-fontsize";
+import { Ionicons } from "@expo/vector-icons";
 
 export const Collections = () => {
+  const collections = [
+    { title: "pixel parade", images: 28, color: '#F7FEF9', tagColor: '#D4F8E1' },
+    { title: "frame & focus", images: 14, color: '#ECFAFA', tagColor: '#9FE7E5' },
+    { title: "color theory", images: 22, color: '#FFF4F8', tagColor: '#FFC8DD' },
+    { title: "dreamscape depot", images: 36, color: '#F2F9FF', tagColor: '#BDE0FE' },
+  ];
 
-  const handleContinue = () =>{
-    router.push('/(main)/collection-name')
-  }
+  const handleContinue = () => {
+    router.push('/(main)/tabs/collection/opened-collections');
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -38,47 +44,112 @@ export const Collections = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1 }}
         >
-          <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            keyboardShouldPersistTaps="handled"
+          <TouchableOpacity
+            style={styles.circleButton}
+            onPress={() => { }}
           >
-            <MotiView
-              style={globalstyles.innerWrap}
-              from={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 200, duration: 500 }}
-            >
-              <MotiView
-                style={{ flex: 1, justifyContent: "center" }}
-                from={{ translateY: -50, opacity: 0 }}
-                animate={{ translateY: 0, opacity: 1 }}
-                transition={{ delay: 200, duration: 500 }}
-              >
+            <Ionicons
+              name={'add'}
+              size={40}
+              color="white"
+            />
+          </TouchableOpacity>
+          <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            showsVerticalScrollIndicator={false}
+          >
+            {collections.map((item, index) => (
+              <Pressable onPress={handleContinue}>
                 <MotiView
-                  style={styles.tagAccessControl}
-                  from={{ scale: 0, rotate: "10deg" }}
-                  animate={{ scale: 1, rotate: "-10deg" }}
+                  key={index}
+                  style={[styles.card, { backgroundColor: item.color }]}
+                  from={{ scale: 0, rotate: index % 2 === 0 ? "-10deg" : "10deg" }}
+                  animate={{ scale: 1, rotate: index % 2 === 0 ? "10deg" : "-10deg" }}
                   transition={{ delay: 300, type: "spring" }}
                 >
-                  <Text style={styles.tagAccessControlText}>art gallery</Text>
+                  <MotiView
+                    style={styles.cardInner}
+                    from={{ translateY: -50, opacity: 0 }}
+                    animate={{ translateY: 0, opacity: 1 }}
+                    transition={{ delay: 200, duration: 500 }}
+                  >
+                    <MotiView
+                      style={[styles.tagContainer, { backgroundColor: item.tagColor }]}
+                      from={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 300, type: "spring" }}
+                    >
+                      <Text style={styles.tagText}>{item.title}</Text>
+                    </MotiView>
+
+                    <Text style={styles.imageCount}>
+                      {item.images} images
+                    </Text>
+                  </MotiView>
                 </MotiView>
-                <Text style={globalstyles.headingText}>
-                  You have no created galleries yet, so create one.
-                </Text>
-                <Spacer marginTop={10} />
-                <Image
-                  style={{
-                    alignSelf: "center",
-                    marginBottom: 20,
-                  }}
-                  source={require("../../../assets/images/collection.png")}
-                />
-                <LabelButton title="Create Collection" variation={ButtonVariation.default} handleClick={handleContinue}/>
-              </MotiView>
-            </MotiView>
+              </Pressable>
+            ))}
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
 };
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 80,
+    paddingTop: 40,
+  },
+  card: {
+    backgroundColor: '#D3F8E2',
+    padding: 25,
+    paddingVertical: 50,
+    borderRadius: 30,
+    marginVertical: 40,
+    // shadowColor: "#000",
+    // shadowOpacity: 0.1,
+    // shadowOffset: { width: 0, height: 4 },
+    // shadowRadius: 10,
+    // elevation: 5,
+  },
+  cardInner: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  tagContainer: {
+    borderRadius: 14,
+    backgroundColor: "#CAF7E3",
+    paddingVertical: 8,
+    paddingHorizontal: 22,
+    alignSelf: "center",
+    transform: [{ rotate: "10deg" }],
+  },
+  tagText: {
+    color: "#3E4E50",
+    fontSize: RFValue(16),
+    fontFamily: fonts.primary.semibold,
+    textAlign: "center",
+  },
+  imageCount: {
+    fontFamily: fonts.primary.medium,
+    textAlign: 'center',
+    marginTop: 12,
+    fontSize: RFValue(16),
+    color: '#8C919E',
+  },
+  circleButton: {
+    width: 55,
+    height: 55,
+    borderRadius: 10,
+    backgroundColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
+    position: 'absolute',
+    top: 30,
+    right: 30,
+    zIndex: 1000
+  },
+});

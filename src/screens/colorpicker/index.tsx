@@ -16,6 +16,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
+  Modal,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -25,25 +26,59 @@ import PhoneInput from "react-native-phone-number-input";
 import { router, useRouter } from "expo-router";
 import Input from "@/components/Input";
 import { EmailIcon } from "@/assets/svg/EmailIcon";
-const presetColors = [
-  "#C7F8D8",
-  "#B2E4E6",
-  "#F8CAD0",
-  "#D0E2FA",
-  "#AEB5C3",
-  "#C8A2C8",
-];
-export const ColorPick = () => {
-  const [selectedColor, setSelectedColor] = useState("#C7F8D8");
+import ColorPicker, { PreviewText, HueSlider, OpacitySlider, Panel1, Swatches } from 'reanimated-color-picker';
+import { runOnJS } from "react-native-reanimated";
 
-  const handleColorChange = (color: string) => {
-    setSelectedColor(color);
-  };
+export const ColorPick = () => {
+  const [presetColors, setPresetColors] = useState([
+    "#C7F8D8",
+    "#B2E4E6",
+    "#F8CAD0",
+    "#D0E2FA",
+    "#AEB5C3",
+    "#C8A2C8",
+  ]);
+  const [selectedColor, setSelectedColor] = useState("#C7F8D8");
+  const [showPicker, setShowPicker] = useState(false);
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const router = useRouter();
+
   const handleColorPicker = () => {
-    router.push(`/color-picker`);
+    router.push('/(main)/tabs/collection/all-collections')
   };
+
+  const handleColorCirclePress = (color: string, index: number) => {
+    setSelectedColor(color);
+    setEditingIndex(index); // Store which color we're editing
+    setShowPicker(true);
+  };
+
+  const onSelectColor = ({ hex }: { hex: string }) => {
+    'worklet';
+    runOnJS(setSelectedColor)(hex);
+
+    // Only update the preset colors if we're editing an existing one
+    // setTimeout(() => {
+    //   if (editingIndex !== null) {
+    //     runOnJS(setPresetColors)(prevColors => {
+    //       const newColors = [...prevColors];
+    //       newColors[editingIndex] = hex;
+    //       return newColors;
+    //     });
+    //   }
+    // }, 1000);
+  };
+
+  // When closing the picker, reset the editing index
+  const handleClosePicker = () => {
+    setShowPicker(false);
+    setEditingIndex(null);
+  };
+
+
+
   const handleClickEmail = () => { };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -77,16 +112,14 @@ export const ColorPick = () => {
                 animate={{ translateX: 0, opacity: 1 }}
                 transition={{ delay: 400, duration: 500 }}
               >
-                <Text
-                  style={globalstyles.headingText}
-                >
+                <Text style={globalstyles.headingText}>
                   Choose a color tag
                 </Text>
               </MotiView>
               <Spacer marginTop={50} />
-              {/* <View style={{ width:'100%',borderWidth:1,borderColor:'red' }}> */}
+
               <View style={styles.colorOptions}>
-                {presetColors.map((color) => (
+                {presetColors.map((color, index) => (
                   <TouchableOpacity
                     key={color}
                     style={[
@@ -94,11 +127,48 @@ export const ColorPick = () => {
                       { backgroundColor: color },
                       selectedColor === color && styles.selectedCircle,
                     ]}
-                    onPress={() => handleColorChange(color)}
+                    onPress={() => handleColorCirclePress(color, index)}
                   />
                 ))}
+                {/* <TouchableOpacity
+                  style={[styles.colorCircle, { backgroundColor: selectedColor }]}
+                  onPress={() => setShowPicker(true)}
+                >
+                  <Text style={{ fontSize: 24 }}>+</Text>
+                </TouchableOpacity> */}
               </View>
 
+              {/* Color Picker Modal */}
+              <Modal visible={showPicker} animationType="slide" transparent>
+                <View style={styles.modalContainer}>
+                  <View style={styles.pickerContainer}>
+                    <ColorPicker
+                      value={selectedColor}
+                      sliderThickness={25}
+                      thumbSize={30}
+                      thumbShape="circle"
+                      onComplete={onSelectColor}
+                      style={{ width: '100%' }}
+                    >
+                      <Panel1 style={{ marginBottom: 20 }} />
+                      <HueSlider style={{ marginBottom: 20 }} />
+                      <OpacitySlider style={{ marginBottom: 20 }} />
+                      <Swatches
+                        colors={presetColors}
+                        swatchStyle={{ width: 30, height: 30, borderRadius: 15, marginHorizontal: 5 }}
+                        style={{ marginBottom: 20 }}
+                      />
+                      <PreviewText style={{ color: '#000', fontSize: 16 }} />
+                    </ColorPicker>
+                    <TouchableOpacity
+                      style={styles.closeButton}
+                      onPress={handleClosePicker}
+                    >
+                      <Text style={styles.closeButtonText}>Done</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
             </MotiView>
             <MotiView
               style={{ gap: 10 }}
@@ -110,7 +180,6 @@ export const ColorPick = () => {
                 title="Continue"
                 handleClick={handleColorPicker}
                 variation={ButtonVariation.default}
-              // disabled={value === ""}
               />
             </MotiView>
           </MotiView>

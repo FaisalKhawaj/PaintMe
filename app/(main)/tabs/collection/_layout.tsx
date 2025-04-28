@@ -19,6 +19,20 @@ export default function CreateLayout() {
           headerShown: false 
         }} 
       />
+      <Stack.Screen 
+        name="opened-collections" 
+        options={{ 
+          title: 'Opened Collections',
+          headerShown: false 
+        }} 
+      />
+      <Stack.Screen 
+        name="image-collections" 
+        options={{ 
+          title: 'Image Collections',
+          headerShown: false 
+        }} 
+      />
       {/* Add other create-related screens here */}
     </Stack>
   );
