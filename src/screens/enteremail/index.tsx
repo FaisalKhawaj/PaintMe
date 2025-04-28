@@ -118,7 +118,7 @@ export const EnterEmail = () => {
               </Text>
             </MotiView>
             <MotiView
-              style={{ gap: 10, bottom: !isKeyboardVisible ? 30 : 0 }}
+              style={{ gap: 10, bottom: !isKeyboardVisible ? 20 : 0 }}
               from={{ translateY: 50, opacity: 0 }}
               animate={{ translateY: 0, opacity: 1 }}
               transition={{ delay: 600, duration: 500 }}
