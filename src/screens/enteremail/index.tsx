@@ -22,8 +22,13 @@ import PhoneInput from "react-native-phone-number-input";
 import { router, useRouter } from "expo-router";
 import Input from "@/components/Input";
 import { EmailIcon } from "@/assets/svg/EmailIcon";
+import { useValidations } from "@/src/validations/useValidations";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import FormInput from "@/components/FormInput";
 
 export const EnterEmail = () => {
+  const { createEmail } = useValidations();
   const { height } = Dimensions.get("screen");
   const [value, setValue] = useState("");
   const [formattedValue, setFormattedValue] = useState("");
@@ -31,6 +36,20 @@ export const EnterEmail = () => {
   const [showMessage, setShowMessage] = useState(false);
   const phoneInput = useRef<PhoneInput>(null);
   const router = useRouter();
+
+  const {
+    handleSubmit,
+    control,
+
+    formState: { isValid, errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+    },
+    resolver: zodResolver(createEmail),
+    mode: "onChange",
+  });
+  type EmailType = z.infer<typeof createEmail>;
   const handleEmailOtp = () => {
     router.replace({
       pathname: "/(auth)/enter-otp",
@@ -54,7 +73,7 @@ export const EnterEmail = () => {
       hideListener.remove();
     };
   }, []);
-  console.log("isKeyboardVisible", isKeyboardVisible);
+  console.log("isValid", isValid);
   const handleClickEmail = () => {};
   return (
     <KeyboardAvoidingView
@@ -98,7 +117,9 @@ export const EnterEmail = () => {
               <Spacer marginTop={50} />
               {/* <View style={{ width:'100%',borderWidth:1,borderColor:'red' }}> */}
 
-              <Input
+              <FormInput
+                control={control}
+                name="email"
                 icon={<EmailIcon />}
                 placeholder="Enter your email"
                 keyboardType="email-address"
@@ -140,9 +161,11 @@ export const EnterEmail = () => {
 
               <LabelButton
                 title="Continue"
-                handleClick={handleEmailOtp}
-                variation={ButtonVariation.default}
-                // disabled={value === ""}
+                handleClick={handleSubmit(handleEmailOtp)}
+                variation={
+                  isValid ? ButtonVariation.default : ButtonVariation.disabled
+                }
+                disabled={!isValid ? true : false}
               />
             </MotiView>
           </MotiView>

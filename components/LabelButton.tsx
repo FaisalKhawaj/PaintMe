@@ -41,10 +41,15 @@ export const LabelButton = ({
   paddingHorizontal = 0,
 }: ButtonProps) => {
   // const Icon = SVGs[iconName];
-  let buttonBackgroundColor = buttonColors[variation];
+  // let buttonBackgroundColor = buttonColors[variation];
+  const buttonBackgroundColor = disabled
+    ? buttonColors[ButtonVariation.disabled]
+    : buttonColors[variation];
 
-  let textColor = textColors[variation];
-  console.log("disabled", disabled);
+  const textColor = disabled
+    ? textColors[ButtonVariation.disabled]
+    : textColors[variation];
+  console.log("variation", variation);
   return (
     <>
       <Pressable

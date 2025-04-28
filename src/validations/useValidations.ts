@@ -2,10 +2,20 @@ import { z } from "zod";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 export const useValidations = () => {
+  const createEmail = z.object({
+    email: z
+      .string()
+      .nonempty("Email is required")
+      .email("Invalid email address"),
+  });
+
   const editProfileScheme = z.object({
     firstName: z.string().nonempty("First Name is required"),
     lastName: z.string().nonempty("Last Name is required"),
-    email: z.string().email("Invalid email address"),
+    email: z
+      .string()
+      .nonempty("Email is required")
+      .email("Invalid email address"),
     phoneNumber: z
       .string()
       .min(6, "Phone number must be at least 6 digits.")
@@ -20,5 +30,5 @@ export const useValidations = () => {
     bio: z.string().nonempty("Bio is required"),
   });
 
-  return { editProfileScheme };
+  return { editProfileScheme, createEmail };
 };
