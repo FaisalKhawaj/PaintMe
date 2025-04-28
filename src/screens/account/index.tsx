@@ -9,6 +9,7 @@ import { RowIconTitle } from "./components/RowIconTitle";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import Modal from "react-native-modal";
 import { useState } from "react";
+import { CustomModal } from "@/components/ui/CustomModal";
 
 export const Account = () => {
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
@@ -64,41 +65,36 @@ export const Account = () => {
           </View>
         </View>
 
-        <Modal
-          style={styles.modal}
-          backdropColor="#000"
-          coverScreen={true} // Set to true if you want it to cover the screen
-          onBackdropPress={() => setShowDeleteAccountModal(false)} // Dismiss on tap outside
+        <CustomModal
           isVisible={showDeleteAccountModal}
+          setIsVisble={setShowDeleteAccountModal}
         >
-          <View style={styles.modalContent}>
-            <Text style={styles.modalText}>
-              Are you sure you want to delete your account? Maybe disable it
-              instead.
-            </Text>
-            <Image
-              style={{
-                alignSelf: "center",
-                marginVertical: 45,
-              }}
-              source={require("../../../assets/images/delete.png")}
+          <Text style={styles.modalText}>
+            Are you sure you want to delete your account? Maybe disable it
+            instead.
+          </Text>
+          <Image
+            style={{
+              alignSelf: "center",
+              marginVertical: 45,
+            }}
+            source={require("../../../assets/images/delete.png")}
+          />
+          <View style={{ gap: 20 }}>
+            <LabelButton
+              title="Delete account"
+              handleClick={handleDelete}
+              variation={ButtonVariation.secondary}
+              // disabled={value === ""}
             />
-            <View style={{ gap: 20 }}>
-              <LabelButton
-                title="Delete account"
-                handleClick={handleDelete}
-                variation={ButtonVariation.secondary}
-                // disabled={value === ""}
-              />
-              <LabelButton
-                title="Disable account"
-                handleClick={handleDisable}
-                variation={ButtonVariation.default}
-                // disabled={value === ""}
-              />
-            </View>
+            <LabelButton
+              title="Disable account"
+              handleClick={handleDisable}
+              variation={ButtonVariation.default}
+              // disabled={value === ""}
+            />
           </View>
-        </Modal>
+        </CustomModal>
       </MotiView>
     </SafeAreaView>
   );

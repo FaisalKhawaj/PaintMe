@@ -118,8 +118,10 @@ export default function RootLayout() {
       <Stack.Screen
         name="my-profile"
         options={{
-          headerShown: false,
-          headerTitle: () => <HeaderTitle title="my profile" />,
+          headerLeft: () => <HeaderRoundedBack />,
+          headerTitle: () => (
+            <TagText rotate="-10deg" title="my profile" tagBgColor="#C8B6FF" />
+          ),
         }}
       />
       <Stack.Screen
@@ -172,7 +174,7 @@ export default function RootLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerShown:false,
+          headerShown: false,
           headerTitle: () => <HeaderTitle title="Generated Image Selected" />,
         }}
       />
@@ -182,7 +184,7 @@ export default function RootLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerShown:false,
+          headerShown: false,
           headerTitle: () => <HeaderTitle title="Collection Name" />,
         }}
       />
@@ -192,7 +194,7 @@ export default function RootLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerShown:false,
+          headerShown: false,
           headerTitle: () => <HeaderTitle title="Color picker" />,
         }}
       />
