@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet, Dimensions, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router'; // <-- Expo Router hook
+import { styles } from './styles';
 
 const { width } = Dimensions.get('window');
 const IMAGE_WIDTH = width / 2 - 24;
@@ -93,32 +94,3 @@ export const Home = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  container: {
-    paddingHorizontal: 12,
-    paddingBottom: 40,
-  },
-  columns: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  column: {
-    flex: 1,
-  },
-  imageWrapper: {
-    borderRadius: 20,
-    overflow: 'hidden',
-    marginBottom: 16,
-    marginHorizontal: 6,
-    backgroundColor: '#eee',
-  },
-  image: {
-    width: '100%',
-    resizeMode: 'cover',
-  },
-});

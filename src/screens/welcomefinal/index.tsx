@@ -1,6 +1,4 @@
-import { AppleIcon, GoogleIcon } from "@/assets/svg";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
-import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import {
@@ -9,11 +7,9 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   ScrollView,
   Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -21,21 +17,10 @@ import { MotiView } from "moti";
 import { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
-import { OtpInput } from "react-native-otp-entry";
 import { useAuth } from "@/src/context/AuthProvider";
 
 export const WelcomeFinal = () => {
-  const { height } = Dimensions.get("screen");
-  const [value, setValue] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-  const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const phoneInput = useRef<PhoneInput>(null);
   const { isEmail = false } = useLocalSearchParams();
-  const handlePhone = () => {
-    router.replace("/(auth)/enter-otp");
-  };
-
   const { isLoggedin, setIsLoggedin }: any = useAuth();
   const handleSplash = () => {
     setIsLoggedin(true);

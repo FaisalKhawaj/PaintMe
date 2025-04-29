@@ -96,6 +96,7 @@ export const EnterOtp = () => {
                     </Text>
                   </MotiView>
                   <Spacer marginTop={50} />
+
                   <CustomOtpInput
                     name="otp"
                     control={control}

@@ -19,11 +19,7 @@ export const Welcome = () => {
   return (
     <SafeAreaView style={globalstyles.mainWrap}>
       <View style={globalstyles.innerWrap}>
-        <View
-          style={{
-            gap: 16,
-          }}
-        >
+        <View style={styles.gap}>
           <Image
             style={{
               height: height / 2,

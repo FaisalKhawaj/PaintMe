@@ -9,4 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#EDEBEE",
   },
+  gap: {
+    gap: 16,
+  }
 });
