@@ -7,10 +7,10 @@ const { width } = Dimensions.get('window');
 const IMAGE_WIDTH = width / 2 - 18; // Adjusted spacing
 
 const images = [
-  'https://picsum.photos/seed/picsum1/400/600',
-  'https://picsum.photos/seed/picsum2/400/500',
-  'https://picsum.photos/seed/picsum3/400/650',
-  'https://picsum.photos/seed/picsum4/400/550'
+  require('@/assets/images/create1.png'),
+  require('@/assets/images/create2.png'),
+  require('@/assets/images/create3.png'),
+  require('@/assets/images/create4.png'),
 ];
 
 export const ImageCreated = () => {
@@ -39,12 +39,12 @@ export const ImageCreated = () => {
               }}
               style={styles.gridItem}
             >
-              <Pressable 
+              <Pressable
                 onPress={() => handleImagePress(img)}
                 style={styles.imagePressable}
               >
                 <Image
-                  source={{ uri: img }}
+                  source={img}
                   style={styles.gridImage}
                 />
               </Pressable>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   imagePressable: {
     width: '100%',
-    aspectRatio: 3/4, // Standard aspect ratio
+    aspectRatio: 3 / 4, // Standard aspect ratio
   },
   gridImage: {
     width: '100%',

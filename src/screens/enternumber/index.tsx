@@ -22,18 +22,32 @@ import { MotiView } from "moti";
 import { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
 import { router } from "expo-router";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useValidations } from "@/src/validations/useValidations";
+import { z } from "zod";
+import { CustomPhoneInput } from "@/components/CustomPhoneInput";
 
 export const EnterNumber = () => {
-  const { height } = Dimensions.get("screen");
-  const [value, setValue] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-  const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const phoneInput = useRef<PhoneInput>(null);
-  const handlePhone = () => {
+  const { createNumber } = useValidations();
+  const {
+    handleSubmit,
+    control,
+
+    formState: { isValid, errors },
+  } = useForm({
+    defaultValues: {
+      phoneNumber: "",
+    },
+    resolver: zodResolver(createNumber),
+    mode: "onChange",
+  });
+  type SignUpType = z.infer<typeof createNumber>;
+  const handleForm = (data: SignUpType) => {
+    console.log(data);
     router.replace("/(auth)/enter-otp");
   };
-  const handleClickEmail = () => {};
+  const { height } = Dimensions.get("screen");
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -74,7 +88,25 @@ export const EnterNumber = () => {
                 </Text>
               </MotiView>
               <Spacer marginTop={50} />
-              <PhoneInput
+              <CustomPhoneInput<SignUpType>
+                control={control}
+                name="phoneNumber"
+                error={errors.phoneNumber?.message}
+                // label="Phone number"
+                phonePlaceholder="Enter your phone number"
+                containerStyle={{ marginBottom: 20 }}
+                rules={{
+                  countryRules: { required: "Please select a country." },
+                  phoneRules: {
+                    required: "Phone number is required.",
+                    pattern: {
+                      value: /^[0-9]+$/,
+                      message: "Only numeric values are allowed.",
+                    },
+                  },
+                }}
+              />
+              {/* <PhoneInput
                 ref={phoneInput}
                 value={value}
                 // defaultCode="DM"
@@ -99,12 +131,12 @@ export const EnterNumber = () => {
                   setFormattedValue(text);
                 }}
                 disableArrowIcon={true}
-              />
+              /> */}
               <Text
                 style={{
                   fontSize: RFValue(11),
                   color: "#8C919E",
-                  marginTop: 10,
+                  // marginTop: 10,
                 }}
               >
                 No spam. Just a quick verification
@@ -136,9 +168,11 @@ export const EnterNumber = () => {
 
               <LabelButton
                 title="Continue"
-                handleClick={handlePhone}
-                variation={ButtonVariation.default}
-                disabled={value === ""}
+                handleClick={handleSubmit(handleForm)}
+                variation={
+                  isValid ? ButtonVariation.default : ButtonVariation.disabled
+                }
+                disabled={!isValid}
               />
             </MotiView>
           </MotiView>

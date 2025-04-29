@@ -1,11 +1,13 @@
-import React from 'react';
-import { View, Image, StyleSheet, Dimensions, ScrollView, SafeAreaView, Pressable, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image, StyleSheet, Dimensions, ScrollView, SafeAreaView, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { fonts } from '@/hooks/useCacheResources';
 import { Ionicons } from '@expo/vector-icons';
 import { BlurredIcon } from '@/components/BlurredIcon';
+import { Spacer } from '@/components/Spacer';
+import { ButtonVariation, LabelButton } from '@/components/LabelButton';
 
 const { width } = Dimensions.get('window');
 const IMAGE_WIDTH = width / 2 - 24;
@@ -26,6 +28,7 @@ const rightColumn = images.filter((_, index) => index % 2 !== 0);
 
 export const OpenedCollections = () => {
   const router = useRouter();
+  const [showImagePinched, setShowImagePinched] = useState(false);
 
   const handleImagePress = (imgUri: string) => {
     router.push({
@@ -40,6 +43,43 @@ export const OpenedCollections = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <Modal visible={showImagePinched} transparent animationType="slide">
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          onPress={() => setShowImagePinched(false)}
+          activeOpacity={1}
+        >
+          <View style={styles.modalContent}>
+            <Image
+              source={require("../../../assets/images/pinch.png")}
+              style={styles.addedImage}
+            />
+            <Text
+              style={[
+                styles.description,
+                {
+                  fontSize: 16,
+                  textAlign: "center",
+                  marginVertical: 10,
+                  marginBottom: 20,
+                },
+              ]}
+            >
+              Pinch to zoom in and out of the image gallery
+            </Text>
+
+
+            <Spacer marginBottom={10} marginTop={30} />
+            <LabelButton
+              title="Got it"
+              handleClick={() => {
+                setShowImagePinched(false);
+              }}
+              variation={ButtonVariation.default}
+            />
+          </View>
+        </TouchableOpacity>
+      </Modal>
       <View style={styles.header}>
         <View style={styles.iconWrapper}>
           <BlurredIcon
@@ -59,7 +99,7 @@ export const OpenedCollections = () => {
 
         <TouchableOpacity
           style={styles.circleButton}
-          onPress={() => {}}
+          onPress={() => setShowImagePinched(true)}
         >
           <Ionicons
             name={'add'}
@@ -214,5 +254,33 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     justifyContent: "center",
     alignItems: "center",
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    justifyContent: "flex-end",
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    padding: 24,
+    paddingTop: 48,
+    borderRadius: 20,
+    marginBottom: 20,
+  },
+  addedImage: {
+    // borderRadius: 32,
+    // resizeMode: "cover",
+    width: 54,
+    height: 54,
+    alignSelf: "center",
+    // paddingHorizontal: 10
+  },
+  description: {
+    marginTop: 10,
+    fontSize: RFValue(12),
+    fontFamily: fonts.primary.medium,
+    color: "#8C919E",
   },
 });

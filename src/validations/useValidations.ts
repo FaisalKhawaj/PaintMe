@@ -30,5 +30,28 @@ export const useValidations = () => {
     bio: z.string().nonempty("Bio is required"),
   });
 
-  return { editProfileScheme, createEmail };
+  const createNumber = z.object({
+    phoneNumber: z
+      .string()
+      .min(6, "Phone number must be at least 6 digits.")
+      .max(15, "Phone number cannot exceed 15 digits.")
+      .refine((value) => /^[0-9]+$/.test(value), {
+        message: "Phone number can only contain numbers.",
+      }),
+  });
+
+  const otpSchema = z.object({
+    otp: z
+      .string()
+      .length(5, "OTP must be exactly 5 digits")
+      .regex(/^\d+$/, "OTP must contain only numbers"),
+  });
+
+  const collectionSchema = z.object({
+    collectionName: z
+      .string()
+      .min(6, "Collection name must be greater than 5 characters"),
+  });
+
+  return { editProfileScheme, createEmail, createNumber, otpSchema, collectionSchema };
 };

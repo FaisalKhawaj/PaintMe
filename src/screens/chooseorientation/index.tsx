@@ -56,7 +56,7 @@ export const ChooseOrientation = () => {
               </View>
 
               <TextArea
-                containerStyle={{ height: 240, borderRadius: 20 }}
+                containerStyle={{ height: 286, borderRadius: 20 }}
                 placeholder="What do you imagine?"
                 keyboardType="default"
                 isCenter
@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
   counter: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-end",
+    alignItems: "center",
+    alignSelf:'flex-end',
     width: '40%',
     paddingLeft: 0,
     paddingRight: 10,
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     width: '100%',
-    height: 200,
+    height: 160,
   },
   tagContainer: {
     position: 'absolute',

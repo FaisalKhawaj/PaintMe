@@ -1,27 +1,47 @@
-import { ButtonVariation, LabelButton } from "@/components/LabelButton";
+import { Controller, useForm } from "react-hook-form";
+import {
+  Alert,
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+  TouchableWithoutFeedback,
+} from "react-native";
+import { MotiView } from "moti";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
-import { Dimensions, Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "./styles"
-import { MotiView } from "moti";
-import { useRef, useState } from "react";
-import PhoneInput from "react-native-phone-number-input";
-import { router, useLocalSearchParams, useRouter } from "expo-router";
+import { styles } from "./styles";
 import { OtpInput } from "react-native-otp-entry";
+import { ButtonVariation, LabelButton } from "@/components/LabelButton";
+import { router, useLocalSearchParams } from "expo-router";
+import { useValidations } from "@/src/validations/useValidations";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { CustomOtpInput } from "@/components/CustomOtpInput";
 
 export const EnterOtp = () => {
-  const { height } = Dimensions.get("screen");
-  const [value, setValue] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-  const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const phoneInput = useRef<PhoneInput>(null);
   const { isEmail = false } = useLocalSearchParams();
-  const handleOtp = () => {
+  const { otpSchema } = useValidations();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<z.infer<typeof otpSchema>>({
+    defaultValues: { otp: "" },
+    resolver: zodResolver(otpSchema),
+    mode: "onChange",
+  });
+
+  const onSubmit = (data: { otp: string }) => {
+    console.log("OTP Submitted: ", data.otp);
     router.replace({
       pathname: "/(auth)/welcome-final",
-      params: { isEmail: isEmail }
+      params: { isEmail },
     });
   };
 
@@ -34,7 +54,7 @@ export const EnterOtp = () => {
         >
           <View style={{ flex: 1 }}>
             <ScrollView
-              contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }} // add padding to avoid overlap
+              contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}
               keyboardShouldPersistTaps="handled"
             >
               <MotiView
@@ -50,11 +70,12 @@ export const EnterOtp = () => {
                   transition={{ delay: 200, duration: 500 }}
                 >
                   <Image
-                    style={{
-                      alignSelf: "center",
-                      marginBottom: 20
-                    }}
-                    source={isEmail ? require("../../../assets/images/MailScreen.png") : require("../../../assets/images/heart.png")}
+                    style={{ alignSelf: "center", marginBottom: 20 }}
+                    source={
+                      isEmail
+                        ? require("../../../assets/images/MailScreen.png")
+                        : require("../../../assets/images/heart.png")
+                    }
                   />
                   <MotiView
                     style={styles.tagAccessControl}
@@ -71,59 +92,34 @@ export const EnterOtp = () => {
                     transition={{ delay: 400, duration: 500 }}
                   >
                     <Text style={[globalstyles.description, { fontSize: 26 }]}>
-                      We’ve sent a 5-digit code to your {isEmail ? 'email' : 'number'}
+                      We’ve sent a 5-digit code to your {isEmail ? "email" : "number"}
                     </Text>
                   </MotiView>
                   <Spacer marginTop={50} />
-                  <OtpInput
+                  <CustomOtpInput
+                    name="otp"
+                    control={control}
                     numberOfDigits={5}
-                    focusColor="green"
-                    autoFocus={false}
-                    hideStick={true}
-                    blurOnFilled={true}
-                    disabled={false}
-                    type="numeric"
-                    secureTextEntry={false}
-                    focusStickBlinkingDuration={500}
-                    onFocus={() => console.log("Focused")}
-                    onBlur={() => console.log("Blurred")}
-                    onTextChange={(text) => console.log(text)}
-                    onFilled={(text) => console.log(`OTP is ${text}`)}
-                    textInputProps={{
-                      accessibilityLabel: "One-Time Password",
-                    }}
-                    textProps={{
-                      accessibilityRole: "text",
-                      accessibilityLabel: "OTP digit",
-                      allowFontScaling: false,
-                    }}
-                    theme={{
-                      containerStyle: styles.container,
-                      pinCodeContainerStyle: styles.pinCodeContainer,
-                      pinCodeTextStyle: styles.pinCodeText,
-                      focusStickStyle: styles.focusStick,
-                      focusedPinCodeContainerStyle: styles.activePinCodeContainer,
-                      placeholderTextStyle: styles.placeholderText,
-                      filledPinCodeContainerStyle: styles.filledPinCodeContainer,
-                      disabledPinCodeContainerStyle: styles.disabledPinCodeContainer,
-                    }}
+                    error={errors.otp}
                   />
                 </MotiView>
               </MotiView>
             </ScrollView>
 
-            {/* Fixed Bottom Button */}
             <View style={{ padding: 16 }}>
               <LabelButton
                 title="Resend Code"
-                handleClick={() => { }}
+                handleClick={() => {
+                  Alert.alert("Code Resent");
+                }}
                 variation={ButtonVariation.secondary}
               />
               <Spacer marginTop={10} />
               <LabelButton
                 title="Confirm Code"
-                handleClick={handleOtp}
-                variation={ButtonVariation.default}
+                handleClick={handleSubmit(onSubmit)}
+                variation={isValid ? ButtonVariation.default : ButtonVariation.disabled}
+                disabled={!isValid}
               />
             </View>
           </View>
@@ -131,5 +127,4 @@ export const EnterOtp = () => {
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
-
-}
+};

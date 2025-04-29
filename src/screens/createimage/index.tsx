@@ -34,7 +34,7 @@ export const CreateImage = () => {
                 animate={{ scale: 1, rotate: "0deg" }}
                 transition={{ delay: 300, type: "spring" }}
               >
-                <Text style={styles.tagTextNormal}>add to collection</Text>
+                <Text style={styles.tagTextNormal}>image creation</Text>
               </MotiView>
 
               {/* Add an Image Button */}
@@ -53,7 +53,7 @@ export const CreateImage = () => {
 
               {/* Big Box */}
               <TextArea
-                containerStyle={{ height: 200, borderRadius: 20 }}
+                containerStyle={{ height: 286, borderRadius: 20 }}
                 placeholder="What do you imagine?"
                 keyboardType="default"
                 isCenter
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40
   },
   tag: {
-    backgroundColor: '#e2f3e8',
+    backgroundColor: '#E5F7DF',
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 10,
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   descriptionText: {
-    marginVertical: 10,
+    marginVertical: 16,
     fontSize: RFValue(12),
     fontFamily: fonts.primary.medium,
-    color: "#555",
+    color: "#9398A4",
     textAlign: 'center',
   },
   imagineBox: {

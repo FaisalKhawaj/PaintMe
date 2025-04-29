@@ -33,7 +33,6 @@ const { width, height } = Dimensions.get("window");
 export const ImageCollections = () => {
   const navigation = useNavigation();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
-  const [showImageAdded, setShowImageAdded] = useState(false);
   const [showFullScreen, setShowFullScreen] = useState(false);
   // Animation values
   const animation = useSharedValue(0);
@@ -45,7 +44,6 @@ export const ImageCollections = () => {
   };
 
   const handleImageAddhandler = () => {
-    setShowImageAdded(true);
     setShowOptionsModal(false);
   };
 
@@ -87,7 +85,7 @@ export const ImageCollections = () => {
               transition={{ type: "timing", duration: 500 }}
             >
               <Image
-                source={{ uri: imageUrl }}
+                source={require('@/assets/images/cat.png')}
                 style={styles.fullscreenImage}
               />
             </MotiView>
@@ -113,7 +111,7 @@ export const ImageCollections = () => {
 
             {/* Image with Floating Buttons */}
             <View style={styles.imageContainer}>
-              <Image source={{ uri: imageUrl }} style={styles.mainImage} />
+              <Image source={require('@/assets/images/cat.png')} style={styles.mainImage} />
 
               <MotiView
                 from={{
@@ -274,48 +272,6 @@ export const ImageCollections = () => {
           </View>
         </TouchableOpacity>
       </Modal>
-      <Modal visible={showImageAdded} transparent animationType="slide">
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setShowImageAdded(false)}
-          activeOpacity={1}
-        >
-          <View style={styles.modalContent}>
-            <Image
-              source={require("../../../assets/images/pinch.png")}
-              style={styles.addedImage}
-            />
-            <Text
-              style={[
-                styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              Pinch to zoom in and out of the image gallery
-            </Text>
-
-
-            <Spacer marginBottom={10} marginTop={30} />
-            <LabelButton
-              title="Got it"
-              handleClick={() => {
-                setShowImageAdded(false);
-                router.push({
-                  pathname: "/retouch-image",
-                  // pathname: "/create-similar", //here you can test create profile page
-                  // params: { imageUrl: imgUri }, // <-- pass image url as param
-                });
-              }}
-              variation={ButtonVariation.default}
-            />
-          </View>
-        </TouchableOpacity>
-      </Modal>
     </>
   );
 };
@@ -421,7 +377,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: RFValue(12),
     fontFamily: fonts.primary.medium,
-    color: "#555",
+    color: "#8C919E",
   },
   tag: {
     alignSelf: "flex-start",

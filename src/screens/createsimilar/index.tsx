@@ -74,7 +74,7 @@ export const CreateSimilar = () => {
             {/* Main Image */}
             <View style={styles.imageContainer}>
               <Image
-                source={{ uri: imageUrl }}
+                source={require('@/assets/images/avant.png')}
                 style={[
                   styles.mainImage,
                   { height: showGeneratedImages ? height * 0.68 : height * 0.6 }

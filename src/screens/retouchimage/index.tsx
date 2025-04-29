@@ -74,14 +74,14 @@ export const RetouchImage = () => {
             {/* Main Image */}
             <View style={styles.imageContainer}>
               <Image
-                source={{ uri: imageUrl }}
+                source={require('@/assets/images/avant.png')}
                 style={[
                   styles.mainImage,
                   { height: showGeneratedImages ? height * 0.68 : height * 0.6 }
                 ]}
               />
               {showIcon && (
-                <TouchableOpacity style={styles.crossButton}> 
+                <TouchableOpacity style={styles.crossButton}>
                   <BlurredRoundedIcon
                     position="absolute"
                     icon="CancelIcon"
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   crossButton: {
     position: 'absolute',
     top: -10,
-    right:110
+    right: 110
   },
   detailsContainer: {
     paddingHorizontal: 10,

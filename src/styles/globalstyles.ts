@@ -41,6 +41,6 @@ export const globalstyles = StyleSheet.create({
     fontSize: RFValue(22),
     textAlign: 'center',
     fontFamily: fonts.primary.semibold,
-    color: "black",
+    color: "#242424",
   },
 });

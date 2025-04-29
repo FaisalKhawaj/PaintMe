@@ -86,7 +86,7 @@ export const GeneratedImageSelect = () => {
               transition={{ type: "timing", duration: 500 }}
             >
               <Image
-                source={{ uri: imageUrl }}
+                source={require('@/assets/images/laptop.png')}
                 style={styles.fullscreenImage}
               />
             </MotiView>
@@ -127,7 +127,7 @@ export const GeneratedImageSelect = () => {
 
             {/* Image with Floating Buttons */}
             <View style={styles.imageContainer}>
-              <Image source={{ uri: imageUrl }} style={styles.mainImage} />
+              <Image source={require('@/assets/images/laptop.png')} style={styles.mainImage} />
 
               <MotiView
                 from={{
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: RFValue(12),
     fontFamily: fonts.primary.medium,
-    color: "#555",
+    color: "#8C919E",
   },
   tag: {
     alignSelf: "flex-start",

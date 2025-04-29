@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontFamily: fonts.primary.bold,
+    fontFamily: fonts.primary.semibold,
     color: "white",
   },
   buttonGroup: {

@@ -1,12 +1,15 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { HomeIcon } from '@/assets/svg/HomeIcon';
+import { AddIcon } from '@/assets/svg/AddIcon';
+import { ProfileIcon } from '@/assets/svg/ProfileIcon';
+import { CollectionIcon } from '@/assets/svg/CollectionsIcon';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -14,99 +17,106 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: () => null, // Remove default background
+        tabBarBackground: () => null,
         tabBarStyle: [
           styles.tabBar,
           Platform.select({
-            ios: {
-              position: 'absolute',
-              bottom: 20,
-            },
-            android: {
-              elevation: 8, // Increased shadow on Android
-              borderTopWidth: 0,
-            },
+            ios: { position: 'absolute', bottom: 20,borderTopWidth:0 },
+            android: { borderTopWidth: 0 },
           }),
         ],
         tabBarItemStyle: styles.tabBarItem,
-        tabBarLabelStyle: styles.tabBarLabel,
-      }}>
-
+        tabBarShowLabel: false, // Hide label to match screenshot
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIconWrapper focused={focused}>
+              <HomeIcon color={focused ? 'black' : '#999'} />
+            </TabIconWrapper>
+          ),
         }}
       />
       <Tabs.Screen
         name="create"
         options={{
           title: 'Create',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="plus" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIconWrapper focused={focused}>
+              <AddIcon color={focused ? 'black' : '#999'} />
+            </TabIconWrapper>
+          ),
         }}
       />
-      {/* <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="pencil.and.list.clipboard.rtl" color={color} />,
-        }}
-      /> */}
       <Tabs.Screen
         name="collection"
         options={{
           title: 'Collection',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="pencil.and.list.clipboard.rtl" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIconWrapper focused={focused}>
+              <CollectionIcon color={focused ? 'black' : '#999'} />
+            </TabIconWrapper>
+          ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabIconWrapper focused={focused}>
+              <ProfileIcon color={focused ? 'black' : '#999'} />
+            </TabIconWrapper>
+          ),
         }}
       />
-      {/* <Tabs.Screen
-        name="choose-orientation"
-        options={{
-          href: null,
-        }}
-      /> */}
     </Tabs>
+  );
+}
+
+function TabIconWrapper({ children, focused }: { children: React.ReactNode; focused: boolean }) {
+  return (
+    <View style={[styles.iconWrapper, focused && styles.iconWrapperActive]}>
+      {children}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   tabBar: {
     marginHorizontal: 16,
-    marginBottom: Platform.select({ ios: 0, android: 16 }),
-    borderRadius: 20,
-    height: 60,
-    // overflow: 'hidden',
-    borderTopWidth: 0,
-    backgroundColor: '#FFFFFF', // Pure white background
-    // iOS Shadow
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.15,
+    marginBottom: Platform.select({ ios: 2, android: 16 }),
+    borderRadius: 30,
+    height: 70,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
     shadowRadius: 8,
-    // Android Shadow (handled by elevation)
-    elevation: 8, // Matches iOS shadow intensity
+    elevation: 8,
+    paddingHorizontal: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   tabBarItem: {
-    height: 60,
-    paddingBottom: 0,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  tabBarLabel: {
-    paddingBottom: 4,
-    fontSize: 12,
-    fontWeight: '500', // Slightly bolder text
+  iconWrapper: {
+    width: 48,
+    height: 48,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconWrapperActive: {
+    backgroundColor: '#efeff0',
   },
 });

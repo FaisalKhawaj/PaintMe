@@ -1,9 +1,6 @@
-import { AppleIcon, GoogleIcon } from "@/assets/svg";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
-import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
-import { RFValue } from "react-native-responsive-fontsize";
 
 import {
   Dimensions,
@@ -19,24 +16,31 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { MotiView } from "moti";
-import { useRef, useState } from "react";
-import PhoneInput from "react-native-phone-number-input";
-import { router, useRouter } from "expo-router";
-import Input from "@/components/Input";
-import { EmailIcon } from "@/assets/svg/EmailIcon";
+import { useRouter } from "expo-router";
+import { useValidations } from "@/src/validations/useValidations";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import FormInput from "@/components/FormInput";
 
 export const CollectionName = () => {
   const { height } = Dimensions.get("screen");
-  const [value, setValue] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-  const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const phoneInput = useRef<PhoneInput>(null);
+  const { collectionSchema } = useValidations();
+  const {
+    handleSubmit,
+    control,
+
+    formState: { isValid, errors },
+  } = useForm({
+    defaultValues: {
+      collectionName: "",
+    },
+    resolver: zodResolver(collectionSchema),
+    mode: "onChange",
+  });
   const router = useRouter();
-  const handleColorPicker = () => {
+  const handleForm = () => {
     router.push(`/color-picker`);
   };
-  const handleClickEmail = () => { };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -79,12 +83,13 @@ export const CollectionName = () => {
               <Spacer marginTop={50} />
               {/* <View style={{ width:'100%',borderWidth:1,borderColor:'red' }}> */}
 
-              <Input
-                // icon={<EmailIcon />}
+
+              <FormInput
+                control={control}
+                name="collectionName"
                 placeholder="e.g The Aesthetic Arc"
                 keyboardType="default"
               />
-              {/* </View> */}
 
             </MotiView>
             <MotiView
@@ -95,9 +100,11 @@ export const CollectionName = () => {
             >
               <LabelButton
                 title="Continue"
-                handleClick={handleColorPicker}
-                variation={ButtonVariation.default}
-                // disabled={value === ""}
+                handleClick={handleSubmit(handleForm)}
+                variation={
+                  isValid ? ButtonVariation.default : ButtonVariation.disabled
+                }
+                disabled={!isValid}
               />
             </MotiView>
           </MotiView>

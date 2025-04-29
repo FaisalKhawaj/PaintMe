@@ -130,12 +130,12 @@ export const ColorPick = () => {
                     onPress={() => handleColorCirclePress(color, index)}
                   />
                 ))}
-                {/* <TouchableOpacity
+                <TouchableOpacity
                   style={[styles.colorCircle, { backgroundColor: selectedColor }]}
                   onPress={() => setShowPicker(true)}
                 >
                   <Text style={{ fontSize: 24 }}>+</Text>
-                </TouchableOpacity> */}
+                </TouchableOpacity>
               </View>
 
               {/* Color Picker Modal */}

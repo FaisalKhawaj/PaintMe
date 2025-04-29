@@ -27,6 +27,7 @@ import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
 import { RFValue } from "react-native-responsive-fontsize";
 import { IconButton } from "@/components/IconButton";
+import { ExpandIcon } from "@/assets/svg/ExpandIcon";
 
 const { width, height } = Dimensions.get("window");
 
@@ -87,7 +88,7 @@ export const ImageSelect = () => {
               transition={{ type: "timing", duration: 500 }}
             >
               <Image
-                source={{ uri: imageUrl }}
+                source={require('@/assets/images/avant.png')}
                 style={styles.fullscreenImage}
               />
             </MotiView>
@@ -104,6 +105,7 @@ export const ImageSelect = () => {
               icon="ArrowLeftIcon"
               handleClick={handleBack}
             />
+
             {/* <BlurredRoundedIcon icon="BrushIcon" handleClick={handleBack} /> */}
             {/* <BlurredRoundedIcon icon="LayerIcon" handleClick={handleBack} /> */}
 
@@ -113,8 +115,12 @@ export const ImageSelect = () => {
 
             {/* Image with Floating Buttons */}
             <View style={styles.imageContainer}>
-              <Image source={{ uri: imageUrl }} style={styles.mainImage} />
-
+              <Image source={require('@/assets/images/avant.png')} style={styles.mainImage} />
+              <View style={styles.expandIcon}>
+                <Pressable onPress={() => setShowFullScreen(true)}>
+                  <ExpandIcon />
+                </Pressable>
+              </View>
               <MotiView
                 from={{
                   opacity: 0,
@@ -159,7 +165,7 @@ export const ImageSelect = () => {
               </MotiView>
               {/* Floating Buttons inside image */}
               <View style={styles.floatingButtons}>
-                <TouchableOpacity
+                <Pressable
                   style={styles.circleButton}
                   onPress={handleToggleIcons}
                 >
@@ -168,14 +174,14 @@ export const ImageSelect = () => {
                     size={20}
                     color="white"
                   />
-                </TouchableOpacity>
+                </Pressable>
 
-                <TouchableOpacity
+                <Pressable
                   style={styles.circleButton}
                   onPress={() => setShowFullScreen(true)}
                 >
                   <Ionicons name="arrow-down" size={20} color="white" />
-                </TouchableOpacity>
+                </Pressable>
               </View>
             </View>
 
@@ -236,7 +242,7 @@ export const ImageSelect = () => {
               Your collection is your own curated list of images collected over
               time.
             </Text>
-            <Image source={{ uri: imageUrl }} style={styles.modalImage} />
+            <Image source={require('@/assets/images/avant.png')} style={styles.modalImage} />
             <Spacer marginBottom={10} marginTop={10} />
             <View style={styles.tagStylesModal}>
               <MotiView
@@ -422,7 +428,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: RFValue(12),
     fontFamily: fonts.primary.medium,
-    color: "#555",
+    color: "#8C919E",
   },
   tag: {
     alignSelf: "flex-start",
@@ -465,4 +471,5 @@ const styles = StyleSheet.create({
     height: height,
     resizeMode: "cover",
   },
+  expandIcon: { position: 'absolute', top: 48, right: 40 }
 });

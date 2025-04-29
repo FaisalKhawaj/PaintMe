@@ -25,6 +25,7 @@ export const Home = () => {
 
   const handleImagePress = (imgUri: string) => {
     router.push({
+      // pathname: '/create-similar',
       pathname: '/image-select',
       params: { imageUrl: imgUri }, // <-- pass image url as param
     });

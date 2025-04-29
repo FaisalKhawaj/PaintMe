@@ -87,6 +87,7 @@ export const ChooseStyle = () => {
             title="Continue"
             handleClick={handleContinue}
             rightIcon={<Ionicons name="arrow-forward" />}
+            iconSize={18}
             variation={ButtonVariation.secondary}
           // style={styles.button}
           />
