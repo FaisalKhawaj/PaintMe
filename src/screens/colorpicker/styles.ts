@@ -117,4 +117,17 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  flex: {
+    flex: 1,
+  },
+  flexCenter: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  pickerWrap: {
+    marginTop: 20,
+  },
+  buttonWrap: {
+    gap: 10,
+  },
 });
