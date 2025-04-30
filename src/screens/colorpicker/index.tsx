@@ -2,20 +2,34 @@ import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import {
+  Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ColorPicker, {
+  Swatches,
+  Preview,
+  OpacitySlider,
+  HueSlider,
+  Panel5,
+  HueCircular,
+  PreviewText,
+  InputWidget,
+} from "reanimated-color-picker";
+
 import { styles as localStyles, styles } from "./styles";
 import { MotiView } from "moti";
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import ColorPicker from "react-native-wheel-color-picker";
+import { Ionicons } from "@expo/vector-icons";
+// import ColorPicker from "react-native-wheel-color-picker";
 
 export const ColorPick = () => {
   const [presetColors, setPresetColors] = useState([
@@ -32,7 +46,6 @@ export const ColorPick = () => {
 
   console.log(editingIndex, selectedColor);
 
-
   const handleColorPicker = () => {
     router.push("/(main)/tabs/collection/all-collections");
   };
@@ -42,15 +55,15 @@ export const ColorPick = () => {
     setEditingIndex(index);
   };
 
-  const onSelectColor = (newColor: string) => {
-    setSelectedColor(newColor);
-    if (editingIndex !== null) {
-      const updatedColors = [...presetColors];
-      updatedColors[editingIndex] = newColor;
-      setPresetColors(updatedColors);
-    }
-  };
+  const [showColorPicker, setShowColorPicker] = useState(false);
 
+  // Note: use `onCompleteJS` and `onChangeJS` for non-worklet functions
+  const onSelectColor = ({ hex }) => {
+    "worklet";
+    // do something with the selected color.
+    setSelectedColor(hex);
+    console.log(hex);
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -97,29 +110,58 @@ export const ColorPick = () => {
               <Spacer marginTop={50} />
 
               <View style={localStyles.colorOptions}>
-                {presetColors.map((color, index) => (
+                <ScrollView horizontal>
+                  {presetColors.map((color, index) => (
+                    <TouchableOpacity
+                      key={`${color}-${index}`}
+                      style={[
+                        localStyles.colorCircle,
+                        { backgroundColor: color },
+                        selectedColor === color && localStyles.selectedCircle,
+                      ]}
+                      onPress={() => handleColorCirclePress(color, index)}
+                    />
+                  ))}
                   <TouchableOpacity
-                    key={`${color}-${index}`}
-                    style={[
-                      localStyles.colorCircle,
-                      { backgroundColor: color },
-                      selectedColor === color && localStyles.selectedCircle,
-                    ]}
-                    onPress={() => handleColorCirclePress(color, index)}
-                  />
-                ))}
+                    onPress={() => setShowColorPicker(!showColorPicker)}
+                    // key={`${color}-${index}`}
+                    style={[localStyles.colorCircle]}
+                    // onPress={() => {}}
+                  >
+                    <Image source={require("../../../assets/images/rgb.png")} />
+                  </TouchableOpacity>
+                </ScrollView>
               </View>
-              <View style={styles.pickerWrap}>
-                <ColorPicker
-                  color={selectedColor}
-                  onColorChangeComplete={onSelectColor}
-                  thumbSize={20}
-                  sliderSize={20}
-                  noSnap
-                  row={false}
-                  swatches={false}
-                />
-              </View>
+              {showColorPicker && (
+                <View style={styles.pickerWrap}>
+                  <TouchableOpacity
+                    onPress={() => setShowColorPicker(false)}
+                    style={styles.closeRoundedButton}
+                  >
+                    <Ionicons name="close" size={25} color={"grey"} />
+                  </TouchableOpacity>
+                  <ColorPicker
+                    thumbStyle={{
+                      backgroundColor: "#fff",
+                      borderColor: "#fff",
+                    }}
+                    thumbInnerStyle={{
+                      backgroundColor: "orange",
+                    }}
+                    style={{
+                      width: "60%",
+                      alignSelf: "flex-end",
+                      marginRight: 50,
+                    }}
+                    value="red"
+                    onComplete={onSelectColor}
+                  >
+                    <Panel5 />
+                    <OpacitySlider />
+                    <Swatches />
+                  </ColorPicker>
+                </View>
+              )}
             </MotiView>
 
             <MotiView
