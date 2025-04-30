@@ -28,11 +28,13 @@ import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
 import { RFValue } from "react-native-responsive-fontsize";
 import { IconButton } from "@/components/IconButton";
 import { styles } from "./styles";
+import { useImageContext } from "@/src/context/ImageContext";
 
 const { width, height } = Dimensions.get("window");
 
 export const ImageCollections = () => {
   const navigation = useNavigation();
+  const { showFullImage, setShowFullImage } = useImageContext();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const [showFullScreen, setShowFullScreen] = useState(false);
   // Animation values
@@ -50,9 +52,11 @@ export const ImageCollections = () => {
 
   const imageUrl = "https://picsum.photos/400/900"; // Replace with your real image
   const handleBack = () => {
+    handleToggleIcons()
     router.back();
   };
   const handleShare = async () => {
+    handleToggleIcons()
     try {
       await Share.share({
         message: 'Check out this edited image!',
@@ -64,26 +68,27 @@ export const ImageCollections = () => {
     }
   };
 
+  const handleLike = () => {
+    handleToggleIcons()
+    setShowOptionsModal(true)
+  }
+
   return (
     <>
-      {showFullScreen ? (
+      {showFullImage ? (
         // FULL SCREEN MODE WITH Moti ANIMATION
         <MotiView
           style={styles.fullscreenContainer}
           from={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "timing", duration: 800 }}
+          transition={{ type: 'timing', duration: 800 }}
         >
-          <Pressable
-            // activeOpacity={1}
-            onPress={() => setShowFullScreen(false)}
-            style={{ flex: 1 }}
-          >
+          <Pressable onPress={() => setShowFullImage(false)} style={{ flex: 1 }}>
             <MotiView
               style={styles.fullscreenImageContainer}
               from={{ scale: 1, opacity: 1 }}
-              animate={{ scale: 1.1, opacity: 1 }} // Slightly zoom in the image
-              transition={{ type: "timing", duration: 500 }}
+              animate={{ scale: 1.1, opacity: 1 }}
+              transition={{ type: 'timing', duration: 500 }}
             >
               <Image
                 source={require('@/assets/images/cat.png')}
@@ -91,7 +96,17 @@ export const ImageCollections = () => {
               />
             </MotiView>
           </Pressable>
+
+          {/* Center Bottom Button */}
+          <TouchableOpacity style={[styles.circleButton, { position: 'absolute', alignSelf: 'center', bottom: 40 }]} onPress={() => setShowFullImage(false)}>
+            <Ionicons
+              name={'close'}
+              size={20}
+              color="white"
+            />
+          </TouchableOpacity>
         </MotiView>
+
       ) : (
         // NORMAL MODE
         <SafeAreaView style={styles.safeArea}>
@@ -153,7 +168,7 @@ export const ImageCollections = () => {
                 <BlurredRoundedIcon
                   position="relative"
                   icon="HeartIcon"
-                  handleClick={() => setShowOptionsModal(true)}
+                  handleClick={handleLike}
                 />
               </MotiView>
               {/* Floating Buttons inside image */}
@@ -171,7 +186,7 @@ export const ImageCollections = () => {
 
                 <TouchableOpacity
                   style={styles.circleButton}
-                  onPress={() => setShowFullScreen(true)}
+                  onPress={() => setShowFullImage(true)}
                 >
                   <Ionicons name="arrow-down" size={20} color="white" />
                 </TouchableOpacity>
@@ -260,7 +275,7 @@ export const ImageCollections = () => {
             </Text>
             <Spacer marginBottom={10} marginTop={30} />
             <LabelButton
-              title="Yeah Remove Image"
+              title="Yeah , Remove Image"
               handleClick={handleImageAddhandler}
               variation={ButtonVariation.secondary}
             />

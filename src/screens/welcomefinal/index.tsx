@@ -2,7 +2,6 @@ import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import {
-  Dimensions,
   Image,
   Keyboard,
   KeyboardAvoidingView,
@@ -14,9 +13,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { MotiView } from "moti";
-import { useRef, useState } from "react";
-import PhoneInput from "react-native-phone-number-input";
-import { Redirect, router, useLocalSearchParams } from "expo-router";
+import { Redirect, useLocalSearchParams } from "expo-router";
 import { useAuth } from "@/src/context/AuthProvider";
 
 export const WelcomeFinal = () => {

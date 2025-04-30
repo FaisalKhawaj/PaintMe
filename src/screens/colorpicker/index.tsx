@@ -29,6 +29,7 @@ import { MotiView } from "moti";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { runOnJS } from "react-native-reanimated";
 // import ColorPicker from "react-native-wheel-color-picker";
 
 export const ColorPick = () => {
@@ -37,8 +38,7 @@ export const ColorPick = () => {
     "#B2E4E6",
     "#F8CAD0",
     "#D0E2FA",
-    "#AEB5C3",
-    "#C8A2C8",
+    "#303030",
   ]);
   const [selectedColor, setSelectedColor] = useState("#C7F8D8");
   const [editingIndex, setEditingIndex] = useState<number | null>(0);
@@ -61,7 +61,16 @@ export const ColorPick = () => {
   const onSelectColor = ({ hex }) => {
     "worklet";
     // do something with the selected color.
-    setSelectedColor(hex);
+    runOnJS(setSelectedColor)(hex);
+    // setTimeout(() => {
+    //   if (editingIndex !== null) {
+    //     runOnJS(setPresetColors)(prevColors => {
+    //       const newColors = [...prevColors];
+    //       newColors[editingIndex] = hex;
+    //       return newColors;
+    //     });
+    //   }
+    // }, 1000);
     console.log(hex);
   };
   return (
@@ -110,27 +119,28 @@ export const ColorPick = () => {
               <Spacer marginTop={50} />
 
               <View style={localStyles.colorOptions}>
-                <ScrollView horizontal>
-                  {presetColors.map((color, index) => (
-                    <TouchableOpacity
-                      key={`${color}-${index}`}
-                      style={[
-                        localStyles.colorCircle,
-                        { backgroundColor: color },
-                        selectedColor === color && localStyles.selectedCircle,
-                      ]}
-                      onPress={() => handleColorCirclePress(color, index)}
-                    />
-                  ))}
+                {presetColors.map((color, index) => (
                   <TouchableOpacity
-                    onPress={() => setShowColorPicker(!showColorPicker)}
-                    // key={`${color}-${index}`}
-                    style={[localStyles.colorCircle]}
-                    // onPress={() => {}}
-                  >
-                    <Image source={require("../../../assets/images/rgb.png")} />
-                  </TouchableOpacity>
-                </ScrollView>
+                    key={`${color}-${index}`}
+                    style={[
+                      localStyles.colorCircle,
+                      { backgroundColor: color },
+                      selectedColor === color && localStyles.selectedCircle,
+                    ]}
+                    onPress={() => handleColorCirclePress(color, index)}
+                  />
+                ))}
+                <TouchableOpacity
+                  onPress={() => setShowColorPicker(!showColorPicker)}
+                  // key={`${color}-${index}`}
+                  style={[localStyles.colorCircle, {
+                    width: 42,
+                    height: 42,
+                  }]}
+                // onPress={() => {}}
+                >
+                  <Image source={require("../../../assets/images/rgb.png")} style={{ width: '100%', height: '100%' }} />
+                </TouchableOpacity>
               </View>
               {showColorPicker && (
                 <View style={styles.pickerWrap}>
@@ -171,7 +181,7 @@ export const ColorPick = () => {
               transition={{ delay: 600, duration: 500 }}
             >
               <LabelButton
-                title="Continue"
+                title="Create Collection"
                 handleClick={handleColorPicker}
                 variation={ButtonVariation.default}
               />

@@ -10,20 +10,21 @@ import { HomeIcon } from '@/assets/svg/HomeIcon';
 import { AddIcon } from '@/assets/svg/AddIcon';
 import { ProfileIcon } from '@/assets/svg/ProfileIcon';
 import { CollectionIcon } from '@/assets/svg/CollectionsIcon';
+import { useImageContext } from '@/src/context/ImageContext';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
+  const { showFullImage } = useImageContext();
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: () => null,
-        tabBarStyle: [
+        tabBarStyle: showFullImage ? { display: 'none' } : [
           styles.tabBar,
           Platform.select({
-            ios: { position: 'absolute', bottom: 20,borderTopWidth:0 },
+            ios: { position: 'absolute', bottom: 20, borderTopWidth: 0 },
             android: { borderTopWidth: 0 },
           }),
         ],

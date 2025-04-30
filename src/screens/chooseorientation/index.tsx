@@ -34,7 +34,7 @@ export const ChooseOrientation = () => {
             <View style={styles.container}>
               {/* Big Box */}
               <View style={{ width: '100%' }}>
-                <Text style={styles.title}>Choose an image style</Text>
+                <Text style={styles.title}>Choose an orientation</Text>
               </View>
               <Spacer marginTop={10} />
               <View style={styles.floatingButtons}>
@@ -60,12 +60,13 @@ export const ChooseOrientation = () => {
                 placeholder="What do you imagine?"
                 keyboardType="default"
                 isCenter
+                multiline
               />
               <Spacer marginBottom={10} marginTop={10} />
 
               <View style={styles.imageContainer}>
                 <Image
-                  source={require("../../../assets/images/photorealistic.png")}
+                  source={require("../../../assets/images/photorealistic1.png")}
                   style={styles.imageStyle}
                   resizeMode="cover"
                 />
@@ -237,7 +238,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontFamily: fonts.primary.bold,
+    fontFamily: fonts.primary.semibold,
     textAlign: 'left'
   },
   circleButton: {

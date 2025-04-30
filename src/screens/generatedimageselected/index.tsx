@@ -51,6 +51,7 @@ export const GeneratedImageSelect = () => {
 
   const imageUrl = "https://picsum.photos/400/900"; // Replace with your real image
   const handleBack = () => {
+    handleToggleIcons()
     router.back();
   };
   const handleShare = async () => {

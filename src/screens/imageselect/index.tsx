@@ -53,9 +53,11 @@ export const ImageSelect = () => {
 
   const imageUrl = "https://picsum.photos/400/900"; // Replace with your real image
   const handleBack = () => {
+    handleToggleIcons()
     router.back();
   };
   const handleShare = async () => {
+    handleToggleIcons()
     try {
       await Share.share({
         message: 'Check out this edited image!',
@@ -66,6 +68,11 @@ export const ImageSelect = () => {
       console.log('Error sharing:');
     }
   };
+
+  const handleLike = () => {
+    handleToggleIcons()
+    setShowOptionsModal(true)
+  }
 
   return (
     <>
@@ -154,7 +161,7 @@ export const ImageSelect = () => {
                 <BlurredRoundedIcon
                   position="relative"
                   icon="HeartIcon"
-                  handleClick={() => setShowOptionsModal(true)}
+                  handleClick={handleLike}
                 />
               </MotiView>
               {/* Floating Buttons inside image */}

@@ -5,11 +5,29 @@ import { fonts } from '@/hooks/useCacheResources';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { MotiView } from 'moti';
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard, Image } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import * as ImagePicker from 'expo-image-picker'
 
 export const CreateImage = () => {
+  const [image, setImage] = useState<string | null>(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images", "videos"],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
   const handleChooseStyle = () => {
     router.push('/choose-style')
   }
@@ -27,6 +45,7 @@ export const CreateImage = () => {
             keyboardShouldPersistTaps="handled"
           >
             <View style={styles.container}>
+              {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />} */}
               {/* Tag */}
               <MotiView
                 style={styles.tag}
@@ -40,7 +59,7 @@ export const CreateImage = () => {
               {/* Add an Image Button */}
               <IconButton
                 title="Add an Image"
-                handleClick={() => { }}
+                handleClick={pickImage}
                 rightIcon={<Ionicons name="image" />}
                 justifyBetween={true}
                 style={styles.button}
@@ -57,6 +76,7 @@ export const CreateImage = () => {
                 placeholder="What do you imagine?"
                 keyboardType="default"
                 isCenter
+                multiline
               />
               <Spacer marginBottom={10} marginTop={10} />
               {/* Choose Style Button */}

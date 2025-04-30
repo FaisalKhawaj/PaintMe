@@ -9,7 +9,7 @@ export const AddIcon = (props: any) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <G opacity={0.5} fill={props.color}>
+    <G opacity={1} fill={props.color}>
       <Rect
         x={13.4165}
         y={2.91699}

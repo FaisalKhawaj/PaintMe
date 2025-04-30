@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, StyleSheet, Dimensions, ScrollView, SafeAreaView, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, SafeAreaView, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -8,9 +8,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { BlurredIcon } from '@/components/BlurredIcon';
 import { Spacer } from '@/components/Spacer';
 import { ButtonVariation, LabelButton } from '@/components/LabelButton';
-
-const { width } = Dimensions.get('window');
-const IMAGE_WIDTH = width / 2 - 24;
 
 const images = [
   'https://picsum.photos/seed/picsum1/400/600',
@@ -57,12 +54,7 @@ export const OpenedCollections = () => {
             <Text
               style={[
                 styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
+                styles.descriptionText
               ]}
             >
               Pinch to zoom in and out of the image gallery
@@ -282,5 +274,13 @@ const styles = StyleSheet.create({
     fontSize: RFValue(12),
     fontFamily: fonts.primary.medium,
     color: "#8C919E",
+  },
+  descriptionText: {
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 10,
+    marginBottom: 20,
+    width: '90%',
+    marginHorizontal: 'auto'
   },
 });

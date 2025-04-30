@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexWrap: "wrap",
     marginBottom: 20,
+    marginHorizontal:'auto',
     gap: 10,
   },
   colorCircle: {

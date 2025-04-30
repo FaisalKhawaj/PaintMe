@@ -8,6 +8,7 @@ import { ButtonVariation, LabelButton } from '@/components/LabelButton';
 import TextArea from '@/components/TextArea';
 import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
 import { styles } from './styles';
+import Input from '@/components/Input';
 const { height } = Dimensions.get('window');
 
 export const RetouchImage = () => {
@@ -103,12 +104,18 @@ export const RetouchImage = () => {
             {/* Controls */}
             {showControls && (
               <>
-                {/* Details Section */}
                 <View style={styles.detailsContainer}>
+                  {/* <Input
+                    // containerStyle={{ height: 100 }}
+                    placeholder="4242 4242 4242 4242 4242"
+                    keyboardType="email-address"
+                    // multiline
+                  /> */}
                   <TextArea
                     containerStyle={{ height: 100 }}
                     placeholder="Describe the changes you want made."
                     keyboardType="default"
+                    multiline={false}
                   />
                 </View>
 
