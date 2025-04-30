@@ -29,14 +29,13 @@ const slides = [
 ];
 
 export const Splash = () => {
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<any>(null); // Use any to avoid type error
 
-  const handleNext = (index) => {
+  const handleNext = (index: number) => {
     if (swiperRef.current) {
       if (index < slides.length - 1) {
-        swiperRef.current.scrollBy(1); // Move to next slide
+        swiperRef.current.scrollBy(1);
       } else {
-        // Reached last slide, trigger router.push to navigate to camera screen
         router.replace("/(auth)/camera-access");
       }
     }
