@@ -168,6 +168,7 @@ export const EnterNumber = () => {
                 }
                 disabled={!isValid}
               />
+              <Spacer marginBottom={Platform.OS === 'ios' ? 0 : 10} />
             </MotiView>
           </MotiView>
         </SafeAreaView>

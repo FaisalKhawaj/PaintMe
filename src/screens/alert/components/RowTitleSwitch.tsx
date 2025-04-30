@@ -44,7 +44,7 @@ export const RowTitleSwitch: React.FC<RowTitleSwitchProp> = ({
           backgroundColor: "#fff",
         }}
         size="large"
-        onToggle={(isOn) => setIsOn(!isOn)}
+        onToggle={(value) => setIsOn(value)}
       />
     </Pressable>
   );

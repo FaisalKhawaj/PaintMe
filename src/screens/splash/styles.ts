@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   slide: {
     flex: 1,
     width,
-    height,
+    // height,
   },
   content: {
     flex: 1,

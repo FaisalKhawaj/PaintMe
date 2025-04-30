@@ -9,8 +9,11 @@ import { RowIconTitle } from "./components/RowIconTitle";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { useState } from "react";
 import { CustomModal } from "@/components/ui/CustomModal";
+import { useAuth } from "@/src/context/AuthProvider";
+import { router } from "expo-router";
 
 export const Account = () => {
+  const { setIsLoggedin }: any = useAuth();
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
   const handleDisable = () => {
     setShowDeleteAccountModal(!showDeleteAccountModal);
@@ -18,7 +21,10 @@ export const Account = () => {
   const handleDelete = () => {
     setShowDeleteAccountModal(!showDeleteAccountModal);
   };
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    setIsLoggedin(false)
+    router.replace('/')
+  };
   console.log("showDeleteAccountModal>", showDeleteAccountModal);
   return (
     <SafeAreaView
@@ -84,13 +90,13 @@ export const Account = () => {
               title="Delete account"
               handleClick={handleDelete}
               variation={ButtonVariation.secondary}
-              // disabled={value === ""}
+            // disabled={value === ""}
             />
             <LabelButton
               title="Disable account"
               handleClick={handleDisable}
               variation={ButtonVariation.default}
-              // disabled={value === ""}
+            // disabled={value === ""}
             />
           </View>
         </CustomModal>

@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   tagTextNormal: {
     fontSize: 18,
     fontFamily: fonts.primary.semibold,
+    color: '#4A4E4D'
   },
   scrollContainer: {
     flexGrow: 1,

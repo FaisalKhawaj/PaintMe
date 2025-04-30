@@ -120,7 +120,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerTitle: () => (
-            <TagText rotate="-10deg" title="my profile" tagBgColor="#C8B6FF" />
+            <TagText rotate="-10deg" title="my profile" tagBgColor="#FEE2E4" />
           ),
         }}
       />
