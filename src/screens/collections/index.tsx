@@ -25,8 +25,11 @@ export const Collections = () => {
     { title: "dreamscape depot", images: 36, color: '#F2F9FF', tagColor: '#BDE0FE' },
   ];
 
-  const handleContinue = () => {
-    router.push('/(main)/tabs/collection/opened-collections');
+  const handleContinue = (title: string, color: string) => {
+    router.push({
+      pathname: '/(main)/tabs/collection/opened-collections',
+      params: { title, color }
+    });
   };
 
   return (
@@ -51,7 +54,7 @@ export const Collections = () => {
             showsVerticalScrollIndicator={false}
           >
             {collections.map((item, index) => (
-              <Pressable onPress={handleContinue}>
+              <Pressable key={index} onPress={() => handleContinue(item.title, item.tagColor)}>
                 <MotiView
                   key={index}
                   style={[styles.card, { backgroundColor: item.color }]}

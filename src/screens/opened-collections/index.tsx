@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Image, StyleSheet, ScrollView, SafeAreaView, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
 import { MotiView } from 'moti';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { fonts } from '@/hooks/useCacheResources';
 import { Ionicons } from '@expo/vector-icons';
@@ -25,6 +25,7 @@ const rightColumn = images.filter((_, index) => index % 2 !== 0);
 
 export const OpenedCollections = () => {
   const router = useRouter();
+  const { title = "pixel parade", color = "#D4F8E1" } = useLocalSearchParams();
   const [showImagePinched, setShowImagePinched] = useState(false);
 
   const handleImagePress = (imgUri: string) => {
@@ -81,12 +82,12 @@ export const OpenedCollections = () => {
         </View>
 
         <MotiView
-          style={styles.tagContainer}
+          style={[styles.tagContainer, { backgroundColor: color }]}
           from={{ translateY: -50, rotate: '-8deg' }}
           animate={{ translateY: 0, rotate: '8deg' }}
           transition={{ delay: 200, duration: 500 }}
         >
-          <Text style={styles.tagText}>pixel parade</Text>
+          <Text style={styles.tagText}>{title}</Text>
         </MotiView>
 
         <TouchableOpacity
