@@ -6,6 +6,8 @@ import { ButtonVariation, LabelButton } from '@/components/LabelButton';
 import TextArea from '@/components/TextArea';
 import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
 import { styles } from './styles';
+import { BlurredIcon } from '@/components/BlurredIcon';
+import { router } from 'expo-router';
 const { height } = Dimensions.get('window');
 
 export const RetouchImage = () => {
@@ -29,6 +31,11 @@ export const RetouchImage = () => {
   };
 
   const handleToggleIcon = () => {
+    if (!showGeneratedImages) {
+      return router.replace({
+        pathname: "/(main)/tabs",
+      })
+    }
     setShowIcon(false);
     setShowGeneratedImages(false);
     setShowControls(true);
@@ -77,15 +84,20 @@ export const RetouchImage = () => {
                   { height: showGeneratedImages ? height * 0.68 : height * 0.6 }
                 ]}
               />
-              {showIcon && (
-                <TouchableOpacity style={styles.crossButton}>
-                  <BlurredRoundedIcon
-                    position="absolute"
-                    icon="CancelIcon"
-                    handleClick={handleToggleIcon}
-                  />
-                </TouchableOpacity>
-              )}
+              {/* <View style={styles.crossIcon}>
+                <BlurredIcon
+                  icon="CancelIcon"
+                  handleClick={() => handleback()}
+                />
+              </View> */}
+
+              <TouchableOpacity style={styles.crossButton}>
+                <BlurredRoundedIcon
+                  position="absolute"
+                  icon="CancelIcon"
+                  handleClick={handleToggleIcon}
+                />
+              </TouchableOpacity>
               {/* Down Arrow Button */}
               {showIcon && (
                 <TouchableOpacity

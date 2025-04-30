@@ -6,6 +6,7 @@ import { MotiView } from 'moti';
 import { ButtonVariation, LabelButton } from '@/components/LabelButton';
 import TextArea from '@/components/TextArea';
 import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
+import { router } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
 
@@ -30,6 +31,11 @@ export const CreateSimilar = () => {
   };
 
   const handleToggleIcon = () => {
+    if (!showGeneratedImages) {
+      return router.replace({
+        pathname: "/(main)/tabs",
+      })
+    }
     setShowIcon(false);
     setShowGeneratedImages(false);
     setShowControls(true);
@@ -78,15 +84,13 @@ export const CreateSimilar = () => {
                   { height: showGeneratedImages ? height * 0.68 : height * 0.6 }
                 ]}
               />
-              {showIcon && (
-                <TouchableOpacity style={styles.crossButton}> 
-                  <BlurredRoundedIcon
-                    position="absolute"
-                    icon="CancelIcon"
-                    handleClick={handleToggleIcon}
-                  />
-                </TouchableOpacity>
-              )}
+              <TouchableOpacity style={styles.crossButton}>
+                <BlurredRoundedIcon
+                  position="absolute"
+                  icon="CancelIcon"
+                  handleClick={handleToggleIcon}
+                />
+              </TouchableOpacity>
               {/* Down Arrow Button */}
               {showIcon && (
                 <TouchableOpacity
@@ -107,6 +111,7 @@ export const CreateSimilar = () => {
                     containerStyle={{ height: 100 }}
                     placeholder="Describe the subject or action"
                     keyboardType="default"
+                    multiline={false}
                   />
                 </View>
 
@@ -240,7 +245,7 @@ const styles = StyleSheet.create({
   crossButton: {
     position: 'absolute',
     top: -10,
-    right:110
+    right: 110
   },
   detailsContainer: {
     paddingHorizontal: 10,

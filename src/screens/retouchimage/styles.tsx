@@ -136,4 +136,5 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingBottom: 20,
     },
+    crossIcon: { position: 'absolute', right: 30, top: 30 }
 });
