@@ -26,15 +26,16 @@ export const EnterNumber = () => {
   const {
     handleSubmit,
     control,
-
     formState: { isValid, errors },
   } = useForm({
     defaultValues: {
       phoneNumber: "",
+      countryCode: "US", // default country
     },
     resolver: zodResolver(createNumber),
     mode: "onChange",
   });
+
   type SignUpType = z.infer<typeof createNumber>;
   const handleForm = (data: SignUpType) => {
     console.log(data);

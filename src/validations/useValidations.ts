@@ -30,15 +30,30 @@ export const useValidations = () => {
     bio: z.string().nonempty("Bio is required"),
   });
 
-  const createNumber = z.object({
-    phoneNumber: z
-      .string()
-      .min(6, "Phone number must be at least 6 digits.")
-      .max(15, "Phone number cannot exceed 15 digits.")
-      .refine((value) => /^[0-9]+$/.test(value), {
-        message: "Phone number can only contain numbers.",
-      }),
-  });
+  const createNumber = z
+    .object({
+      phoneNumber: z
+        .string()
+        .min(6, "Phone number must be at least 6 digits.")
+        .max(15, "Phone number cannot exceed 15 digits.")
+        .refine((value) => /^[0-9]+$/.test(value), {
+          message: "Phone number can only contain numbers.",
+        }),
+      countryCode: z
+        .string()
+        .min(1, "Country is required")
+        .max(3, "Invalid country code"), // e.g., 'US', 'AE'
+    })
+    .refine(
+      (data) => {
+        const parsed = parsePhoneNumberFromString(data.phoneNumber, data.countryCode.toUpperCase());
+        return parsed?.isValid();
+      },
+      {
+        message: "Invalid phone number for selected country.",
+        path: ["phoneNumber"],
+      }
+    );
 
   const otpSchema = z.object({
     otp: z
