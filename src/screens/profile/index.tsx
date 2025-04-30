@@ -16,7 +16,6 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 
-const { height, width } = Dimensions.get("screen");
 export const Profile = () => {
   return (
     <SafeAreaView edges={["bottom", "top"]} style={{ flex: 1 }}>

@@ -3,7 +3,6 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
   TouchableOpacity,
   Modal,
   SafeAreaView,
@@ -13,11 +12,8 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // for icons
 import { router, useNavigation } from "expo-router";
-import Animated, {
-  Easing,
-  withSpring,
-  useSharedValue,
-  withTiming,
+import {
+useSharedValue,
 } from "react-native-reanimated";
 
 import { fonts } from "@/hooks/useCacheResources";

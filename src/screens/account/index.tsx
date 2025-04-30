@@ -1,13 +1,12 @@
-import { LogoutIcon, ShieldIcon } from "@/assets/svg";
+import { ShieldIcon } from "@/assets/svg";
 import { fonts } from "@/hooks/useCacheResources";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { MotiView } from "moti";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RowIconTitle } from "./components/RowIconTitle";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
-import Modal from "react-native-modal";
 import { useState } from "react";
 import { CustomModal } from "@/components/ui/CustomModal";
 

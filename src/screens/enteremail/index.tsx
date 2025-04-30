@@ -4,23 +4,17 @@ import { globalstyles } from "@/src/styles/globalstyles";
 import { RFValue } from "react-native-responsive-fontsize";
 
 import {
-  Dimensions,
-  Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { MotiView } from "moti";
-import { useEffect, useRef, useState } from "react";
-import PhoneInput from "react-native-phone-number-input";
-import { router, useRouter } from "expo-router";
-import Input from "@/components/Input";
+import { useEffect, useState } from "react";
+import { useRouter } from "expo-router";
 import { EmailIcon } from "@/assets/svg/EmailIcon";
 import { useValidations } from "@/src/validations/useValidations";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,12 +23,6 @@ import FormInput from "@/components/FormInput";
 
 export const EnterEmail = () => {
   const { createEmail } = useValidations();
-  const { height } = Dimensions.get("screen");
-  const [value, setValue] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-  const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const phoneInput = useRef<PhoneInput>(null);
   const router = useRouter();
 
   const {
@@ -49,7 +37,6 @@ export const EnterEmail = () => {
     resolver: zodResolver(createEmail),
     mode: "onChange",
   });
-  type EmailType = z.infer<typeof createEmail>;
   const handleEmailOtp = () => {
     router.replace({
       pathname: "/(auth)/enter-otp",

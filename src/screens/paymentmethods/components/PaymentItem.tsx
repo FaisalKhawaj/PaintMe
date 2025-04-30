@@ -1,7 +1,6 @@
 import React from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-import { MasterCIcon } from "@/assets/svg";
 import { fonts } from "@/hooks/useCacheResources";
 import * as SVGs from "../../../../assets/svg";
 

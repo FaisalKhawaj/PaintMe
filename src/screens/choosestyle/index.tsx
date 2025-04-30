@@ -1,5 +1,4 @@
 import { ButtonVariation, IconButton } from "@/components/IconButton";
-import { fonts } from "@/hooks/useCacheResources";
 import { Ionicons } from "@expo/vector-icons";
 import { MotiView } from "moti";
 import React, { useState } from "react";
@@ -7,15 +6,12 @@ import { styles } from "./styles";
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   ImageBackground,
-  Dimensions,
   ScrollView,
 } from "react-native";
 import { router } from "expo-router";
 
-const { width, height } = Dimensions.get("window");
 
 const stylesOptions = [
   { label: "Abstract", image: require("@/assets/images/abstract.png") },

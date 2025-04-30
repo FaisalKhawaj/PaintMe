@@ -1,11 +1,5 @@
-import { AppleIcon, GoogleIcon } from "@/assets/svg";
-import { ButtonVariation, LabelButton } from "@/components/LabelButton";
-import { Row } from "@/components/Row";
-import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import {
-  Dimensions,
-  Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -15,12 +9,10 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MotiView } from "moti";
-import { useEffect, useRef, useState } from "react";
-import { Redirect, router, useLocalSearchParams } from "expo-router";
+import { router } from "expo-router";
 import { fonts } from "@/hooks/useCacheResources";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Ionicons } from "@expo/vector-icons";

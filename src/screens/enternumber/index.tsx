@@ -1,26 +1,19 @@
-import { AppleIcon, GoogleIcon } from "@/assets/svg";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
-import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { RFValue } from "react-native-responsive-fontsize";
 
 import {
   Dimensions,
-  Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { MotiView } from "moti";
-import { useRef, useState } from "react";
-import PhoneInput from "react-native-phone-number-input";
 import { router } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

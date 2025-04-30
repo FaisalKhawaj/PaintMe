@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions, ScrollView, SafeAreaView, Pressable } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router';
 
-const { width } = Dimensions.get('window');
-const IMAGE_WIDTH = width / 2 - 18; // Adjusted spacing
 
 const images = [
   require('@/assets/images/create1.png'),

@@ -3,15 +3,11 @@ import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 
 import {
-  Dimensions,
-  Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   Text,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
@@ -23,7 +19,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FormInput from "@/components/FormInput";
 
 export const CollectionName = () => {
-  const { height } = Dimensions.get("screen");
   const { collectionSchema } = useValidations();
   const {
     handleSubmit,

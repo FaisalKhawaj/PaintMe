@@ -1,6 +1,5 @@
 import { globalstyles } from "@/src/styles/globalstyles";
 import { MotiView } from "moti";
-import { Pressable, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RowButtonTextIcon } from "./components/RowButtonTextIcon";
 import { router } from "expo-router";

@@ -3,40 +3,21 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
   TouchableOpacity,
-  Modal,
   SafeAreaView,
-  Dimensions,
   Pressable,
-  Share
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // for icons
-import { router, useNavigation } from "expo-router";
-import Animated, {
-  Easing,
-  withSpring,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import { router } from "expo-router";
 
-import { fonts } from "@/hooks/useCacheResources";
 import { MotiView } from "moti";
-import { Spacer } from "@/components/Spacer";
-import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
-import { RFValue } from "react-native-responsive-fontsize";
-import { IconButton } from "@/components/IconButton";
 import { styles } from "./styles";
 
 
 export const GeneratedImageSelect = () => {
-  const navigation = useNavigation();
-  const [showOptionsModal, setShowOptionsModal] = useState(false);
-  const [showImageAdded, setShowImageAdded] = useState(false);
   const [showFullScreen, setShowFullScreen] = useState(false);
   // Animation values
-  const animation = useSharedValue(0);
   const [showIcons, setShowIcons] = useState(false);
 
   // Trigger animation on click
@@ -44,26 +25,9 @@ export const GeneratedImageSelect = () => {
     setShowIcons((prev) => !prev);
   };
 
-  const handleImageAddhandler = () => {
-    setShowImageAdded(true);
-    setShowOptionsModal(false);
-  };
-
-  const imageUrl = "https://picsum.photos/400/900"; // Replace with your real image
   const handleBack = () => {
     handleToggleIcons()
     router.back();
-  };
-  const handleShare = async () => {
-    try {
-      await Share.share({
-        message: 'Check out this edited image!',
-        url: imageUrl,
-        title: 'Share Image'
-      });
-    } catch (error) {
-      console.log('Error sharing:');
-    }
   };
 
   return (

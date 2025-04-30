@@ -12,10 +12,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { MotiView } from "moti";
-import { useEffect, useRef, useState } from "react";
-import { Redirect, router, useLocalSearchParams } from "expo-router";
-import { OtpInput } from "react-native-otp-entry";
-import { useAuth } from "@/src/context/AuthProvider";
+import { useEffect } from "react";
+import { router } from "expo-router";
 import { fonts } from "@/hooks/useCacheResources";
 
 export const ImageProgress = () => {
@@ -24,7 +22,7 @@ export const ImageProgress = () => {
     setTimeout(() => {
       router.replace("/tabs/create/image-created");
     }, 3000)
-  },[])
+  }, [])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

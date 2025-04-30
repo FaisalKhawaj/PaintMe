@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, SafeAreaView, Dimensions, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from 'expo-router';
 import { fonts } from '@/hooks/useCacheResources';
 import { MotiView } from 'moti';
 import { ButtonVariation, LabelButton } from '@/components/LabelButton';
@@ -11,7 +10,6 @@ import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
 const { width, height } = Dimensions.get('window');
 
 export const CreateSimilar = () => {
-  const navigation = useNavigation();
   const [count, setCount] = useState(1);
   const [images, setImages] = useState<string[]>([]);
   const [showControls, setShowControls] = useState(true);

@@ -1,5 +1,4 @@
 import { EmailIcon } from "@/assets/svg/EmailIcon";
-import Input from "@/components/Input";
 import { Row } from "@/components/Row";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";

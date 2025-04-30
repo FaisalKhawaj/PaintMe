@@ -1,5 +1,3 @@
-import { Colors } from "@/constants/Colors";
-import { fonts } from "@/hooks/useCacheResources";
 import { SafeAreaView, Text, Image, Alert } from "react-native";
 import { Camera } from "expo-camera";
 

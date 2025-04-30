@@ -3,42 +3,27 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
   TouchableOpacity,
   Modal,
   SafeAreaView,
-  Dimensions,
   Pressable,
   Share
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // for icons
-import { router, useNavigation } from "expo-router";
-import Animated, {
-  Easing,
-  withSpring,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import { router } from "expo-router";
 
-import { fonts } from "@/hooks/useCacheResources";
 import { MotiView } from "moti";
 import { Spacer } from "@/components/Spacer";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
-import { RFValue } from "react-native-responsive-fontsize";
-import { IconButton } from "@/components/IconButton";
 import { styles } from "./styles";
 import { useImageContext } from "@/src/context/ImageContext";
 
-const { width, height } = Dimensions.get("window");
 
 export const ImageCollections = () => {
-  const navigation = useNavigation();
   const { showFullImage, setShowFullImage } = useImageContext();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
-  const [showFullScreen, setShowFullScreen] = useState(false);
   // Animation values
-  const animation = useSharedValue(0);
   const [showIcons, setShowIcons] = useState(false);
 
   // Trigger animation on click

@@ -1,11 +1,9 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions, ScrollView, SafeAreaView, Pressable } from 'react-native';
+import { View, Image, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import { MotiView } from 'moti';
 import { useRouter } from 'expo-router'; // <-- Expo Router hook
 import { styles } from './styles';
 
-const { width } = Dimensions.get('window');
-const IMAGE_WIDTH = width / 2 - 24;
 
 const images = [
   'https://picsum.photos/seed/picsum1/400/600',

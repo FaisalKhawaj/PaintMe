@@ -6,7 +6,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -15,13 +14,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import ColorPicker, {
   Swatches,
-  Preview,
   OpacitySlider,
-  HueSlider,
   Panel5,
-  HueCircular,
-  PreviewText,
-  InputWidget,
 } from "reanimated-color-picker";
 
 import { styles as localStyles, styles } from "./styles";
@@ -60,17 +54,7 @@ export const ColorPick = () => {
   // Note: use `onCompleteJS` and `onChangeJS` for non-worklet functions
   const onSelectColor = ({ hex }) => {
     "worklet";
-    // do something with the selected color.
     runOnJS(setSelectedColor)(hex);
-    // setTimeout(() => {
-    //   if (editingIndex !== null) {
-    //     runOnJS(setPresetColors)(prevColors => {
-    //       const newColors = [...prevColors];
-    //       newColors[editingIndex] = hex;
-    //       return newColors;
-    //     });
-    //   }
-    // }, 1000);
     console.log(hex);
   };
   return (

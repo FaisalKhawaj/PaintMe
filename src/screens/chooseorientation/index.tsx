@@ -1,11 +1,9 @@
-import { IconButton } from '@/components/IconButton';
 import { ButtonVariation, LabelButton } from '@/components/LabelButton';
 import { Spacer } from '@/components/Spacer';
 import TextArea from '@/components/TextArea';
 import { fonts } from '@/hooks/useCacheResources';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { MotiView } from 'moti';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard, TouchableOpacity, Image } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';

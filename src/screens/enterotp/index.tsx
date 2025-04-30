@@ -1,4 +1,4 @@
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   Alert,
   Image,
@@ -15,7 +15,6 @@ import { MotiView } from "moti";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { styles } from "./styles";
-import { OtpInput } from "react-native-otp-entry";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { router, useLocalSearchParams } from "expo-router";
 import { useValidations } from "@/src/validations/useValidations";

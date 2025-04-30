@@ -1,12 +1,7 @@
-import { Row } from "@/components/Row";
-import { fonts } from "@/hooks/useCacheResources";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { MotiView } from "moti";
 import { useState } from "react";
-import { Pressable, Text } from "react-native";
-import { RFValue } from "react-native-responsive-fontsize";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ToggleSwitch from "toggle-switch-react-native";
 import { RowTitleSwitch } from "./components/RowTitleSwitch";
 
 export const Alert = () => {
