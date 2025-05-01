@@ -8,7 +8,10 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import CountryPicker from "react-native-country-picker-modal";
+import CountryPicker, {
+  Country,
+  CountryCode,
+} from "react-native-country-picker-modal";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import { fonts } from "@/hooks/useCacheResources";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -38,17 +41,19 @@ export const CustomPhoneInput = <T extends FieldValues>({
   rules,
   error,
 }: CountryPickerWithPhoneProps<T>) => {
-  const [showCountryPicker, setShowCountryPicker] = useState(false);
-  const [selectedCountryCode, setSelectedCountryCode] = useState<string>("US");
+  const [showCountryPicker, setShowCountryPicker] = useState<boolean>(false);
+  const [selectedCountryCode, setSelectedCountryCode] =
+    useState<CountryCode>("US"); // ✅ Use CountryCode type
   const [selectedCallingCode, setSelectedCallingCode] = useState<string>("1");
-  const [err, setErr] = useState(null);
+
   return (
     <Fragment>
       <View style={[styles.wrapper, containerStyle]}>
         {label && <Text style={styles.labelText}>{label}</Text>}
         <View style={styles.inputRow}>
+          {/* ✅ CountryPicker with correct types */}
           <CountryPicker
-            onSelect={(country) => {
+            onSelect={(country: Country) => {
               setSelectedCountryCode(country.cca2);
               setSelectedCallingCode(country.callingCode[0]);
               setShowCountryPicker(false);
@@ -61,12 +66,14 @@ export const CustomPhoneInput = <T extends FieldValues>({
             withFlag
             onClose={() => setShowCountryPicker(false)}
           />
+
           <TouchableOpacity
             style={styles.flagButton}
             onPress={() => setShowCountryPicker(true)}
           >
             <Text style={styles.flagText}>+{selectedCallingCode}</Text>
           </TouchableOpacity>
+
           <Controller
             control={control}
             name={name}

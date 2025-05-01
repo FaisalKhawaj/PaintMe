@@ -123,7 +123,7 @@ export const styles = StyleSheet.create({
   tagText: {
     fontSize: 18,
     fontFamily: fonts.primary.semibold,
-    // transform: [{ rotate: "10deg" }],
+    transform: [{ rotate: "10deg" }],
   },
   tagTextNormal: {
     fontSize: 18,
@@ -158,4 +158,5 @@ export const styles = StyleSheet.create({
     height: height,
     resizeMode: "cover",
   },
+  expandIcon: { position: "absolute", top: 48, right: 40 },
 });

@@ -21,6 +21,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { CustomModal } from "@/components/ui/CustomModal";
 import { Container } from "@/components/ScreenWrapper";
 import { globalstyles } from "@/src/styles/globalstyles";
+import { ExpandIcon } from "@/assets/svg/ExpandIcon";
 
 export const ImageCollections = () => {
   const { showFullImage, setShowFullImage } = useImageContext();
@@ -122,7 +123,11 @@ export const ImageCollections = () => {
                 source={require("@/assets/images/cat.png")}
                 style={styles.mainImage}
               />
-
+              <View style={styles.expandIcon}>
+                <Pressable onPress={() => setShowFullImage(true)}>
+                  <ExpandIcon />
+                </Pressable>
+              </View>
               <MotiView
                 from={{
                   opacity: 0,

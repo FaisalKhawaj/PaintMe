@@ -8,6 +8,7 @@ import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalstyles } from "@/src/styles/globalstyles";
+import { ExpandIcon } from "@/assets/svg/ExpandIcon";
 
 export const GeneratedImageSelect = () => {
   const [showFullScreen, setShowFullScreen] = useState(false);
@@ -85,7 +86,11 @@ export const GeneratedImageSelect = () => {
                 source={require("@/assets/images/laptop.png")}
                 style={styles.mainImage}
               />
-
+              <View style={styles.expandIcon}>
+                <Pressable onPress={() => setShowFullScreen(true)}>
+                  <ExpandIcon />
+                </Pressable>
+              </View>
               <MotiView
                 from={{
                   opacity: 0,

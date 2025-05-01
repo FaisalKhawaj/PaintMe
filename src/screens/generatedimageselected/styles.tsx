@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   leftSpace: { marginLeft: Platform.OS === "android" ? 10 : 0 },
   mainImage: {
     width: width,
-    height: height * 0.6,
+    height: height * (Platform.OS === "android" ? 0.68 : 0.6),
     borderRadius: 32,
     resizeMode: "cover",
     paddingHorizontal: 10,
@@ -161,4 +161,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  expandIcon: { position: "absolute", top: 48, right: 40 },
 });

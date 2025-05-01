@@ -43,6 +43,13 @@ export const styles = StyleSheet.create({
     fontFamily: fonts.primary.semibold,
     color: "#555",
   },
+  descriptionText: {
+    marginTop: 10,
+    fontSize: RFValue(12),
+    textAlign: 'center',
+    fontFamily: fonts.primary.medium,
+    color: "#8C919E",
+  },
   allowTextDescription: {
     fontSize: 22,
     textAlign: "center",

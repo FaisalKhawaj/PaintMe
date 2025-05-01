@@ -15,6 +15,7 @@ import { styles } from "./styles";
 import { MotiView } from "moti";
 import { Redirect, useLocalSearchParams } from "expo-router";
 import { useAuth } from "@/src/context/AuthProvider";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const WelcomeFinal = () => {
   const { isEmail = "false" } = useLocalSearchParams();
@@ -71,7 +72,7 @@ export const WelcomeFinal = () => {
                   animate={{ translateX: 0, opacity: 1 }}
                   transition={{ delay: 400, duration: 500 }}
                 >
-                  <Text style={[globalstyles.description, { fontSize: 26 }]}>
+                  <Text style={[globalstyles.description, { fontSize: RFValue(26) }]}>
                     Welcome to Pixura.
                   </Text>
                 </MotiView>

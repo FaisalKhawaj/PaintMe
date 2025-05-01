@@ -18,10 +18,10 @@ export const styles = StyleSheet.create({
   },
   description: {
     marginTop: 10,
-    fontSize: RFValue(14),
+    fontSize: RFValue(16),
     textAlign: 'center',
     fontFamily: fonts.primary.medium,
-    color: "#555",
+    color: "#8C919E",
   },
   allowTextDescription: {
     fontSize: 22,
