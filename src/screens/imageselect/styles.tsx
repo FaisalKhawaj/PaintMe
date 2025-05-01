@@ -38,6 +38,7 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     position: "relative", // NEW - so buttons stay inside the image
+
   },
   mainImage: {
     width: width,
@@ -144,6 +145,12 @@ export const styles = StyleSheet.create({
     width: width,
     height: height,
     resizeMode: "cover",
+  },
+  descriptionText: {
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 10,
+    marginBottom: 20,
   },
   expandIcon: { position: "absolute", top: 48, right: 40 },
 });

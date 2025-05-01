@@ -22,7 +22,7 @@ export const Settings = () => {
     router.push("/license");
   };
   return (
-    <SafeAreaView edges={["bottom"]} style={{ flex: 1 }}>
+    <SafeAreaView edges={["bottom"]} style={globalstyles.fullScreen}>
       <MotiView
         from={{ opacity: 0, translateY: -50 }}
         animate={{ opacity: 1, translateY: 0 }}

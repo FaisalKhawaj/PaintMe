@@ -36,7 +36,7 @@ export const PaymentMethods = () => {
           subtitle="card ending in 8492"
           icon="VisaCIcon"
         />
-        <View style={{ flex: 1 }} />
+        <View style={globalstyles.fullScreen}/>
         <View style={styles.bottomWrap}>
           <View style={styles.plusIconWrap}>
             <Entypo name="plus" size={25} color={"#fff"} />

@@ -13,6 +13,7 @@ import {
 import { router } from "expo-router";
 import { Container } from "@/components/ScreenWrapper";
 import { StatusBar } from "expo-status-bar";
+import { globalstyles } from "@/src/styles/globalstyles";
 
 const stylesOptions = [
   { label: "Abstract", image: require("@/assets/images/abstract.png") },
@@ -39,7 +40,7 @@ export const ChooseStyle = () => {
   };
 
   return (
-    <Container style={{ flex: 1 }}>
+    <Container style={globalstyles.fullScreen}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
       <ImageBackground
         source={selectedStyle.image}

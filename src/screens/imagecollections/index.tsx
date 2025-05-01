@@ -20,6 +20,7 @@ import { useImageContext } from "@/src/context/ImageContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CustomModal } from "@/components/ui/CustomModal";
 import { Container } from "@/components/ScreenWrapper";
+import { globalstyles } from "@/src/styles/globalstyles";
 
 export const ImageCollections = () => {
   const { showFullImage, setShowFullImage } = useImageContext();
@@ -71,7 +72,7 @@ export const ImageCollections = () => {
         >
           <Pressable
             onPress={() => setShowFullImage(false)}
-            style={{ flex: 1 }}
+            style={globalstyles.fullScreen}
           >
             <MotiView
               style={styles.fullscreenImageContainer}
@@ -90,7 +91,7 @@ export const ImageCollections = () => {
           <TouchableOpacity
             style={[
               styles.circleButton,
-              { position: "absolute", alignSelf: "center", bottom: 40 },
+              styles.iconStyle
             ]}
             onPress={() => setShowFullImage(false)}
           >
@@ -230,12 +231,7 @@ export const ImageCollections = () => {
             <Text
               style={[
                 styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
+                styles.descriptionText
               ]}
             >
               Are you sure you want to remove this image from the collection?
@@ -258,12 +254,7 @@ export const ImageCollections = () => {
             <Text
               style={[
                 styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
+                styles.descriptionText
               ]}
             >
               20 images

@@ -7,6 +7,7 @@ import { ButtonVariation, LabelButton } from '@/components/LabelButton';
 import TextArea from '@/components/TextArea';
 import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
 import { router } from 'expo-router';
+import { globalstyles } from '@/src/styles/globalstyles';
 
 const { width, height } = Dimensions.get('window');
 
@@ -58,7 +59,7 @@ export const CreateSimilar = () => {
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
+        style={globalstyles.fullScreen}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
       >
         <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }}>
@@ -163,12 +164,7 @@ export const CreateSimilar = () => {
                   )}
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{
-                    paddingVertical: 20,
-                    paddingHorizontal: 8,
-                    alignItems: 'center',
-                    gap: 4,
-                  }}
+                  contentContainerStyle={styles.contentContainer}
                 />
               </>
             )}
@@ -183,6 +179,12 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  contentContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 8,
+    alignItems: 'center',
+    gap: 4,
   },
   container: {
     flexGrow: 1,

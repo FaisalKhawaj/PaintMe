@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-
+import { Dimensions, StyleSheet } from "react-native";
+const { height } = Dimensions.get("window");
 export const styles = StyleSheet.create({
   iconButton: {
     flex: 1,
@@ -11,5 +11,10 @@ export const styles = StyleSheet.create({
   },
   gap: {
     gap: 16,
+  },
+  imageStyles: {
+    height: height / 2,
+    width: "100%",
+    borderRadius: 20,
   }
 });

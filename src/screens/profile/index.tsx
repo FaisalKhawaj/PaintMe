@@ -22,7 +22,7 @@ export const Profile = () => {
   return (
     <SafeAreaView
       edges={["bottom", "top"]}
-      style={{ flex: 1, backgroundColor: "#fff" }}
+      style={styles.safeView}
     >
       <StatusBar style="dark" translucent backgroundColor="#fff" />
 
@@ -123,6 +123,7 @@ export const Profile = () => {
 };
 
 const styles = StyleSheet.create({
+  safeView: { flex: 1, backgroundColor: "#fff" },
   mainView: {
     flexGrow: 1,
     backgroundColor: "#fff",

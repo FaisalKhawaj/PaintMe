@@ -41,7 +41,7 @@ export const EnterEmail = () => {
   const handleEmailOtp = () => {
     router.replace({
       pathname: "/(auth)/enter-otp",
-      params: { isEmail: true },
+      params: { isEmail: 'true' },
     });
     // router.replace(`/(auth)/${updatedUserData.email}/verify-otp`);
   };
@@ -62,7 +62,7 @@ export const EnterEmail = () => {
     };
   }, []);
   console.log("isValid", isValid);
-  const handleClickEmail = () => {};
+  const handleClickEmail = () => { };
   return (
     <SafeAreaView edges={["bottom"]} style={globalstyles.mainWrap}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -110,30 +110,19 @@ export const EnterEmail = () => {
             />
             {/* </View> */}
             <Text
-              style={{
-                fontSize: RFValue(11),
-                color: "#8C919E",
-                marginTop: 10,
-              }}
+              style={styles.paraStyle}
             >
               No spam. Just a quick verification
             </Text>
           </MotiView>
           <MotiView
-            style={{ gap: 10, bottom: !isKeyboardVisible ? 20 : 0 }}
+            style={{ gap: 10, bottom: !isKeyboardVisible ? 10 : 10 }}
             from={{ translateY: 50, opacity: 0 }}
             animate={{ translateY: 0, opacity: 1 }}
             transition={{ delay: 600, duration: 500 }}
           >
             <Text
-              style={{
-                width: "80%",
-                marginHorizontal: "auto",
-                fontSize: RFValue(12),
-                color: "#8C919E",
-                marginTop: 10,
-                textAlign: "center",
-              }}
+              style={styles.footerPara}
             >
               By tapping Continue, you are agreeing to our
               <Text style={{ fontWeight: "bold" }}>

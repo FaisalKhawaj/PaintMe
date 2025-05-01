@@ -60,7 +60,7 @@ export const OpenedCollections = () => {
         </View>
 
         <MotiView
-          style={[styles.tagContainer, { backgroundColor: color }]}
+          style={[styles.tagContainer, { backgroundColor: String(color) }]}
           from={{ translateY: -50, rotate: "-8deg" }}
           animate={{ translateY: 0, rotate: "8deg" }}
           transition={{ delay: 200, duration: 500 }}

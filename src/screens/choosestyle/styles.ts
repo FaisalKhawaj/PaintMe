@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width,
-    height,
     justifyContent: "center",
   },
   tag: {
