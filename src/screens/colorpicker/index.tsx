@@ -1,16 +1,7 @@
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
-import {
-  Image,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ColorPicker, {
   Swatches,
@@ -121,7 +112,7 @@ export const ColorPick = () => {
                     height: 42,
                   },
                 ]}
-              // onPress={() => {}}
+                // onPress={() => {}}
               >
                 <Image
                   source={require("../../../assets/images/rgb.png")}

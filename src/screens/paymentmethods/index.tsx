@@ -2,10 +2,7 @@ import { MotiView } from "moti";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, StyleSheet } from "react-native";
 import { globalstyles } from "@/src/styles/globalstyles";
-import { Entypo, Ionicons } from "@expo/vector-icons";
-import { RFValue } from "react-native-responsive-fontsize";
-import { fonts } from "@/hooks/useCacheResources";
-import { MasterCIcon } from "@/assets/svg";
+import { Entypo } from "@expo/vector-icons";
 import { PaymentItem } from "./components/PaymentItem";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { router } from "expo-router";
@@ -36,7 +33,7 @@ export const PaymentMethods = () => {
           subtitle="card ending in 8492"
           icon="VisaCIcon"
         />
-        <View style={globalstyles.fullScreen}/>
+        <View style={globalstyles.fullScreen} />
         <View style={styles.bottomWrap}>
           <View style={styles.plusIconWrap}>
             <Entypo name="plus" size={25} color={"#fff"} />

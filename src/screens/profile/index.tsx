@@ -5,7 +5,6 @@ import { fonts } from "@/hooks/useCacheResources";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { FontAwesome5, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import {
-  Dimensions,
   ImageBackground,
   Pressable,
   StyleSheet,
@@ -20,10 +19,7 @@ import { router } from "expo-router";
 
 export const Profile = () => {
   return (
-    <SafeAreaView
-      edges={["bottom", "top"]}
-      style={styles.safeView}
-    >
+    <SafeAreaView edges={["bottom", "top"]} style={styles.safeView}>
       <StatusBar style="dark" translucent backgroundColor="#fff" />
 
       <MotiView

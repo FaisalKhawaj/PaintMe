@@ -1,11 +1,5 @@
 import React, { useRef } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import Swiper from "react-native-swiper";
 import { styles } from "./styles";
 import { router } from "expo-router";

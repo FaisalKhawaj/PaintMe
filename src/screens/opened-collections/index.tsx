@@ -7,7 +7,6 @@ import {
   Pressable,
   Text,
   TouchableOpacity,
-  Modal,
 } from "react-native";
 import { MotiView } from "moti";
 import { StatusBar } from "expo-status-bar";

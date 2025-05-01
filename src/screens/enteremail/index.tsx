@@ -2,14 +2,7 @@ import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { Spacer } from "@/components/Spacer";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { RFValue } from "react-native-responsive-fontsize";
-
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { Keyboard, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { MotiView } from "moti";
@@ -41,7 +34,7 @@ export const EnterEmail = () => {
   const handleEmailOtp = () => {
     router.replace({
       pathname: "/(auth)/enter-otp",
-      params: { isEmail: 'true' },
+      params: { isEmail: "true" },
     });
     // router.replace(`/(auth)/${updatedUserData.email}/verify-otp`);
   };
@@ -62,7 +55,7 @@ export const EnterEmail = () => {
     };
   }, []);
   console.log("isValid", isValid);
-  const handleClickEmail = () => { };
+  const handleClickEmail = () => {};
   return (
     <SafeAreaView edges={["bottom"]} style={globalstyles.mainWrap}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -109,9 +102,7 @@ export const EnterEmail = () => {
               keyboardType="email-address"
             />
             {/* </View> */}
-            <Text
-              style={styles.paraStyle}
-            >
+            <Text style={styles.paraStyle}>
               No spam. Just a quick verification
             </Text>
           </MotiView>
@@ -121,9 +112,7 @@ export const EnterEmail = () => {
             animate={{ translateY: 0, opacity: 1 }}
             transition={{ delay: 600, duration: 500 }}
           >
-            <Text
-              style={styles.footerPara}
-            >
+            <Text style={styles.footerPara}>
               By tapping Continue, you are agreeing to our
               <Text style={{ fontWeight: "bold" }}>
                 {" "}

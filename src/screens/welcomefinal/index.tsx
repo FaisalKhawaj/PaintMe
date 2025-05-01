@@ -17,7 +17,7 @@ import { Redirect, useLocalSearchParams } from "expo-router";
 import { useAuth } from "@/src/context/AuthProvider";
 
 export const WelcomeFinal = () => {
-  const { isEmail = 'false' } = useLocalSearchParams();
+  const { isEmail = "false" } = useLocalSearchParams();
   const { isLoggedin, setIsLoggedin }: any = useAuth();
   const handleSplash = () => {
     setIsLoggedin(true);
@@ -52,7 +52,7 @@ export const WelcomeFinal = () => {
                 <Image
                   style={styles.imageStyle}
                   source={
-                    isEmail === 'true'
+                    isEmail === "true"
                       ? require("../../../assets/images/MailScreen.png")
                       : require("../../../assets/images/heart.png")
                   }

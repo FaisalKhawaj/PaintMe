@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, SafeAreaView, Dimensions, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { fonts } from '@/hooks/useCacheResources';
-import { MotiView } from 'moti';
-import { ButtonVariation, LabelButton } from '@/components/LabelButton';
-import TextArea from '@/components/TextArea';
-import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
-import { router } from 'expo-router';
-import { globalstyles } from '@/src/styles/globalstyles';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  SafeAreaView,
+  Dimensions,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { fonts } from "@/hooks/useCacheResources";
+import { MotiView } from "moti";
+import { ButtonVariation, LabelButton } from "@/components/LabelButton";
+import TextArea from "@/components/TextArea";
+import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
+import { router } from "expo-router";
+import { globalstyles } from "@/src/styles/globalstyles";
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get("window");
 
 export const CreateSimilar = () => {
   const [count, setCount] = useState(1);
@@ -19,11 +31,13 @@ export const CreateSimilar = () => {
   const [showIcon, setShowIcon] = useState(false);
   const [selectedImages, setSelectedImages] = useState<number[]>([]); // Track selected images
 
-  const increment = () => setCount(prev => prev + 1);
-  const decrement = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
+  const increment = () => setCount((prev) => prev + 1);
+  const decrement = () => setCount((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleGenerate = () => {
-    const generatedImages = Array(count).fill('').map(() => 'https://picsum.photos/400/400?random=' + Math.random());
+    const generatedImages = Array(count)
+      .fill("")
+      .map(() => "https://picsum.photos/400/400?random=" + Math.random());
     setImages(generatedImages);
     setShowGeneratedImages(true);
     setShowControls(false);
@@ -35,7 +49,7 @@ export const CreateSimilar = () => {
     if (!showGeneratedImages) {
       return router.replace({
         pathname: "/(main)/tabs",
-      })
+      });
     }
     setShowIcon(false);
     setShowGeneratedImages(false);
@@ -44,25 +58,28 @@ export const CreateSimilar = () => {
   };
 
   const toggleImageSelection = (index: number) => {
-    setSelectedImages(prev => {
+    setSelectedImages((prev) => {
       if (prev.includes(index)) {
-        return prev.filter(i => i !== index); // Deselect if already selected
+        return prev.filter((i) => i !== index); // Deselect if already selected
       } else {
         return [...prev, index]; // Select if not selected
       }
     });
   };
 
-  const imageUrl = 'https://picsum.photos/400/900';
+  const imageUrl = "https://picsum.photos/400/900";
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={globalstyles.fullScreen}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 10 : 0}
       >
-        <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{ flexGrow: 1 }}
+        >
           <View style={styles.container}>
             {/* Tag */}
             <View style={styles.tagStylesModal}>
@@ -79,10 +96,12 @@ export const CreateSimilar = () => {
             {/* Main Image */}
             <View style={styles.imageContainer}>
               <Image
-                source={require('@/assets/images/avant.png')}
+                source={require("@/assets/images/avant.png")}
                 style={[
                   styles.mainImage,
-                  { height: showGeneratedImages ? height * 0.68 : height * 0.6 }
+                  {
+                    height: showGeneratedImages ? height * 0.68 : height * 0.6,
+                  },
                 ]}
               />
               <TouchableOpacity style={styles.crossButton}>
@@ -132,7 +151,7 @@ export const CreateSimilar = () => {
                     </TouchableOpacity>
                   </View>
 
-                  <View style={{ width: '60%' }}>
+                  <View style={{ width: "60%" }}>
                     <LabelButton
                       title="Generate"
                       handleClick={handleGenerate}
@@ -154,11 +173,17 @@ export const CreateSimilar = () => {
                       onPress={() => toggleImageSelection(index)}
                       activeOpacity={0.8}
                     >
-                      <View style={[
-                        styles.generatedImageContainer,
-                        selectedImages.includes(index) && styles.selectedImageContainer
-                      ]}>
-                        <Image source={{ uri: item }} style={styles.generatedImage} />
+                      <View
+                        style={[
+                          styles.generatedImageContainer,
+                          selectedImages.includes(index) &&
+                            styles.selectedImageContainer,
+                        ]}
+                      >
+                        <Image
+                          source={{ uri: item }}
+                          style={styles.generatedImage}
+                        />
                       </View>
                     </TouchableOpacity>
                   )}
@@ -178,12 +203,12 @@ export const CreateSimilar = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   contentContainer: {
     paddingVertical: 20,
     paddingHorizontal: 8,
-    alignItems: 'center',
+    alignItems: "center",
     gap: 4,
   },
   container: {
@@ -196,7 +221,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   tag: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
@@ -206,12 +231,12 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.semibold,
   },
   imageContainer: {
-    position: 'relative',
+    position: "relative",
   },
   mainImage: {
     width: width,
     borderRadius: 32,
-    resizeMode: 'cover',
+    resizeMode: "cover",
     paddingHorizontal: 10,
   },
   circleButton: {
@@ -228,9 +253,9 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   downArrowButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 10,
-    alignSelf: 'center',
+    alignSelf: "center",
     width: 55,
     height: 55,
     borderRadius: 33,
@@ -245,17 +270,17 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   crossButton: {
-    position: 'absolute',
+    position: "absolute",
     top: -10,
-    right: 110
+    right: 110,
   },
   detailsContainer: {
     paddingHorizontal: 10,
     paddingVertical: 24,
   },
   generateSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingHorizontal: 10,
     marginTop: 10,
   },
@@ -263,7 +288,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: '40%',
+    width: "40%",
     paddingLeft: 0,
     paddingRight: 10,
   },
@@ -288,30 +313,30 @@ const styles = StyleSheet.create({
     marginTop: 0,
     backgroundColor: "#f0f0f0",
     borderRadius: 20,
-    overflow: 'hidden',
-    position: 'relative',
+    overflow: "hidden",
+    position: "relative",
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: "white",
   },
   selectedImageContainer: {
-    borderColor: 'black',
+    borderColor: "black",
   },
   generatedImage: {
     width: 116,
     height: 116,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   checkmarkContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 5,
     right: 5,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: "rgba(0,0,0,0.5)",
     borderRadius: 12,
     padding: 2,
   },
   selectionActions: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     paddingHorizontal: 20,
     paddingBottom: 20,
   },

@@ -26,10 +26,6 @@ export const EditProfile = () => {
     }
   };
 
-  const handleConfirm = () => {
-    router.push("/(main)/tabs");
-  };
-
   return (
     <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "#fff" }}>
       <MotiView

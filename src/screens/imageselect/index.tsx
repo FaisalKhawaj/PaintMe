@@ -1,25 +1,13 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Modal,
-  Dimensions,
-  Pressable,
-  Share,
-} from "react-native";
+import { View, Text, Image, Dimensions, Pressable, Share } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // for icons
 import { router, useNavigation } from "expo-router";
 import { useSharedValue } from "react-native-reanimated";
 
-import { fonts } from "@/hooks/useCacheResources";
 import { MotiView } from "moti";
 import { Spacer } from "@/components/Spacer";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
-import { RFValue } from "react-native-responsive-fontsize";
-import { IconButton } from "@/components/IconButton";
 import { ExpandIcon } from "@/assets/svg/ExpandIcon";
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -28,10 +16,7 @@ import { StatusBar } from "expo-status-bar";
 import { CustomModal } from "@/components/ui/CustomModal";
 import { globalstyles } from "@/src/styles/globalstyles";
 
-const { width, height } = Dimensions.get("window");
-
 export const ImageSelect = () => {
-  const navigation = useNavigation();
   const [showOptionsModal, setShowOptionsModal] = useState(false);
   const [showImageAdded, setShowImageAdded] = useState(false);
   const [showFullScreen, setShowFullScreen] = useState(false);
@@ -239,12 +224,7 @@ export const ImageSelect = () => {
                   <Text style={styles.tagTextNormal}>add to collection</Text>
                 </MotiView>
               </View>
-              <Text
-                style={[
-                  styles.description,
-                  styles.descriptionText
-                ]}
-              >
+              <Text style={[styles.description, styles.descriptionText]}>
                 Your collection is your own curated list of images collected
                 over time.
               </Text>
@@ -263,12 +243,7 @@ export const ImageSelect = () => {
                   <Text style={styles.tagTextNormal}>pixel parade</Text>
                 </MotiView>
               </View>
-              <Text
-                style={[
-                  styles.description,
-                  styles.descriptionText
-                ]}
-              >
+              <Text style={[styles.description, styles.descriptionText]}>
                 20 images
               </Text>
               <Spacer marginBottom={10} marginTop={30} />
@@ -299,12 +274,7 @@ export const ImageSelect = () => {
                   <Text style={styles.tagTextNormal}>add to collection</Text>
                 </MotiView>
               </View>
-              <Text
-                style={[
-                  styles.description,
-                  styles.descriptionText,
-                ]}
-              >
+              <Text style={[styles.description, styles.descriptionText]}>
                 Avant-Garde... has been added to your collection .
               </Text>
               <Image

@@ -69,15 +69,12 @@ export const CollectionName = () => {
                 animate={{ translateX: 0, opacity: 1 }}
                 transition={{ delay: 400, duration: 500 }}
               >
-                <Text
-                  style={globalstyles.headingText}
-                >
+                <Text style={globalstyles.headingText}>
                   Give your collection a name
                 </Text>
               </MotiView>
               <Spacer marginTop={50} />
               {/* <View style={{ width:'100%',borderWidth:1,borderColor:'red' }}> */}
-
 
               <FormInput
                 control={control}
@@ -85,7 +82,6 @@ export const CollectionName = () => {
                 placeholder="e.g The Aesthetic Arc"
                 keyboardType="default"
               />
-
             </MotiView>
             <MotiView
               style={{ gap: 10 }}
@@ -101,7 +97,7 @@ export const CollectionName = () => {
                 }
                 disabled={!isValid}
               />
-              {Platform.OS === 'android' && <Spacer marginBottom={10} />}
+              {Platform.OS === "android" && <Spacer marginBottom={10} />}
             </MotiView>
           </MotiView>
         </SafeAreaView>

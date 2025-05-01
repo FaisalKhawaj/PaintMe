@@ -43,5 +43,5 @@ export const globalstyles = StyleSheet.create({
     fontFamily: fonts.primary.semibold,
     color: "#242424",
   },
-  fullScreen: { flex: 1 }
+  fullScreen: { flex: 1 },
 });
