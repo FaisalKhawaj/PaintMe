@@ -24,7 +24,7 @@ import { CustomOtpInput } from "@/components/CustomOtpInput";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const EnterOtp = () => {
-  const { isEmail = 'false' } = useLocalSearchParams();
+  const { isEmail = "false" } = useLocalSearchParams();
   const { otpSchema } = useValidations();
 
   const {
@@ -63,7 +63,7 @@ export const EnterOtp = () => {
             <Image
               style={{ alignSelf: "center", marginBottom: 20 }}
               source={
-                isEmail === 'true'
+                isEmail === "true"
                   ? require("../../../assets/images/MailScreen.png")
                   : require("../../../assets/images/heart.png")
               }
@@ -83,7 +83,8 @@ export const EnterOtp = () => {
               transition={{ delay: 400, duration: 500 }}
             >
               <Text style={[globalstyles.description, { fontSize: 26 }]}>
-                We’ve sent a 5-digit code to your {isEmail === 'true' ? "email" : "number"}
+                We’ve sent a 5-digit code to your{" "}
+                {isEmail === "true" ? "email" : "number"}
               </Text>
             </MotiView>
             <Spacer marginTop={50} />
