@@ -30,7 +30,7 @@ export const Welcome = () => {
           />
 
           <Text style={[globalstyles.description, {}]}>
-            Create any image you can dream up.
+            Create any image{"\n"} you can dream up.
           </Text>
         </View>
         <Spacer marginTop={20} />

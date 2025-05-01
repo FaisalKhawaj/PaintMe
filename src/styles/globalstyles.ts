@@ -39,7 +39,7 @@ export const globalstyles = StyleSheet.create({
   headingText: {
     marginTop: 10,
     fontSize: RFValue(22),
-    textAlign: 'center',
+    textAlign: "center",
     fontFamily: fonts.primary.semibold,
     color: "#242424",
   },

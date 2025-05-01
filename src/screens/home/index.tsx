@@ -1,19 +1,19 @@
-import React from 'react';
-import { View, Image, ScrollView, SafeAreaView, Pressable } from 'react-native';
-import { MotiView } from 'moti';
-import { useRouter } from 'expo-router'; // <-- Expo Router hook
-import { styles } from './styles';
-
+import React from "react";
+import { View, Image, ScrollView, Pressable } from "react-native";
+import { MotiView } from "moti";
+import { useRouter } from "expo-router"; // <-- Expo Router hook
+import { styles } from "./styles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const images = [
-  'https://picsum.photos/seed/picsum1/400/600',
-  'https://picsum.photos/seed/picsum2/400/500',
-  'https://picsum.photos/seed/picsum3/400/650',
-  'https://picsum.photos/seed/picsum4/400/550',
-  'https://picsum.photos/seed/picsum5/400/600',
-  'https://picsum.photos/seed/picsum6/400/500',
-  'https://picsum.photos/seed/picsum7/400/500',
-  'https://picsum.photos/seed/picsum8/400/500',
+  "https://picsum.photos/seed/picsum1/400/600",
+  "https://picsum.photos/seed/picsum2/400/500",
+  "https://picsum.photos/seed/picsum3/400/650",
+  "https://picsum.photos/seed/picsum4/400/550",
+  "https://picsum.photos/seed/picsum5/400/600",
+  "https://picsum.photos/seed/picsum6/400/500",
+  "https://picsum.photos/seed/picsum7/400/500",
+  "https://picsum.photos/seed/picsum8/400/500",
 ];
 
 const leftColumn = images.filter((_, index) => index % 2 === 0);
@@ -25,13 +25,13 @@ export const Home = () => {
   const handleImagePress = (imgUri: string) => {
     router.push({
       // pathname: '/create-similar',
-      pathname: '/image-select',
+      pathname: "/image-select",
       params: { imageUrl: imgUri }, // <-- pass image url as param
     });
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView  style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.columns}>
           {/* Left Column */}
@@ -42,7 +42,7 @@ export const Home = () => {
                 from={{ opacity: 0, translateY: 20 }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{
-                  type: 'timing',
+                  type: "timing",
                   duration: 500,
                   delay: index * 150,
                 }}
@@ -51,10 +51,7 @@ export const Home = () => {
                 <Pressable onPress={() => handleImagePress(img)}>
                   <Image
                     source={{ uri: img }}
-                    style={[
-                      styles.image,
-                      { height: index === 0 ? 240 : 250 },
-                    ]}
+                    style={[styles.image, { height: index === 0 ? 240 : 250 }]}
                   />
                 </Pressable>
               </MotiView>
@@ -69,7 +66,7 @@ export const Home = () => {
                 from={{ opacity: 0, translateY: 20 }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{
-                  type: 'timing',
+                  type: "timing",
                   duration: 500,
                   delay: index * 150,
                 }}
@@ -78,10 +75,7 @@ export const Home = () => {
                 <Pressable onPress={() => handleImagePress(img)}>
                   <Image
                     source={{ uri: img }}
-                    style={[
-                      styles.image,
-                      { height: index === 0 ? 180 : 250 },
-                    ]}
+                    style={[styles.image, { height: index === 0 ? 180 : 250 }]}
                   />
                 </Pressable>
               </MotiView>

@@ -21,6 +21,7 @@ import { useValidations } from "@/src/validations/useValidations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CustomOtpInput } from "@/components/CustomOtpInput";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const EnterOtp = () => {
   const { isEmail = false } = useLocalSearchParams();
@@ -45,86 +46,76 @@ export const EnterOtp = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <SafeAreaView style={globalstyles.mainWrap}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ flex: 1 }}
+    <SafeAreaView style={globalstyles.mainWrap}>
+      <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <MotiView
+          style={globalstyles.innerWrap}
+          from={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 200, duration: 500 }}
         >
-          <View style={{ flex: 1 }}>
-            <ScrollView
-              contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}
-              keyboardShouldPersistTaps="handled"
+          <MotiView
+            style={{ flex: 1, justifyContent: "center" }}
+            from={{ translateY: -50, opacity: 0 }}
+            animate={{ translateY: 0, opacity: 1 }}
+            transition={{ delay: 200, duration: 500 }}
+          >
+            <Image
+              style={{ alignSelf: "center", marginBottom: 20 }}
+              source={
+                isEmail
+                  ? require("../../../assets/images/MailScreen.png")
+                  : require("../../../assets/images/heart.png")
+              }
+            />
+            <MotiView
+              style={styles.tagAccessControl}
+              from={{ scale: 0, rotate: "10deg" }}
+              animate={{ scale: 1, rotate: "-10deg" }}
+              transition={{ delay: 300, type: "spring" }}
             >
-              <MotiView
-                style={globalstyles.innerWrap}
-                from={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 200, duration: 500 }}
-              >
-                <MotiView
-                  style={{ flex: 1, justifyContent: "center" }}
-                  from={{ translateY: -50, opacity: 0 }}
-                  animate={{ translateY: 0, opacity: 1 }}
-                  transition={{ delay: 200, duration: 500 }}
-                >
-                  <Image
-                    style={{ alignSelf: "center", marginBottom: 20 }}
-                    source={
-                      isEmail
-                        ? require("../../../assets/images/MailScreen.png")
-                        : require("../../../assets/images/heart.png")
-                    }
-                  />
-                  <MotiView
-                    style={styles.tagAccessControl}
-                    from={{ scale: 0, rotate: "10deg" }}
-                    animate={{ scale: 1, rotate: "-10deg" }}
-                    transition={{ delay: 300, type: "spring" }}
-                  >
-                    <Text style={styles.tagAccessControlText}>step 02</Text>
-                  </MotiView>
-                  <Spacer marginTop={10} />
-                  <MotiView
-                    from={{ translateX: -50, opacity: 0 }}
-                    animate={{ translateX: 0, opacity: 1 }}
-                    transition={{ delay: 400, duration: 500 }}
-                  >
-                    <Text style={[globalstyles.description, { fontSize: 26 }]}>
-                      We’ve sent a 5-digit code to your {isEmail ? "email" : "number"}
-                    </Text>
-                  </MotiView>
-                  <Spacer marginTop={50} />
+              <Text style={styles.tagAccessControlText}>step 02</Text>
+            </MotiView>
+            <Spacer marginTop={10} />
+            <MotiView
+              from={{ translateX: -50, opacity: 0 }}
+              animate={{ translateX: 0, opacity: 1 }}
+              transition={{ delay: 400, duration: 500 }}
+            >
+              <Text style={[globalstyles.description, { fontSize: 26 }]}>
+                We’ve sent a 5-digit code to your {isEmail ? "email" : "number"}
+              </Text>
+            </MotiView>
+            <Spacer marginTop={50} />
 
-                  <CustomOtpInput
-                    name="otp"
-                    control={control}
-                    numberOfDigits={5}
-                    error={errors.otp}
-                  />
-                </MotiView>
-              </MotiView>
-            </ScrollView>
+            <CustomOtpInput
+              name="otp"
+              control={control}
+              numberOfDigits={5}
+              error={errors.otp}
+            />
+          </MotiView>
+        </MotiView>
 
-            <View style={{ padding: 16 }}>
-              <LabelButton
-                title="Resend Code"
-                handleClick={() => {
-                  Alert.alert("Code Resent");
-                }}
-                variation={ButtonVariation.secondary}
-              />
-              <Spacer marginTop={10} />
-              <LabelButton
-                title="Confirm Code"
-                handleClick={handleSubmit(onSubmit)}
-                variation={isValid ? ButtonVariation.default : ButtonVariation.disabled}
-                disabled={!isValid}
-              />
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+        <View style={{ padding: 16 }}>
+          <LabelButton
+            title="Resend Code"
+            handleClick={() => {
+              Alert.alert("Code Resent");
+            }}
+            variation={ButtonVariation.secondary}
+          />
+          <Spacer marginTop={10} />
+          <LabelButton
+            title="Confirm Code"
+            handleClick={handleSubmit(onSubmit)}
+            variation={
+              isValid ? ButtonVariation.default : ButtonVariation.disabled
+            }
+            disabled={!isValid}
+          />
+        </View>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 };

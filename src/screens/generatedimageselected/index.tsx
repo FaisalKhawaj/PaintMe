@@ -1,19 +1,12 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  SafeAreaView,
-  Pressable,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // for icons
 import { router } from "expo-router";
 
 import { MotiView } from "moti";
 import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
 import { styles } from "./styles";
-
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const GeneratedImageSelect = () => {
   const [showFullScreen, setShowFullScreen] = useState(false);
@@ -26,7 +19,7 @@ export const GeneratedImageSelect = () => {
   };
 
   const handleBack = () => {
-    handleToggleIcons()
+    handleToggleIcons();
     router.back();
   };
 
@@ -51,7 +44,7 @@ export const GeneratedImageSelect = () => {
               transition={{ type: "timing", duration: 500 }}
             >
               <Image
-                source={require('@/assets/images/laptop.png')}
+                source={require("@/assets/images/laptop.png")}
                 style={styles.fullscreenImage}
               />
             </MotiView>
@@ -83,16 +76,12 @@ export const GeneratedImageSelect = () => {
               icon="ArrowLeftIcon"
               handleClick={handleBack}
             />
-            {/* <BlurredRoundedIcon icon="BrushIcon" handleClick={handleBack} /> */}
-            {/* <BlurredRoundedIcon icon="LayerIcon" handleClick={handleBack} /> */}
 
-            {/* <BlurredRoundedIcon icon="BrushIcon" handleClick={handleBack} />
-            <BlurredRoundedIcon icon="SendIcon" handleClick={handleBack} /> */}
-            {/* <BlurredRoundedIcon icon="HeartIcon" handleClick={handleBack} /> */}
-
-            {/* Image with Floating Buttons */}
             <View style={styles.imageContainer}>
-              <Image source={require('@/assets/images/laptop.png')} style={styles.mainImage} />
+              <Image
+                source={require("@/assets/images/laptop.png")}
+                style={styles.mainImage}
+              />
 
               <MotiView
                 from={{
@@ -143,7 +132,9 @@ export const GeneratedImageSelect = () => {
                   onPress={handleToggleIcons}
                 >
                   <Ionicons
-                    name={!showIcons ? "ellipsis-horizontal" : "ellipsis-vertical"}
+                    name={
+                      !showIcons ? "ellipsis-horizontal" : "ellipsis-vertical"
+                    }
                     size={20}
                     color="white"
                   />
@@ -163,7 +154,8 @@ export const GeneratedImageSelect = () => {
               <View style={{ width: "70%" }}>
                 <Text style={styles.title}>Person with Laptop</Text>
                 <Text style={styles.description}>
-                  Person coding on a laptop with a red panel in the background, wearing a cap and an overall.
+                  Person coding on a laptop with a red panel in the background,
+                  wearing a cap and an overall.
                 </Text>
               </View>
 
@@ -184,4 +176,3 @@ export const GeneratedImageSelect = () => {
     </>
   );
 };
-

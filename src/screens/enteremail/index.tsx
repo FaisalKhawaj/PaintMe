@@ -20,6 +20,7 @@ import { useValidations } from "@/src/validations/useValidations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import FormInput from "@/components/FormInput";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const EnterEmail = () => {
   const { createEmail } = useValidations();
@@ -63,101 +64,96 @@ export const EnterEmail = () => {
   console.log("isValid", isValid);
   const handleClickEmail = () => {};
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <SafeAreaView edges={["bottom"]} style={globalstyles.mainWrap}>
+    <SafeAreaView edges={["bottom"]} style={globalstyles.mainWrap}>
+      <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <MotiView
+          style={globalstyles.innerWrap}
+          from={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 200, duration: 500 }}
+        >
           <MotiView
-            style={globalstyles.innerWrap}
-            from={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            style={{ flex: 1, justifyContent: "center" }}
+            from={{ translateY: -50, opacity: 0 }}
+            animate={{ translateY: 0, opacity: 1 }}
             transition={{ delay: 200, duration: 500 }}
           >
             <MotiView
-              style={{ flex: 1, justifyContent: "center" }}
-              from={{ translateY: -50, opacity: 0 }}
-              animate={{ translateY: 0, opacity: 1 }}
-              transition={{ delay: 200, duration: 500 }}
+              style={styles.tagAccessControl}
+              from={{ scale: 0, rotate: "10deg" }}
+              animate={{ scale: 1, rotate: "-10deg" }}
+              transition={{ delay: 300, type: "spring" }}
             >
-              <MotiView
-                style={styles.tagAccessControl}
-                from={{ scale: 0, rotate: "10deg" }}
-                animate={{ scale: 1, rotate: "-10deg" }}
-                transition={{ delay: 300, type: "spring" }}
-              >
-                <Text style={styles.tagAccessControlText}>step 01</Text>
-              </MotiView>
-              <Spacer marginTop={10} />
-              <MotiView
-                from={{ translateX: -50, opacity: 0 }}
-                animate={{ translateX: 0, opacity: 1 }}
-                transition={{ delay: 400, duration: 500 }}
-              >
-                <Text
-                  style={[globalstyles.description, { fontSize: RFValue(22) }]}
-                >
-                  What’s your email?
-                </Text>
-              </MotiView>
-              <Spacer marginTop={50} />
-              {/* <View style={{ width:'100%',borderWidth:1,borderColor:'red' }}> */}
-
-              <FormInput
-                control={control}
-                name="email"
-                icon={<EmailIcon />}
-                placeholder="Enter your email"
-                keyboardType="email-address"
-              />
-              {/* </View> */}
-              <Text
-                style={{
-                  fontSize: RFValue(11),
-                  color: "#8C919E",
-                  marginTop: 10,
-                }}
-              >
-                No spam. Just a quick verification
-              </Text>
+              <Text style={styles.tagAccessControlText}>step 01</Text>
             </MotiView>
+            <Spacer marginTop={10} />
             <MotiView
-              style={{ gap: 10, bottom: !isKeyboardVisible ? 20 : 0 }}
-              from={{ translateY: 50, opacity: 0 }}
-              animate={{ translateY: 0, opacity: 1 }}
-              transition={{ delay: 600, duration: 500 }}
+              from={{ translateX: -50, opacity: 0 }}
+              animate={{ translateX: 0, opacity: 1 }}
+              transition={{ delay: 400, duration: 500 }}
             >
               <Text
-                style={{
-                  width: "80%",
-                  marginHorizontal: "auto",
-                  fontSize: RFValue(12),
-                  color: "#8C919E",
-                  marginTop: 10,
-                  textAlign: "center",
-                }}
+                style={[globalstyles.description, { fontSize: RFValue(22) }]}
               >
-                By tapping Continue, you are agreeing to our
-                <Text style={{ fontWeight: "bold" }}>
-                  {" "}
-                  Terms of Service
-                </Text>{" "}
-                and <Text style={{ fontWeight: "bold" }}>Privacy Policy</Text>
+                What’s your email?
               </Text>
-
-              <LabelButton
-                title="Continue"
-                handleClick={handleSubmit(handleEmailOtp)}
-                variation={
-                  isValid ? ButtonVariation.default : ButtonVariation.disabled
-                }
-                disabled={!isValid ? true : false}
-              />
             </MotiView>
+            <Spacer marginTop={50} />
+            {/* <View style={{ width:'100%',borderWidth:1,borderColor:'red' }}> */}
+
+            <FormInput
+              control={control}
+              name="email"
+              icon={<EmailIcon />}
+              placeholder="Enter your email"
+              keyboardType="email-address"
+            />
+            {/* </View> */}
+            <Text
+              style={{
+                fontSize: RFValue(11),
+                color: "#8C919E",
+                marginTop: 10,
+              }}
+            >
+              No spam. Just a quick verification
+            </Text>
           </MotiView>
-        </SafeAreaView>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+          <MotiView
+            style={{ gap: 10, bottom: !isKeyboardVisible ? 20 : 0 }}
+            from={{ translateY: 50, opacity: 0 }}
+            animate={{ translateY: 0, opacity: 1 }}
+            transition={{ delay: 600, duration: 500 }}
+          >
+            <Text
+              style={{
+                width: "80%",
+                marginHorizontal: "auto",
+                fontSize: RFValue(12),
+                color: "#8C919E",
+                marginTop: 10,
+                textAlign: "center",
+              }}
+            >
+              By tapping Continue, you are agreeing to our
+              <Text style={{ fontWeight: "bold" }}>
+                {" "}
+                Terms of Service
+              </Text> and{" "}
+              <Text style={{ fontWeight: "bold" }}>Privacy Policy</Text>
+            </Text>
+
+            <LabelButton
+              title="Continue"
+              handleClick={handleSubmit(handleEmailOtp)}
+              variation={
+                isValid ? ButtonVariation.default : ButtonVariation.disabled
+              }
+              disabled={!isValid ? true : false}
+            />
+          </MotiView>
+        </MotiView>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 };

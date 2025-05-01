@@ -5,16 +5,13 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-  SafeAreaView,
   Dimensions,
   Pressable,
-  Share
+  Share,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // for icons
 import { router, useNavigation } from "expo-router";
-import {
-useSharedValue,
-} from "react-native-reanimated";
+import { useSharedValue } from "react-native-reanimated";
 
 import { fonts } from "@/hooks/useCacheResources";
 import { MotiView } from "moti";
@@ -25,6 +22,10 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { IconButton } from "@/components/IconButton";
 import { ExpandIcon } from "@/assets/svg/ExpandIcon";
 import { styles } from "./styles";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Container } from "@/components/ScreenWrapper";
+import { StatusBar } from "expo-status-bar";
+import { CustomModal } from "@/components/ui/CustomModal";
 
 const { width, height } = Dimensions.get("window");
 
@@ -43,61 +44,70 @@ export const ImageSelect = () => {
   };
 
   const handleImageAddhandler = () => {
-    setShowImageAdded(true);
     setShowOptionsModal(false);
+    setTimeout(() => {
+      setShowImageAdded(true); // Open the second modal with a slight delay
+    }, 200); // Delay of 200ms
   };
 
   const imageUrl = "https://picsum.photos/400/900"; // Replace with your real image
   const handleBack = () => {
-    handleToggleIcons()
+    handleToggleIcons();
     router.back();
   };
   const handleShare = async () => {
-    handleToggleIcons()
+    handleToggleIcons();
     try {
       await Share.share({
-        message: 'Check out this edited image!',
+        message: "Check out this edited image!",
         url: imageUrl,
-        title: 'Share Image'
+        title: "Share Image",
       });
     } catch (error) {
-      console.log('Error sharing:');
+      console.log("Error sharing:");
     }
   };
 
   const handleLike = () => {
-    handleToggleIcons()
-    setShowOptionsModal(true)
-  }
+    handleToggleIcons();
+
+    setTimeout(() => {
+      setShowOptionsModal(true); // Open the second modal with a slight delay
+    }, 200); // Delay of 200ms
+  };
 
   return (
     <>
       {showFullScreen ? (
         // FULL SCREEN MODE WITH Moti ANIMATION
-        <MotiView
-          style={styles.fullscreenContainer}
-          from={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "timing", duration: 800 }}
-        >
-          <Pressable
-            // activeOpacity={1}
-            onPress={() => setShowFullScreen(false)}
-            style={{ flex: 1 }}
+        <Container style={{ flex: 1 }}>
+          <StatusBar style="light" translucent backgroundColor="transparent" />
+
+          <MotiView
+            style={styles.fullscreenContainer}
+            from={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "timing", duration: 800 }}
           >
-            <MotiView
-              style={styles.fullscreenImageContainer}
-              from={{ scale: 1, opacity: 1 }}
-              animate={{ scale: 1.1, opacity: 1 }} // Slightly zoom in the image
-              transition={{ type: "timing", duration: 500 }}
+            <Pressable
+              // activeOpacity={1}
+              onPress={() => setShowFullScreen(false)}
+              style={{ flex: 1 }}
             >
-              <Image
-                source={require('@/assets/images/avant.png')}
-                style={styles.fullscreenImage}
-              />
-            </MotiView>
-          </Pressable>
-        </MotiView>
+              <MotiView
+                style={styles.fullscreenImageContainer}
+                from={{ scale: 1, opacity: 1 }}
+                animate={{ scale: 1.1, opacity: 1 }} // Slightly zoom in the image
+                transition={{ type: "timing", duration: 500 }}
+              >
+                <Image
+                  source={require("@/assets/images/avant.png")}
+                  style={styles.fullscreenImage}
+                />
+              </MotiView>
+            </Pressable>
+          </MotiView>
+        </Container>
       ) : (
         // NORMAL MODE
         <SafeAreaView style={styles.safeArea}>
@@ -112,7 +122,10 @@ export const ImageSelect = () => {
 
             {/* Image with Floating Buttons */}
             <View style={styles.imageContainer}>
-              <Image source={require('@/assets/images/avant.png')} style={styles.mainImage} />
+              <Image
+                source={require("@/assets/images/avant.png")}
+                style={styles.mainImage}
+              />
               <View style={styles.expandIcon}>
                 <Pressable onPress={() => setShowFullScreen(true)}>
                   <ExpandIcon />
@@ -167,7 +180,9 @@ export const ImageSelect = () => {
                   onPress={handleToggleIcons}
                 >
                   <Ionicons
-                    name={!showIcons ? "ellipsis-horizontal" : "ellipsis-vertical"}
+                    name={
+                      !showIcons ? "ellipsis-horizontal" : "ellipsis-vertical"
+                    }
                     size={20}
                     color="white"
                   />
@@ -206,126 +221,128 @@ export const ImageSelect = () => {
           </View>
         </SafeAreaView>
       )}
+      {showOptionsModal && (
+        <Container>
+          <CustomModal
+            isVisible={showOptionsModal}
+            setIsVisble={setShowOptionsModal}
+          >
+            <View style={{ flexGrow: 1 }}>
+              <View style={styles.tagStylesModal}>
+                <MotiView
+                  style={styles.tag}
+                  from={{ scale: 0, rotate: "0deg" }}
+                  animate={{ scale: 1, rotate: "0deg" }}
+                  transition={{ delay: 300, type: "spring" }}
+                >
+                  <Text style={styles.tagTextNormal}>add to collection</Text>
+                </MotiView>
+              </View>
+              <Text
+                style={[
+                  styles.description,
+                  {
+                    fontSize: 16,
+                    textAlign: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  },
+                ]}
+              >
+                Your collection is your own curated list of images collected
+                over time.
+              </Text>
+              <Image
+                source={require("@/assets/images/avant.png")}
+                style={styles.modalImage}
+              />
+              <Spacer marginBottom={10} marginTop={10} />
+              <View style={styles.tagStylesModal}>
+                <MotiView
+                  style={styles.tag}
+                  from={{ scale: 0, rotate: "0deg" }}
+                  animate={{ scale: 1, rotate: "0deg" }}
+                  transition={{ delay: 300, type: "spring" }}
+                >
+                  <Text style={styles.tagTextNormal}>pixel parade</Text>
+                </MotiView>
+              </View>
+              <Text
+                style={[
+                  styles.description,
+                  {
+                    fontSize: 16,
+                    textAlign: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  },
+                ]}
+              >
+                20 images
+              </Text>
+              <Spacer marginBottom={10} marginTop={30} />
+              <LabelButton
+                title="Add to Collection"
+                handleClick={handleImageAddhandler}
+                variation={ButtonVariation.default}
+              />
+            </View>
+          </CustomModal>
+        </Container>
+      )}
 
-      {/* Modal */}
-      <Modal visible={showOptionsModal} transparent animationType="slide">
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setShowOptionsModal(false)}
-          activeOpacity={1}
-        >
-          <View style={styles.modalContent}>
-            <View style={styles.tagStylesModal}>
-              <MotiView
-                style={styles.tag}
-                from={{ scale: 0, rotate: "0deg" }}
-                animate={{ scale: 1, rotate: "0deg" }}
-                transition={{ delay: 300, type: "spring" }}
+      {showImageAdded && (
+        <Container>
+          <CustomModal
+            isVisible={showImageAdded}
+            setIsVisble={setShowImageAdded}
+          >
+            <View style={{ flexGrow: 1 }}>
+              <View style={styles.tagStylesModal}>
+                <MotiView
+                  style={styles.tag}
+                  from={{ scale: 0, rotate: "0deg" }}
+                  animate={{ scale: 1, rotate: "0deg" }}
+                  transition={{ delay: 300, type: "spring" }}
+                >
+                  <Text style={styles.tagTextNormal}>add to collection</Text>
+                </MotiView>
+              </View>
+              <Text
+                style={[
+                  styles.description,
+                  {
+                    fontSize: 16,
+                    textAlign: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  },
+                ]}
               >
-                <Text style={styles.tagTextNormal}>add to collection</Text>
-              </MotiView>
-            </View>
-            <Text
-              style={[
-                styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              Your collection is your own curated list of images collected over
-              time.
-            </Text>
-            <Image source={require('@/assets/images/avant.png')} style={styles.modalImage} />
-            <Spacer marginBottom={10} marginTop={10} />
-            <View style={styles.tagStylesModal}>
-              <MotiView
-                style={styles.tag}
-                from={{ scale: 0, rotate: "0deg" }}
-                animate={{ scale: 1, rotate: "0deg" }}
-                transition={{ delay: 300, type: "spring" }}
-              >
-                <Text style={styles.tagTextNormal}>pixel parade</Text>
-              </MotiView>
-            </View>
-            <Text
-              style={[
-                styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              20 images
-            </Text>
-            <Spacer marginBottom={10} marginTop={30} />
-            <LabelButton
-              title="Add to Collection"
-              handleClick={handleImageAddhandler}
-              variation={ButtonVariation.default}
-            />
-          </View>
-        </TouchableOpacity>
-      </Modal>
-      <Modal visible={showImageAdded} transparent animationType="slide">
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setShowImageAdded(false)}
-          activeOpacity={1}
-        >
-          <View style={styles.modalContent}>
-            <View style={styles.tagStylesModal}>
-              <MotiView
-                style={styles.tag}
-                from={{ scale: 0, rotate: "0deg" }}
-                animate={{ scale: 1, rotate: "0deg" }}
-                transition={{ delay: 300, type: "spring" }}
-              >
-                <Text style={styles.tagTextNormal}>add to collection</Text>
-              </MotiView>
-            </View>
-            <Text
-              style={[
-                styles.description,
-                {
-                  fontSize: 16,
-                  textAlign: "center",
-                  marginVertical: 10,
-                  marginBottom: 20,
-                },
-              ]}
-            >
-              Avant-Garde... has been added to your collection .
-            </Text>
-            <Image
-              source={require("../../../assets/images/imageAdded.png")}
-              style={styles.addedImage}
-            />
+                Avant-Garde... has been added to your collection .
+              </Text>
+              <Image
+                source={require("../../../assets/images/imageAdded.png")}
+                style={styles.addedImage}
+              />
 
-            <Spacer marginBottom={10} marginTop={30} />
-            <LabelButton
-              title="Close"
-              handleClick={() => {
-                setShowImageAdded(false);
-                router.push({
-                  pathname: "/retouch-image",
-                  // pathname: "/create-similar", //here you can test create profile page
-                  // params: { imageUrl: imgUri }, // <-- pass image url as param
-                });
-              }}
-              variation={ButtonVariation.default}
-            />
-          </View>
-        </TouchableOpacity>
-      </Modal>
+              <Spacer marginBottom={10} marginTop={30} />
+              <LabelButton
+                title="Close"
+                handleClick={() => {
+                  setShowImageAdded(false);
+                  router.push({
+                    pathname: "/retouch-image",
+                    // pathname: "/create-similar", //here you can test create profile page
+                    // params: { imageUrl: imgUri }, // <-- pass image url as param
+                  });
+                }}
+                variation={ButtonVariation.default}
+              />
+            </View>
+          </CustomModal>
+        </Container>
+      )}
     </>
   );
 };
-
-
