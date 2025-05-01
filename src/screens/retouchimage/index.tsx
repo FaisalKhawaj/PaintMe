@@ -81,7 +81,7 @@ export const RetouchImage = () => {
                 source={require('@/assets/images/avant.png')}
                 style={[
                   styles.mainImage,
-                  { height: showGeneratedImages ? height * 0.68 : height * 0.6 }
+                  { height: showGeneratedImages ? height * (Platform.OS === 'ios' ? 0.68 : 0.75): height * (Platform.OS === 'ios' ? 0.6 : 0.67) }
                 ]}
               />
               {/* <View style={styles.crossIcon}>

@@ -34,7 +34,7 @@ export const CustomOtpInput = ({
             focusColor="green"
             type="numeric"
             secureTextEntry={false}
-            hideStick
+            hideStick = {false}
             autoFocus={false}
             textInputProps={{ accessibilityLabel: "One-Time Password" }}
             textProps={{

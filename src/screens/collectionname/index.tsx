@@ -101,6 +101,7 @@ export const CollectionName = () => {
                 }
                 disabled={!isValid}
               />
+              {Platform.OS === 'android' && <Spacer marginBottom={10} />}
             </MotiView>
           </MotiView>
         </SafeAreaView>
