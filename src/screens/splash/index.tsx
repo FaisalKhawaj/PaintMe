@@ -1,9 +1,17 @@
 import React, { useRef } from "react";
-import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  SafeAreaView,
+} from "react-native";
 import Swiper from "react-native-swiper";
 import { styles } from "./styles";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
+import { Container } from "@/components/ScreenWrapper";
 
 const slides = [
   {
@@ -42,38 +50,41 @@ export const Splash = () => {
   };
 
   return (
-    <Swiper
-      ref={swiperRef}
-      loop={false}
-      dotStyle={styles.dot}
-      activeDotStyle={styles.activeDot}
-      paginationStyle={{ bottom: 100 }}
-    >
-      {slides.map((slide, index) => (
-        <ImageBackground
-          key={index}
-          style={styles.slide}
-          imageStyle={{ resizeMode: "cover" }}
-          source={slide.image}
-        >
-          <View style={styles.content}>
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>{slide.title}</Text>
-              <Text style={styles.description}>{slide.description}</Text>
-              <View style={styles.introBox}>
-                <Text style={styles.intro}>intro</Text>
+    <Container style={{ flex: 1 }}>
+      <StatusBar style="light" translucent backgroundColor="transparent" />
+      <Swiper
+        ref={swiperRef}
+        loop={false}
+        dotStyle={styles.dot}
+        activeDotStyle={styles.activeDot}
+        paginationStyle={{ bottom: 90 }}
+      >
+        {slides.map((slide, index) => (
+          <ImageBackground
+            key={index}
+            style={styles.slide}
+            imageStyle={{ resizeMode: "cover" }}
+            source={slide.image}
+          >
+            <View style={styles.content}>
+              <View style={styles.textContainer}>
+                <Text style={styles.title}>{slide.title}</Text>
+                <Text style={styles.description}>{slide.description}</Text>
+                <View style={styles.introBox}>
+                  <Text style={styles.intro}>intro</Text>
+                </View>
               </View>
-            </View>
 
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => handleNext(index)}
-            >
-              <Ionicons name="arrow-forward" size={25} color={"#fff"} />
-            </TouchableOpacity>
-          </View>
-        </ImageBackground>
-      ))}
-    </Swiper>
+              <TouchableOpacity
+                style={styles.iconButton}
+                onPress={() => handleNext(index)}
+              >
+                <Ionicons name="arrow-forward" size={25} color={"#fff"} />
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
+        ))}
+      </Swiper>
+    </Container>
   );
 };
