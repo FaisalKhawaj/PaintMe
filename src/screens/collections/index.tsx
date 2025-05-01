@@ -59,8 +59,8 @@ export const Collections = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={globalstyles.fullScreen}
         >
-          <TouchableOpacity style={styles.circleButton} onPress={() => {}}>
-            <Ionicons name={"add"} size={40} color="white" />
+          <TouchableOpacity style={styles.circleButton} onPress={() => { }}>
+            <Ionicons name={"add-sharp"} size={36} color="#CCCCCC" />
           </TouchableOpacity>
           <ScrollView
             contentContainerStyle={styles.scrollContainer}

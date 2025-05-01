@@ -1,5 +1,6 @@
 import { fonts } from "@/hooks/useCacheResources";
 import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const styles = StyleSheet.create({
   tagAccessControl: {
@@ -12,11 +13,11 @@ export const styles = StyleSheet.create({
   },
   tagAccessControlText: {
     color: "#3E4E50",
-    fontSize: 18,
+    fontSize: RFValue(18),
     fontFamily: fonts.primary.semibold,
   },
   allowTextDescription: {
-    fontSize: 22,
+    fontSize: RFValue(22),
     textAlign: "center",
     width: "80%",
     alignSelf: "center",
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   pinCodeContainer: {
-    backgroundColor: '#EDEBEE',
+    backgroundColor: '#F6F5F7',
     width: 52,
     height: 52,
     borderRadius: 8,
@@ -40,23 +41,25 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#E2FE52',
     borderRadius: 8, // make sure this matches the box
-    backgroundColor:'white'
+    backgroundColor: 'white'
   },
   filledPinCodeContainer: {
     backgroundColor: '#EDEBEE',
   },
   disabledPinCodeContainer: {
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#F6F5F7',
   },
   pinCodeText: {
     color: 'black',
-    fontSize: 20,
+    fontSize: RFValue(16),
     textAlign: 'center',
+    fontFamily: fonts.primary.semibold
   },
   placeholderText: {
     color: '#C4C4C4',
-    fontSize: 20,
+    fontSize: RFValue(16),
     textAlign: 'center',
+    fontFamily: fonts.primary.semibold
   },
   focusStick: {
     backgroundColor: '#000',

@@ -5,9 +5,10 @@ import { fonts } from '@/hooks/useCacheResources';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback, KeyboardAvoidingView, Platform, Keyboard, TouchableOpacity, Image } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { RFValue } from 'react-native-responsive-fontsize';
-
+import { SafeAreaView } from 'react-native-safe-area-context'
 export const ChooseOrientation = () => {
   const [count, setCount] = useState(1);
   const increment = () => setCount(prev => prev + 1);
@@ -17,93 +18,91 @@ export const ChooseOrientation = () => {
     router.push('/tabs/create/image-progress')
   }
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.safeArea}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+    <SafeAreaView
+      edges={["bottom","top"]}
+      style={{ flex: 1, backgroundColor: "#fff" }}
+    >
+      <KeyboardAwareScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
       >
-
-        <SafeAreaView style={styles.safeArea}>
-          <ScrollView
-            contentContainerStyle={styles.scrollContainer}
-            keyboardShouldPersistTaps="handled"
-          >
-            <View style={styles.container}>
-              {/* Big Box */}
-              <View style={{ width: '100%' }}>
-                <Text style={styles.title}>Choose an orientation</Text>
-              </View>
-              <Spacer marginTop={10} />
-              <View style={styles.floatingButtons}>
-                <TouchableOpacity
-                  style={[styles.circleButton, { backgroundColor: selected !== 1 ? '#EDEBEE' : 'black' }]}
-                  onPress={() => setSelected(1)}
-                >
-                  <View style={{ width: 28, height: 28, borderWidth: 2, borderRadius: 8, borderColor: selected !== 1 ? 'black' : 'white' }}>
-                  </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={[styles.circleButton, { backgroundColor: selected !== 2 ? '#EDEBEE' : 'black' }]}
-                  onPress={() => setSelected(2)}
-                >
-                  <View style={{ width: 28, height: 22, borderWidth: 2, borderRadius: 8, borderColor: selected !== 2 ? 'black' : 'white' }}>
-                  </View>
-                </TouchableOpacity>
-              </View>
-
-              <TextArea
-                containerStyle={{ height: 286, borderRadius: 20 }}
-                placeholder="What do you imagine?"
-                keyboardType="default"
-                isCenter
-                multiline
-              />
-              <Spacer marginBottom={10} marginTop={10} />
-
-              <View style={styles.imageContainer}>
-                <Image
-                  source={require("../../../assets/images/photorealistic1.png")}
-                  style={styles.imageStyle}
-                  resizeMode="cover"
-                />
-                <View style={styles.tagContainer}>
-                  <Text style={styles.tagTextContainer}>Photorealistic</Text>
-                </View>
-              </View>
-
-              <View style={styles.generateSection}>
-                <View style={styles.counter}>
-                  <TouchableOpacity style={styles.buttons} onPress={decrement}>
-                    <Ionicons name="remove" size={20} color="white" />
-                  </TouchableOpacity>
-
-                  <View style={styles.countContainer}>
-                    <Text style={styles.countText}>{count}</Text>
-                  </View>
-
-                  <TouchableOpacity style={styles.buttons} onPress={increment}>
-                    <Ionicons name="add" size={20} color="white" />
-                  </TouchableOpacity>
-                </View>
-
-                <View style={{ width: '60%' }}>
-                  <LabelButton
-                    title="Generate"
-                    handleClick={handleProgress}
-                    variation={ButtonVariation.default}
-                  />
-                </View>
-              </View>
-
-              {/* Optional: Add more content here that will be scrollable */}
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View style={styles.container}>
+            {/* Big Box */}
+            <View style={{ width: '100%' }}>
+              <Text style={styles.title}>Choose an orientation</Text>
             </View>
-          </ScrollView>
-        </SafeAreaView>
+            <Spacer marginTop={10} />
+            <View style={styles.floatingButtons}>
+              <TouchableOpacity
+                style={[styles.circleButton, { backgroundColor: selected !== 1 ? '#EDEBEE' : 'black' }]}
+                onPress={() => setSelected(1)}
+              >
+                <View style={{ width: 28, height: 28, borderWidth: 2, borderRadius: 8, borderColor: selected !== 1 ? 'black' : 'white' }}>
+                </View>
+              </TouchableOpacity>
 
-      </KeyboardAvoidingView>
-    </TouchableWithoutFeedback>
+              <TouchableOpacity
+                style={[styles.circleButton, { backgroundColor: selected !== 2 ? '#EDEBEE' : 'black' }]}
+                onPress={() => setSelected(2)}
+              >
+                <View style={{ width: 28, height: 22, borderWidth: 2, borderRadius: 8, borderColor: selected !== 2 ? 'black' : 'white' }}>
+                </View>
+              </TouchableOpacity>
+            </View>
+
+            <TextArea
+              containerStyle={{ height: 286, borderRadius: 20 }}
+              placeholder="What do you imagine?"
+              keyboardType="default"
+              isCenter
+              multiline
+            />
+            <Spacer marginBottom={10} marginTop={10} />
+
+            <View style={styles.imageContainer}>
+              <Image
+                source={require("../../../assets/images/photorealistic1.png")}
+                style={styles.imageStyle}
+                resizeMode="cover"
+              />
+              <View style={styles.tagContainer}>
+                <Text style={styles.tagTextContainer}>Photorealistic</Text>
+              </View>
+            </View>
+
+            <View style={styles.generateSection}>
+              <View style={styles.counter}>
+                <TouchableOpacity style={styles.buttons} onPress={decrement}>
+                  <Ionicons name="remove" size={20} color="white" />
+                </TouchableOpacity>
+
+                <View style={styles.countContainer}>
+                  <Text style={styles.countText}>{count}</Text>
+                </View>
+
+                <TouchableOpacity style={styles.buttons} onPress={increment}>
+                  <Ionicons name="add" size={20} color="white" />
+                </TouchableOpacity>
+              </View>
+
+              <View style={{ width: '60%' }}>
+                <LabelButton
+                  title="Generate"
+                  handleClick={handleProgress}
+                  variation={ButtonVariation.default}
+                />
+              </View>
+            </View>
+
+            {/* Optional: Add more content here that will be scrollable */}
+          </View>
+        </ScrollView>
+
+      </KeyboardAwareScrollView>
+    </SafeAreaView >
   );
 };
 
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    alignSelf:'flex-end',
+    alignSelf: 'flex-end',
     width: '40%',
     paddingLeft: 0,
     paddingRight: 10,

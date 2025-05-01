@@ -129,6 +129,8 @@ export const ColorPick = () => {
                 />
               </TouchableOpacity>
             </View>
+            {!showColorPicker && <Text style={styles.descriptionText}>Color tags help differentiate your collections from one another since we hoping you’d have many :{")"}</Text>}
+
             {showColorPicker && (
               <View style={styles.pickerWrap}>
                 <TouchableOpacity

@@ -56,7 +56,7 @@ export const ImageProgress = () => {
                   <Text style={styles.tagAccessControlText}>image creation</Text>
                 </MotiView>
                 <Text style={styles.description}>
-                  Allow access to camera to import and save photos <Text style={{ fontFamily: fonts.primary.semibold, color: 'black' }}>10 mins</Text>
+                  Your images are currently generating and would be done in <Text style={{ fontFamily: fonts.primary.semibold, color: 'black' }}>10 mins</Text>
                 </Text>
                 <Spacer marginTop={10} />
                 <Image

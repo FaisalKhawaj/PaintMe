@@ -2,14 +2,9 @@ import { useForm } from "react-hook-form";
 import {
   Alert,
   Image,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
   SafeAreaView,
-  ScrollView,
   Text,
   View,
-  TouchableWithoutFeedback,
 } from "react-native";
 import { MotiView } from "moti";
 import { Spacer } from "@/components/Spacer";
