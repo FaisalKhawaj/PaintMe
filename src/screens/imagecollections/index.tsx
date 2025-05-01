@@ -4,13 +4,12 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  Modal,
-  SafeAreaView,
   Pressable,
-  Share
+  Share,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons"; // for icons
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 import { MotiView } from "moti";
 import { Spacer } from "@/components/Spacer";
@@ -18,7 +17,9 @@ import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { BlurredRoundedIcon } from "@/components/BlurredRoundedIcon";
 import { styles } from "./styles";
 import { useImageContext } from "@/src/context/ImageContext";
-
+import { SafeAreaView } from "react-native-safe-area-context";
+import { CustomModal } from "@/components/ui/CustomModal";
+import { Container } from "@/components/ScreenWrapper";
 
 export const ImageCollections = () => {
   const { showFullImage, setShowFullImage } = useImageContext();
@@ -37,26 +38,26 @@ export const ImageCollections = () => {
 
   const imageUrl = "https://picsum.photos/400/900"; // Replace with your real image
   const handleBack = () => {
-    handleToggleIcons()
+    handleToggleIcons();
     router.back();
   };
   const handleShare = async () => {
-    handleToggleIcons()
+    handleToggleIcons();
     try {
       await Share.share({
-        message: 'Check out this edited image!',
+        message: "Check out this edited image!",
         url: imageUrl,
-        title: 'Share Image'
+        title: "Share Image",
       });
     } catch (error) {
-      console.log('Error sharing:');
+      console.log("Error sharing:");
     }
   };
 
   const handleLike = () => {
-    handleToggleIcons()
-    setShowOptionsModal(true)
-  }
+    handleToggleIcons();
+    setShowOptionsModal(true);
+  };
 
   return (
     <>
@@ -66,35 +67,44 @@ export const ImageCollections = () => {
           style={styles.fullscreenContainer}
           from={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: 'timing', duration: 800 }}
+          transition={{ type: "timing", duration: 800 }}
         >
-          <Pressable onPress={() => setShowFullImage(false)} style={{ flex: 1 }}>
+          <Pressable
+            onPress={() => setShowFullImage(false)}
+            style={{ flex: 1 }}
+          >
             <MotiView
               style={styles.fullscreenImageContainer}
               from={{ scale: 1, opacity: 1 }}
               animate={{ scale: 1.1, opacity: 1 }}
-              transition={{ type: 'timing', duration: 500 }}
+              transition={{ type: "timing", duration: 500 }}
             >
               <Image
-                source={require('@/assets/images/cat.png')}
+                source={require("@/assets/images/cat.png")}
                 style={styles.fullscreenImage}
               />
             </MotiView>
           </Pressable>
 
           {/* Center Bottom Button */}
-          <TouchableOpacity style={[styles.circleButton, { position: 'absolute', alignSelf: 'center', bottom: 40 }]} onPress={() => setShowFullImage(false)}>
-            <Ionicons
-              name={'close'}
-              size={20}
-              color="white"
-            />
+          <TouchableOpacity
+            style={[
+              styles.circleButton,
+              { position: "absolute", alignSelf: "center", bottom: 40 },
+            ]}
+            onPress={() => setShowFullImage(false)}
+          >
+            <Ionicons name={"close"} size={20} color="white" />
           </TouchableOpacity>
         </MotiView>
-
       ) : (
         // NORMAL MODE
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView
+          edges={["right", "top", "bottom", "left"]}
+          style={styles.safeArea}
+        >
+          <StatusBar style="dark" translucent backgroundColor="transparent" />
+
           <View style={[styles.container, { zIndex: 1000 }]}>
             {/* Top Back Button */}
 
@@ -103,16 +113,12 @@ export const ImageCollections = () => {
               icon="ArrowLeftIcon"
               handleClick={handleBack}
             />
-            {/* <BlurredRoundedIcon icon="BrushIcon" handleClick={handleBack} /> */}
-            {/* <BlurredRoundedIcon icon="LayerIcon" handleClick={handleBack} /> */}
 
-            {/* <BlurredRoundedIcon icon="BrushIcon" handleClick={handleBack} />
-            <BlurredRoundedIcon icon="SendIcon" handleClick={handleBack} /> */}
-            {/* <BlurredRoundedIcon icon="HeartIcon" handleClick={handleBack} /> */}
-
-            {/* Image with Floating Buttons */}
             <View style={styles.imageContainer}>
-              <Image source={require('@/assets/images/cat.png')} style={styles.mainImage} />
+              <Image
+                source={require("@/assets/images/cat.png")}
+                style={styles.mainImage}
+              />
 
               <MotiView
                 from={{
@@ -163,7 +169,9 @@ export const ImageCollections = () => {
                   onPress={handleToggleIcons}
                 >
                   <Ionicons
-                    name={!showIcons ? "ellipsis-horizontal" : "ellipsis-vertical"}
+                    name={
+                      !showIcons ? "ellipsis-horizontal" : "ellipsis-vertical"
+                    }
                     size={20}
                     color="white"
                   />
@@ -183,7 +191,8 @@ export const ImageCollections = () => {
               <View style={{ width: "78%" }}>
                 <Text style={styles.title}>Ginger Cat Close-Up</Text>
                 <Text style={styles.description}>
-                  Ginger tabby cat with fluffy fur gazes upward against a vibrant red background, creating a warm and serene portrait
+                  Ginger tabby cat with fluffy fur gazes upward against a
+                  vibrant red background, creating a warm and serene portrait
                 </Text>
               </View>
 
@@ -202,14 +211,12 @@ export const ImageCollections = () => {
         </SafeAreaView>
       )}
 
-      {/* Modal */}
-      <Modal visible={showOptionsModal} transparent animationType="slide">
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setShowOptionsModal(false)}
-          activeOpacity={1}
+      <Container>
+        <CustomModal
+          isVisible={showOptionsModal}
+          setIsVisble={setShowOptionsModal}
         >
-          <View style={styles.modalContent}>
+          <View style={{ flexGrow: 1 }}>
             <View style={styles.tagStylesModal}>
               <MotiView
                 style={styles.tag}
@@ -233,7 +240,10 @@ export const ImageCollections = () => {
             >
               Are you sure you want to remove this image from the collection?
             </Text>
-            <Image source={require("@/assets/images/empty.png")} style={styles.modalImage} />
+            <Image
+              source={require("@/assets/images/empty.png")}
+              style={styles.modalImage}
+            />
             <Spacer marginBottom={10} marginTop={10} />
             <View style={styles.tagStylesModal}>
               <MotiView
@@ -271,8 +281,10 @@ export const ImageCollections = () => {
               variation={ButtonVariation.default}
             />
           </View>
-        </TouchableOpacity>
-      </Modal>
+        </CustomModal>
+      </Container>
+
+      {/* Modal */}
     </>
   );
 };

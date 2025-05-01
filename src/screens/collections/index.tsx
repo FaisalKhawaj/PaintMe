@@ -19,16 +19,36 @@ import { Ionicons } from "@expo/vector-icons";
 
 export const Collections = () => {
   const collections = [
-    { title: "pixel parade", images: 28, color: '#F7FEF9', tagColor: '#D4F8E1' },
-    { title: "frame & focus", images: 14, color: '#ECFAFA', tagColor: '#9FE7E5' },
-    { title: "color theory", images: 22, color: '#FFF4F8', tagColor: '#FFC8DD' },
-    { title: "dreamscape depot", images: 36, color: '#F2F9FF', tagColor: '#BDE0FE' },
+    {
+      title: "pixel parade",
+      images: 28,
+      color: "#F7FEF9",
+      tagColor: "#D4F8E1",
+    },
+    {
+      title: "frame & focus",
+      images: 14,
+      color: "#ECFAFA",
+      tagColor: "#9FE7E5",
+    },
+    {
+      title: "color theory",
+      images: 22,
+      color: "#FFF4F8",
+      tagColor: "#FFC8DD",
+    },
+    {
+      title: "dreamscape depot",
+      images: 36,
+      color: "#F2F9FF",
+      tagColor: "#BDE0FE",
+    },
   ];
 
   const handleContinue = (title: string, color: string) => {
     router.push({
-      pathname: '/(main)/tabs/collection/opened-collections',
-      params: { title, color }
+      pathname: "/(main)/tabs/collection/opened-collections",
+      params: { title, color },
     });
   };
 
@@ -39,27 +59,29 @@ export const Collections = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1 }}
         >
-          <TouchableOpacity
-            style={styles.circleButton}
-            onPress={() => { }}
-          >
-            <Ionicons
-              name={'add'}
-              size={40}
-              color="white"
-            />
+          <TouchableOpacity style={styles.circleButton} onPress={() => {}}>
+            <Ionicons name={"add"} size={40} color="white" />
           </TouchableOpacity>
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
             showsVerticalScrollIndicator={false}
           >
             {collections.map((item, index) => (
-              <Pressable key={index} onPress={() => handleContinue(item.title, item.tagColor)}>
+              <Pressable
+                key={index}
+                onPress={() => handleContinue(item.title, item.tagColor)}
+              >
                 <MotiView
                   key={index}
                   style={[styles.card, { backgroundColor: item.color }]}
-                  from={{ scale: 0, rotate: index % 2 === 0 ? "-10deg" : "10deg" }}
-                  animate={{ scale: 1, rotate: index % 2 === 0 ? "10deg" : "-10deg" }}
+                  from={{
+                    scale: 0,
+                    rotate: index % 2 === 0 ? "-10deg" : "10deg",
+                  }}
+                  animate={{
+                    scale: 1,
+                    rotate: index % 2 === 0 ? "10deg" : "-10deg",
+                  }}
                   transition={{ delay: 300, type: "spring" }}
                 >
                   <MotiView
@@ -69,7 +91,10 @@ export const Collections = () => {
                     transition={{ delay: 200, duration: 500 }}
                   >
                     <MotiView
-                      style={[styles.tagContainer, { backgroundColor: item.tagColor }]}
+                      style={[
+                        styles.tagContainer,
+                        { backgroundColor: item.tagColor },
+                      ]}
                       from={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 300, type: "spring" }}
@@ -77,9 +102,7 @@ export const Collections = () => {
                       <Text style={styles.tagText}>{item.title}</Text>
                     </MotiView>
 
-                    <Text style={styles.imageCount}>
-                      {item.images} images
-                    </Text>
+                    <Text style={styles.imageCount}>{item.images} images</Text>
                   </MotiView>
                 </MotiView>
               </Pressable>
@@ -99,7 +122,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   card: {
-    backgroundColor: '#D3F8E2',
+    backgroundColor: "#D3F8E2",
     padding: 25,
     paddingVertical: 50,
     borderRadius: 30,
@@ -130,10 +153,10 @@ const styles = StyleSheet.create({
   },
   imageCount: {
     fontFamily: fonts.primary.medium,
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 12,
     fontSize: RFValue(16),
-    color: '#8C919E',
+    color: "#8C919E",
   },
   circleButton: {
     width: 55,
@@ -142,9 +165,9 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     justifyContent: "center",
     alignItems: "center",
-    position: 'absolute',
+    position: "absolute",
     top: 30,
     right: 30,
-    zIndex: 1000
+    zIndex: 1000,
   },
 });

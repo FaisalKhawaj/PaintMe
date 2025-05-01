@@ -23,10 +23,17 @@ export const ImageCreated = () => {
   };
 
   return (
-    <SafeAreaView edges={["bottom", "top"]} style={styles.safeArea}>
+    <SafeAreaView edges={["bottom", "top"]} style={{ flex: 1 }}>
       <StatusBar style="dark" translucent backgroundColor="transparent" />
 
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={[
+          styles.container,
+          {
+            flexGrow: 1,
+          },
+        ]}
+      >
         <View style={styles.gridContainer}>
           {images.map((img, index) => (
             <MotiView

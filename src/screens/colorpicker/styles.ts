@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexWrap: "wrap",
     marginBottom: 20,
-    marginHorizontal:'auto',
+    marginHorizontal: "auto",
     gap: 10,
   },
   colorCircle: {
@@ -130,6 +130,7 @@ export const styles = StyleSheet.create({
   },
   buttonWrap: {
     gap: 10,
+    bottom: 5,
   },
   closeRoundedButton: {
     alignSelf: "flex-end",

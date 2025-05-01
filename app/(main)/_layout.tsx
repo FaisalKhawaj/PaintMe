@@ -20,7 +20,8 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           title: "",
-
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
           headerTitle: () => (
             <TagText
               rotate="-5deg"
@@ -37,6 +38,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerTitleAlign: "center",
           title: "",
 
           headerTitle: () => <HeaderTitle title="payment methods" />,
@@ -48,6 +50,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerTitleAlign: "center",
           title: "",
           headerTitle: () => <HeaderTitle title="payment methods" />,
         }}
@@ -58,6 +61,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerTitleAlign: "center",
           title: "",
           headerTitle: () => <HeaderTitle title="connected accounts" />,
         }}
@@ -68,6 +72,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerTitleAlign: "center",
           title: "",
           headerTitle: () => (
             <TagText rotate="-10deg" title="alert" tagBgColor="#C8B6FF" />
@@ -80,6 +85,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerTitleAlign: "center",
           title: "",
           headerTitle: () => <HeaderTitle title="account" />,
         }}
@@ -90,6 +96,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerTitleAlign: "center",
           title: "",
           headerTitle: () => <HeaderTitle title="privacy policy" />,
         }}
@@ -110,6 +117,7 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerTitleAlign: "center",
           title: "",
           headerTitle: () => <HeaderTitle title="license" />,
         }}
@@ -119,6 +127,8 @@ export default function RootLayout() {
         name="my-profile"
         options={{
           headerLeft: () => <HeaderRoundedBack />,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
           headerTitle: () => (
             <TagText rotate="-10deg" title="my profile" tagBgColor="#FEE2E4" />
           ),

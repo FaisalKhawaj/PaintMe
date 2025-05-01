@@ -13,12 +13,19 @@ import {
   View,
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { StatusBar } from "expo-status-bar";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 
 export const Profile = () => {
   return (
-    <SafeAreaView edges={["bottom", "top"]} style={{ flex: 1 }}>
+    <SafeAreaView
+      edges={["bottom", "top"]}
+      style={{ flex: 1, backgroundColor: "#fff" }}
+    >
+      <StatusBar style="dark" translucent backgroundColor="#fff" />
+
       <MotiView
         from={{ opacity: 0, translateY: -50 }}
         animate={{ opacity: 1, translateY: 0 }}

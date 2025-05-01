@@ -31,7 +31,7 @@ export const Home = () => {
   };
 
   return (
-    <SafeAreaView  style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.columns}>
           {/* Left Column */}

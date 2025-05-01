@@ -11,6 +11,7 @@ import { useState } from "react";
 import { CustomModal } from "@/components/ui/CustomModal";
 import { useAuth } from "@/src/context/AuthProvider";
 import { router } from "expo-router";
+import { Container } from "@/components/ScreenWrapper";
 
 export const Account = () => {
   const { setIsLoggedin }: any = useAuth();
@@ -22,8 +23,8 @@ export const Account = () => {
     setShowDeleteAccountModal(!showDeleteAccountModal);
   };
   const handleLogout = () => {
-    setIsLoggedin(false)
-    router.replace('/')
+    setIsLoggedin(false);
+    router.replace("/");
   };
   console.log("showDeleteAccountModal>", showDeleteAccountModal);
   return (
@@ -70,36 +71,38 @@ export const Account = () => {
           </View>
         </View>
 
-        <CustomModal
-          isVisible={showDeleteAccountModal}
-          setIsVisble={setShowDeleteAccountModal}
-        >
-          <Text style={styles.modalText}>
-            Are you sure you want to delete your account? Maybe disable it
-            instead.
-          </Text>
-          <Image
-            style={{
-              alignSelf: "center",
-              marginVertical: 45,
-            }}
-            source={require("../../../assets/images/delete.png")}
-          />
-          <View style={{ gap: 20 }}>
-            <LabelButton
-              title="Delete account"
-              handleClick={handleDelete}
-              variation={ButtonVariation.secondary}
-            // disabled={value === ""}
+        <Container>
+          <CustomModal
+            isVisible={showDeleteAccountModal}
+            setIsVisble={setShowDeleteAccountModal}
+          >
+            <Text style={styles.modalText}>
+              Are you sure you want to delete your account? Maybe disable it
+              instead.
+            </Text>
+            <Image
+              style={{
+                alignSelf: "center",
+                marginVertical: 45,
+              }}
+              source={require("../../../assets/images/delete.png")}
             />
-            <LabelButton
-              title="Disable account"
-              handleClick={handleDisable}
-              variation={ButtonVariation.default}
-            // disabled={value === ""}
-            />
-          </View>
-        </CustomModal>
+            <View style={{ gap: 20 }}>
+              <LabelButton
+                title="Delete account"
+                handleClick={handleDelete}
+                variation={ButtonVariation.secondary}
+                // disabled={value === ""}
+              />
+              <LabelButton
+                title="Disable account"
+                handleClick={handleDisable}
+                variation={ButtonVariation.default}
+                // disabled={value === ""}
+              />
+            </View>
+          </CustomModal>
+        </Container>
       </MotiView>
     </SafeAreaView>
   );

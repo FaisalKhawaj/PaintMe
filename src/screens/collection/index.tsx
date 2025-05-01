@@ -17,10 +17,9 @@ import { MotiView } from "moti";
 import { router } from "expo-router";
 
 export const Collection = () => {
-
   const handleContinue = () => {
-    router.push('/(main)/collection-name')
-  }
+    router.push("/(main)/collection-name");
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -64,7 +63,11 @@ export const Collection = () => {
                   }}
                   source={require("../../../assets/images/collection.png")}
                 />
-                <LabelButton title="Create Collection" variation={ButtonVariation.default} handleClick={handleContinue} />
+                <LabelButton
+                  title="Create Collection"
+                  variation={ButtonVariation.default}
+                  handleClick={handleContinue}
+                />
               </MotiView>
             </MotiView>
           </ScrollView>

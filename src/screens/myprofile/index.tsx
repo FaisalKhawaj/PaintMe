@@ -12,7 +12,9 @@ import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { z } from "zod";
 import { router } from "expo-router";
 import { CustomPhoneInput } from "@/components/CustomPhoneInput";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 export const MyProfile = () => {
   const { editProfileScheme } = useValidations();
   const {

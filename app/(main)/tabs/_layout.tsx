@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
   },
   tabBarItem: {
     flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     height: Platform.OS == "ios" ? "40%" : "50%",
