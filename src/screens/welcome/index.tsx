@@ -6,19 +6,20 @@ import { globalstyles } from "@/src/styles/globalstyles";
 import { Dimensions, Image, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
+import { router } from "expo-router";
 
 export const Welcome = () => {
   const { height } = Dimensions.get("screen");
-  const handleClickPhone = () => {};
-  const handleClickEmail = () => {};
+  const handleClickPhone = () => {
+    router.replace("/(auth)/enter-number");
+  };
+  const handleClickEmail = () => {
+    router.replace("/(auth)/enter-email");
+  };
   return (
     <SafeAreaView style={globalstyles.mainWrap}>
       <View style={globalstyles.innerWrap}>
-        <View
-          style={{
-            gap: 16,
-          }}
-        >
+        <View style={styles.gap}>
           <Image
             style={{
               height: height / 2,
@@ -29,19 +30,19 @@ export const Welcome = () => {
           />
 
           <Text style={[globalstyles.description, {}]}>
-            Create any image you can dream up.
+            Create any image{"\n"} you can dream up.
           </Text>
         </View>
         <Spacer marginTop={20} />
         <View style={{ gap: 10 }}>
           <LabelButton
             title="Continue with Phone"
-            handleClick={handleClickEmail}
+            handleClick={handleClickPhone}
             variation={ButtonVariation.default}
           />
           <LabelButton
-            title="Continue with Phone"
-            handleClick={handleClickPhone}
+            title="Continue with Email"
+            handleClick={handleClickEmail}
             variation={ButtonVariation.secondary}
           />
           <Row gap={10} alignItems="center">

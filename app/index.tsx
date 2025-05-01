@@ -1,3 +1,13 @@
-import { CameraAccess } from "../src/screens/cameraaccess";
+import { Redirect } from "expo-router";
+import { useAuth } from "@/src/context/AuthProvider";
 
-export default CameraAccess;
+export default function Index() {
+  const { isLoggedin }: any = useAuth();
+  console.log("isLoggedin>>", isLoggedin);
+  // Redirect based on auth state
+  if (isLoggedin) {
+    return <Redirect href="/(main)/tabs" />;
+  }
+
+  return <Redirect href="/(auth)/splash" />;
+}

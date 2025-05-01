@@ -1,7 +1,6 @@
 import React from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import { ThemedText } from "./ThemedText";
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { Colors } from "@/constants/Colors";
 import { fonts } from "@/hooks/useCacheResources";
 import * as Haptics from "expo-haptics";
@@ -12,6 +11,7 @@ export enum ButtonVariation {
   destructive = "destructive",
   success = "success",
   transparent = "transparent",
+  disabled = "disabled",
 }
 
 type ButtonProps = {
@@ -24,6 +24,8 @@ type ButtonProps = {
   borderColor?: any;
   variation?: ButtonVariation;
   style?: any;
+  alignItems?: any;
+  paddingHorizontal?: number;
 };
 
 export const LabelButton = ({
@@ -35,17 +37,22 @@ export const LabelButton = ({
   btnWidth = "100%",
   borderColor,
   variation = ButtonVariation.default,
+  alignItems = "center",
+  paddingHorizontal = 0,
 }: ButtonProps) => {
   // const Icon = SVGs[iconName];
-  let buttonBackgroundColor = disabled
-    ? Colors.light.disabled
+  // let buttonBackgroundColor = buttonColors[variation];
+  const buttonBackgroundColor = disabled
+    ? buttonColors[ButtonVariation.disabled]
     : buttonColors[variation];
 
-  let textColor = textColors[variation];
-
+  const textColor = disabled
+    ? textColors[ButtonVariation.disabled]
+    : textColors[variation];
+  console.log("variation", variation);
   return (
     <>
-      <TouchableOpacity
+      <Pressable
         disabled={disabled}
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -54,6 +61,8 @@ export const LabelButton = ({
         style={[
           styles.buttonWrapper,
           {
+            paddingHorizontal: paddingHorizontal,
+            alignItems: alignItems,
             borderColor: borderColor ? borderColor : Colors.light.primaryButton,
             width: btnWidth,
             backgroundColor: buttonBackgroundColor,
@@ -67,7 +76,7 @@ export const LabelButton = ({
         >
           {title}
         </ThemedText>
-      </TouchableOpacity>
+      </Pressable>
     </>
   );
 };
@@ -76,7 +85,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     borderRadius: 12,
     paddingVertical: 13,
-    height: 52,
+    height: 60,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
@@ -116,7 +125,8 @@ const styles = StyleSheet.create({
 const buttonColors: { [key in ButtonVariation]: string } = {
   default: "#000000",
   secondary: "#EDEBEE",
-  destructive: "red",
+  disabled: "#808080",
+  destructive: "rgba(255, 0, 0, 0.2)",
   success: "green",
   transparent: "transparent",
 };
@@ -124,7 +134,8 @@ const buttonColors: { [key in ButtonVariation]: string } = {
 const textColors: { [key in ButtonVariation]: string } = {
   default: "#fff",
   secondary: "#242424",
-  destructive: "red",
+  disabled: "#fff",
+  destructive: "#FF0000",
   success: "green",
   transparent: "#242424",
 };
