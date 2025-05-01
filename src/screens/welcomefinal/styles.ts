@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#E2FE52',
     borderRadius: 8, // make sure this matches the box
-    backgroundColor:'white'
+    backgroundColor: 'white'
   },
   filledPinCodeContainer: {
     backgroundColor: '#EDEBEE',
@@ -63,4 +63,8 @@ export const styles = StyleSheet.create({
     width: 2,
     height: 20,
   },
+  imageStyle: {
+    alignSelf: "center",
+    marginBottom: 20,
+  }
 });

@@ -12,6 +12,7 @@ import CountryPicker from "react-native-country-picker-modal";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import { fonts } from "@/hooks/useCacheResources";
 import { RFValue } from "react-native-responsive-fontsize";
+import { globalstyles } from "@/src/styles/globalstyles";
 
 interface CountryPickerWithPhoneProps<T extends FieldValues = FieldValues> {
   control: Control<T>;
@@ -71,7 +72,7 @@ export const CustomPhoneInput = <T extends FieldValues>({
             name={name}
             rules={rules?.phoneRules}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <View style={{ flex: 1 }}>
+              <View style={globalstyles.fullScreen}>
                 <TextInput
                   style={[
                     styles.phoneInput,

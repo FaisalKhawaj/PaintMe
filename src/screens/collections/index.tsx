@@ -57,7 +57,7 @@ export const Collections = () => {
       <SafeAreaView style={globalstyles.mainWrap}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ flex: 1 }}
+          style={globalstyles.fullScreen}
         >
           <TouchableOpacity style={styles.circleButton} onPress={() => {}}>
             <Ionicons name={"add"} size={40} color="white" />

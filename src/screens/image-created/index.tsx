@@ -4,6 +4,7 @@ import { MotiView } from "moti";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { globalstyles } from "@/src/styles/globalstyles";
 
 const images = [
   require("@/assets/images/create1.png"),
@@ -23,7 +24,7 @@ export const ImageCreated = () => {
   };
 
   return (
-    <SafeAreaView edges={["bottom", "top"]} style={{ flex: 1 }}>
+    <SafeAreaView edges={["bottom", "top"]} style={globalstyles.fullScreen}>
       <StatusBar style="dark" translucent backgroundColor="transparent" />
 
       <ScrollView

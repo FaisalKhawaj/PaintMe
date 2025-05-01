@@ -26,7 +26,7 @@ export const Collection = () => {
       <SafeAreaView style={globalstyles.mainWrap}>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ flex: 1 }}
+          style={globalstyles.fullScreen}
         >
           <ScrollView
             contentContainerStyle={{ flexGrow: 1 }}

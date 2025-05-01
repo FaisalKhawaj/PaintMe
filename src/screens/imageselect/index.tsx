@@ -26,6 +26,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Container } from "@/components/ScreenWrapper";
 import { StatusBar } from "expo-status-bar";
 import { CustomModal } from "@/components/ui/CustomModal";
+import { globalstyles } from "@/src/styles/globalstyles";
 
 const { width, height } = Dimensions.get("window");
 
@@ -80,7 +81,7 @@ export const ImageSelect = () => {
     <>
       {showFullScreen ? (
         // FULL SCREEN MODE WITH Moti ANIMATION
-        <Container style={{ flex: 1 }}>
+        <Container style={globalstyles.fullScreen}>
           <StatusBar style="light" translucent backgroundColor="transparent" />
 
           <MotiView
@@ -92,7 +93,7 @@ export const ImageSelect = () => {
             <Pressable
               // activeOpacity={1}
               onPress={() => setShowFullScreen(false)}
-              style={{ flex: 1 }}
+              style={globalstyles.fullScreen}
             >
               <MotiView
                 style={styles.fullscreenImageContainer}
@@ -241,12 +242,7 @@ export const ImageSelect = () => {
               <Text
                 style={[
                   styles.description,
-                  {
-                    fontSize: 16,
-                    textAlign: "center",
-                    marginVertical: 10,
-                    marginBottom: 20,
-                  },
+                  styles.descriptionText
                 ]}
               >
                 Your collection is your own curated list of images collected
@@ -270,12 +266,7 @@ export const ImageSelect = () => {
               <Text
                 style={[
                   styles.description,
-                  {
-                    fontSize: 16,
-                    textAlign: "center",
-                    marginVertical: 10,
-                    marginBottom: 20,
-                  },
+                  styles.descriptionText
                 ]}
               >
                 20 images
@@ -311,12 +302,7 @@ export const ImageSelect = () => {
               <Text
                 style={[
                   styles.description,
-                  {
-                    fontSize: 16,
-                    textAlign: "center",
-                    marginVertical: 10,
-                    marginBottom: 20,
-                  },
+                  styles.descriptionText,
                 ]}
               >
                 Avant-Garde... has been added to your collection .

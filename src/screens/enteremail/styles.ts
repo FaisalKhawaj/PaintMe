@@ -1,5 +1,6 @@
 import { fonts } from "@/hooks/useCacheResources";
 import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export const styles = StyleSheet.create({
   tagAccessControl: {
@@ -22,4 +23,17 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     fontFamily: fonts.primary.semibold,
   },
+  paraStyle: {
+    fontSize: RFValue(11),
+    color: "#8C919E",
+    marginTop: 10,
+  },
+  footerPara: {
+    width: "80%",
+    marginHorizontal: "auto",
+    fontSize: RFValue(12),
+    color: "#8C919E",
+    marginTop: 10,
+    textAlign: "center",
+  }
 });

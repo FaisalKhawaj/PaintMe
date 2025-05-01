@@ -53,7 +53,7 @@ export const ColorPick = () => {
   const [showColorPicker, setShowColorPicker] = useState(false);
 
   // Note: use `onCompleteJS` and `onChangeJS` for non-worklet functions
-  const onSelectColor = ({ hex }) => {
+  const onSelectColor = ({ hex }: { hex: string }) => {
     "worklet";
     runOnJS(setSelectedColor)(hex);
     console.log(hex);
@@ -121,7 +121,7 @@ export const ColorPick = () => {
                     height: 42,
                   },
                 ]}
-                // onPress={() => {}}
+              // onPress={() => {}}
               >
                 <Image
                   source={require("../../../assets/images/rgb.png")}

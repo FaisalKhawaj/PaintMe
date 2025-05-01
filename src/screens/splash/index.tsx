@@ -12,6 +12,7 @@ import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { Container } from "@/components/ScreenWrapper";
+import { globalstyles } from "@/src/styles/globalstyles";
 
 const slides = [
   {
@@ -50,7 +51,7 @@ export const Splash = () => {
   };
 
   return (
-    <Container style={{ flex: 1 }}>
+    <Container style={globalstyles.fullScreen}>
       <StatusBar style="light" translucent backgroundColor="transparent" />
       <Swiper
         ref={swiperRef}

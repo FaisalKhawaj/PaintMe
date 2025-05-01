@@ -8,6 +8,7 @@ import { BlurredRoundedIcon } from '@/components/BlurredRoundedIcon';
 import { styles } from './styles';
 import { BlurredIcon } from '@/components/BlurredIcon';
 import { router } from 'expo-router';
+import { globalstyles } from '@/src/styles/globalstyles';
 const { height } = Dimensions.get('window');
 
 export const RetouchImage = () => {
@@ -58,7 +59,7 @@ export const RetouchImage = () => {
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
+        style={globalstyles.fullScreen}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
       >
         <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }}>

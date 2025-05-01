@@ -9,7 +9,6 @@ import { styles } from "./styles";
 import { router } from "expo-router";
 
 export const Welcome = () => {
-  const { height } = Dimensions.get("screen");
   const handleClickPhone = () => {
     router.replace("/(auth)/enter-number");
   };
@@ -21,11 +20,7 @@ export const Welcome = () => {
       <View style={globalstyles.innerWrap}>
         <View style={styles.gap}>
           <Image
-            style={{
-              height: height / 2,
-              width: "100%",
-              borderRadius: 20,
-            }}
+            style={styles.imageStyles}
             source={require("../../../assets/images/welcome.png")}
           />
 

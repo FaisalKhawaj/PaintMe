@@ -146,5 +146,11 @@ export const styles = StyleSheet.create({
     height: height,
     resizeMode: "cover",
   },
+  descriptionText: {
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 10,
+    marginBottom: 20,
+  },
   expandIcon: { position: "absolute", top: 48, right: 40 },
 });
