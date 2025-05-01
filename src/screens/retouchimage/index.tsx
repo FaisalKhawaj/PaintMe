@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, FlatList, SafeAreaView, Dimensions, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, Image, TouchableOpacity, FlatList, Dimensions, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MotiView } from 'moti';
 import { ButtonVariation, LabelButton } from '@/components/LabelButton';
@@ -9,6 +9,8 @@ import { styles } from './styles';
 import { BlurredIcon } from '@/components/BlurredIcon';
 import { router } from 'expo-router';
 import { globalstyles } from '@/src/styles/globalstyles';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 const { height } = Dimensions.get('window');
 
 export const RetouchImage = () => {
@@ -56,13 +58,12 @@ export const RetouchImage = () => {
   const imageUrl = 'https://picsum.photos/400/900';
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={globalstyles.fullScreen}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
-      >
-        <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }}>
+    <SafeAreaView
+      edges={["top", "bottom"]}
+      style={{ flex: 1, backgroundColor: "#fff" }}
+    >
+      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }}>
+        <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View style={styles.container}>
             {/* Tag */}
             <View style={styles.tagStylesModal}>
@@ -82,7 +83,7 @@ export const RetouchImage = () => {
                 source={require('@/assets/images/avant.png')}
                 style={[
                   styles.mainImage,
-                  { height: showGeneratedImages ? height * (Platform.OS === 'ios' ? 0.68 : 0.75): height * (Platform.OS === 'ios' ? 0.6 : 0.67) }
+                  { height: showGeneratedImages ? height * (Platform.OS === 'ios' ? 0.68 : 0.75) : height * (Platform.OS === 'ios' ? 0.6 : 0.67) }
                 ]}
               />
               {/* <View style={styles.crossIcon}>
@@ -186,8 +187,8 @@ export const RetouchImage = () => {
               </>
             )}
           </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 };

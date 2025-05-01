@@ -1,5 +1,5 @@
 import { fonts } from "@/hooks/useCacheResources";
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, Platform, StyleSheet } from "react-native";
 const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
@@ -27,7 +27,10 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.primary.semibold,
     },
     imageContainer: {
-        position: 'relative',
+        position: "relative", // NEW - so buttons stay inside the image
+        borderRadius: Platform.OS === "android" ? 32 : 0,
+        overflow: Platform.OS === "android" ? 'hidden' : 'visible',
+        marginHorizontal: Platform.OS === "android" ? 8 : 0,
     },
     mainImage: {
         width: width,

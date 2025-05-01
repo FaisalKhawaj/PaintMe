@@ -72,11 +72,13 @@ export const GeneratedImageSelect = () => {
           <View style={[styles.container, { zIndex: 1000 }]}>
             {/* Top Back Button */}
 
-            <BlurredRoundedIcon
-              position="absolute"
-              icon="ArrowLeftIcon"
-              handleClick={handleBack}
-            />
+            <View style={styles.leftSpace}>
+              <BlurredRoundedIcon
+                position="absolute"
+                icon="ArrowLeftIcon"
+                handleClick={handleBack}
+              />
+            </View>
 
             <View style={styles.imageContainer}>
               <Image
