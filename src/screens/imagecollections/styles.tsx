@@ -1,5 +1,5 @@
 import { fonts } from "@/hooks/useCacheResources";
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, Platform, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 const { width, height } = Dimensions.get("window");
@@ -38,7 +38,11 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     position: "relative", // NEW - so buttons stay inside the image
+    borderRadius: Platform.OS === "android" ? 32 : 0,
+    overflow: Platform.OS === "android" ? 'hidden' : 'visible',
+    marginHorizontal: Platform.OS === "android" ? 10 : 0,
   },
+  leftSpace: { marginLeft: Platform.OS === "android" ? 8 : 0 },
   mainImage: {
     width: width,
     height: height * 0.6,
