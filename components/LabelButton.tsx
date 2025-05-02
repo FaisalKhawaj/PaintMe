@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable, Text } from "react-native";
 import { ThemedText } from "./ThemedText";
 import { Colors } from "@/constants/Colors";
 import { fonts } from "@/hooks/useCacheResources";
 import * as Haptics from "expo-haptics";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export enum ButtonVariation {
   default = "default",
@@ -65,17 +66,12 @@ export const LabelButton = ({
             alignItems: alignItems,
             borderColor: borderColor ? borderColor : Colors.light.primaryButton,
             width: btnWidth,
+
             backgroundColor: buttonBackgroundColor,
           },
         ]}
       >
-        <ThemedText
-          type="default"
-          lightColor={textColor}
-          style={styles.textStyle}
-        >
-          {title}
-        </ThemedText>
+        <Text style={[styles.textStyle, { color: textColor }]}>{title}</Text>
       </Pressable>
     </>
   );
@@ -84,16 +80,16 @@ export const LabelButton = ({
 const styles = StyleSheet.create({
   buttonWrapper: {
     borderRadius: 12,
-    paddingVertical: 13,
+    // paddingVertical: 13,
     height: 60,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
   },
   textStyle: {
-    flex: 1,
+    // flex: 1,
     textAlign: "center",
-    fontSize: 16,
+    fontSize: RFValue(16),
     fontFamily: fonts.primary.medium,
   },
   simpleTextStyle: {

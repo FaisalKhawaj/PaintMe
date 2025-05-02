@@ -1,16 +1,16 @@
-import { Stack } from 'expo-router';
-import { HeaderTitle } from '@/components/ui/HeaderTitle';
-import { HeaderRoundedBack } from '@/components/ui/HeaderRoundedBack';
+import { Stack } from "expo-router";
+import { HeaderTitle } from "@/components/ui/HeaderTitle";
+import { HeaderRoundedBack } from "@/components/ui/HeaderRoundedBack";
 
 export default function CreateLayout() {
   return (
     <Stack>
-      <Stack.Screen 
-        name="index" 
-        options={{ 
-          title: 'Create',
-          headerShown: false 
-        }} 
+      <Stack.Screen
+        name="index"
+        options={{
+          title: "Create",
+          headerShown: false,
+        }}
       />
       <Stack.Screen
         name="choose-orientation"
@@ -18,7 +18,7 @@ export default function CreateLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerShown:false,
+          headerShown: false,
           headerTitle: () => <HeaderTitle title="Choose Orientation" />,
         }}
       />
@@ -28,7 +28,7 @@ export default function CreateLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerShown:false,
+          headerShown: false,
           headerTitle: () => <HeaderTitle title="Image Progress" />,
         }}
       />
@@ -38,11 +38,11 @@ export default function CreateLayout() {
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
           title: "",
-          headerShown:false,
+          headerShown: false,
           headerTitle: () => <HeaderTitle title="Image Created" />,
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="generated-image-selected"
         options={{
           headerLeft: () => <HeaderRoundedBack />,
@@ -51,7 +51,7 @@ export default function CreateLayout() {
           headerShown:false,
           headerTitle: () => <HeaderTitle title="Generated Image Selected" />,
         }}
-      />
+      /> */}
       {/* Add other create-related screens here */}
     </Stack>
   );

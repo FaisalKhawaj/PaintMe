@@ -1,8 +1,8 @@
 import React from "react";
-import { 
-  StyleSheet, 
-  Pressable, 
-  View, 
+import {
+  StyleSheet,
+  Pressable,
+  View,
   StyleProp,
   ViewStyle,
 } from "react-native";
@@ -10,6 +10,7 @@ import { ThemedText } from "./ThemedText";
 import { Colors } from "@/constants/Colors";
 import { fonts } from "@/hooks/useCacheResources";
 import * as Haptics from "expo-haptics";
+import { Text } from "react-native";
 
 export enum ButtonVariation {
   default = "default",
@@ -21,9 +22,9 @@ export enum ButtonVariation {
   outline = "outline",
 }
 
-type IconElement = React.ReactElement<{ 
-  width?: number; 
-  height?: number; 
+type IconElement = React.ReactElement<{
+  width?: number;
+  height?: number;
   fill?: string;
   color?: string;
   size?: number;
@@ -69,7 +70,10 @@ export const IconButton = ({
   const textColor = textColors[variation];
   const hasIcons = Boolean(leftIcon || rightIcon);
 
-  const renderIcon = (icon: IconElement | React.ReactNode, position: 'left' | 'right') => {
+  const renderIcon = (
+    icon: IconElement | React.ReactNode,
+    position: "left" | "right"
+  ) => {
     if (!icon) return null;
 
     if (React.isValidElement(icon)) {
@@ -82,22 +86,26 @@ export const IconButton = ({
       };
 
       return (
-        <View style={[
-          styles.iconContainer,
-          position === 'left' ? styles.leftIcon : styles.rightIcon,
-          justifyBetween && styles.justifyBetweenIcon
-        ]}>
+        <View
+          style={[
+            styles.iconContainer,
+            position === "left" ? styles.leftIcon : styles.rightIcon,
+            justifyBetween && styles.justifyBetweenIcon,
+          ]}
+        >
           {React.cloneElement(icon, iconProps)}
         </View>
       );
     }
-    
+
     return (
-      <View style={[
-        styles.iconContainer,
-        position === 'left' ? styles.leftIcon : styles.rightIcon,
-        justifyBetween && styles.justifyBetweenIcon
-      ]}>
+      <View
+        style={[
+          styles.iconContainer,
+          position === "left" ? styles.leftIcon : styles.rightIcon,
+          justifyBetween && styles.justifyBetweenIcon,
+        ]}
+      >
         {icon}
       </View>
     );
@@ -109,7 +117,9 @@ export const IconButton = ({
     alignItems,
     borderColor: borderColor ?? Colors.light.primaryButton,
     width: btnWidth,
-    backgroundColor: disabled ? buttonColors[ButtonVariation.disabled] : buttonBackgroundColor,
+    backgroundColor: disabled
+      ? buttonColors[ButtonVariation.disabled]
+      : buttonBackgroundColor,
     borderWidth: variation === ButtonVariation.outline ? 1 : 0,
     opacity: pressed ? 0.8 : 1,
   });
@@ -129,39 +139,45 @@ export const IconButton = ({
       {justifyBetween ? (
         // Space-between layout
         <View style={styles.justifyBetweenContainer}>
-          {leftIcon && renderIcon(leftIcon, 'left')}
+          {leftIcon && renderIcon(leftIcon, "left")}
           {title && (
-            <ThemedText
-              type="default"
-              lightColor={disabled ? textColors[ButtonVariation.disabled] : textColor}
+            <Text
               style={[
                 styles.textStyle,
-                { fontSize: textSize },
+                {
+                  fontSize: textSize,
+                  color: disabled
+                    ? textColors[ButtonVariation.disabled]
+                    : textColor,
+                },
               ]}
             >
               {title}
-            </ThemedText>
+            </Text>
           )}
-          {rightIcon && renderIcon(rightIcon, 'right')}
+          {rightIcon && renderIcon(rightIcon, "right")}
         </View>
       ) : (
         // Original centered layout with absolute positioned icons
         <>
-          {leftIcon && renderIcon(leftIcon, 'left')}
+          {leftIcon && renderIcon(leftIcon, "left")}
           <View style={styles.buttonContent}>
-            <ThemedText
-              type="default"
-              lightColor={disabled ? textColors[ButtonVariation.disabled] : textColor}
+            <Text
               style={[
                 styles.textStyle,
                 hasIcons && styles.textWithIcons,
-                { fontSize: textSize },
+                {
+                  fontSize: textSize,
+                  color: disabled
+                    ? textColors[ButtonVariation.disabled]
+                    : textColor,
+                },
               ]}
             >
               {title}
-            </ThemedText>
+            </Text>
           </View>
-          {rightIcon && renderIcon(rightIcon, 'right')}
+          {rightIcon && renderIcon(rightIcon, "right")}
         </>
       )}
     </Pressable>
@@ -175,7 +191,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
     justifyContent: "center",
     alignItems: "center",
-    position: 'relative',
+    position: "relative",
   },
   buttonContent: {
     flexDirection: "row",
@@ -183,28 +199,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   justifyBetweenContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
     height: 26,
     paddingHorizontal: 16,
   },
   iconContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: '100%',
+    height: "100%",
   },
   leftIcon: {
-    position: 'absolute',
+    position: "absolute",
     left: 16,
   },
   rightIcon: {
-    position: 'absolute',
+    position: "absolute",
     right: 16,
   },
   justifyBetweenIcon: {
-    position: 'relative',
+    position: "relative",
     left: undefined,
     right: undefined,
   },
@@ -219,7 +235,6 @@ const styles = StyleSheet.create({
     flex: 0,
   },
 });
-
 
 const buttonColors: { [key in ButtonVariation]: string } = {
   [ButtonVariation.default]: "#000000",
