@@ -4,6 +4,7 @@ import { MotiView } from "moti";
 import { useRouter } from "expo-router"; // <-- Expo Router hook
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as Haptics from "expo-haptics";
 
 const images = [
   "https://picsum.photos/seed/picsum1/400/600",
@@ -23,6 +24,7 @@ export const Home = () => {
   const router = useRouter(); // <-- Use router from expo-router
 
   const handleImagePress = (imgUri: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push({
       // pathname: '/create-similar',
       pathname: "/image-select",

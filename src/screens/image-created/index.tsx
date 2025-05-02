@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { globalstyles } from "@/src/styles/globalstyles";
+import * as Haptics from "expo-haptics";
 
 const images = [
   require("@/assets/images/create1.png"),
@@ -17,6 +18,8 @@ export const ImageCreated = () => {
   const router = useRouter();
 
   const handleImagePress = (imgUri: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
     router.push({
       pathname: "/generated-image-selected",
       params: { imageUrl: imgUri },

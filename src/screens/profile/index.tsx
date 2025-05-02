@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { StatusBar } from "expo-status-bar";
+import * as Haptics from "expo-haptics";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
@@ -35,7 +36,10 @@ export const Profile = () => {
         >
           <Pressable
             style={globalstyles.roundedIconButton}
-            onPress={() => router.push("/(main)/edit-pic")}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              router.push("/(main)/edit-pic");
+            }}
           >
             <MotiView
               animate={{
@@ -77,7 +81,10 @@ export const Profile = () => {
             >
               <Pressable
                 style={styles.bottomLeftButton}
-                onPress={() => router.push("/my-profile")}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  router.push("/my-profile");
+                }}
               >
                 <FontAwesome5 name="user-alt" size={25} color={"#242424"} />
                 <TagText
@@ -88,7 +95,10 @@ export const Profile = () => {
               </Pressable>
               <Pressable
                 style={styles.bottomLeftButton}
-                onPress={() => router.push("/settings")}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  router.push("/settings");
+                }}
               >
                 <MaterialIcons name="settings" color={"#242424"} size={25} />
                 <TagText
@@ -101,7 +111,11 @@ export const Profile = () => {
 
             <Pressable
               style={styles.bottomRightLgButton}
-              onPress={() => router.push("/alert")}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+                router.push("/alert");
+              }}
             >
               <Ionicons name="notifications" size={25} color={"#242424"} />
               <TagText

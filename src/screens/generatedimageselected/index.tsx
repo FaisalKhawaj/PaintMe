@@ -9,6 +9,7 @@ import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { ExpandIcon } from "@/assets/svg/ExpandIcon";
+import * as Haptics from "expo-haptics";
 
 export const GeneratedImageSelect = () => {
   const [showFullScreen, setShowFullScreen] = useState(false);
@@ -36,7 +37,10 @@ export const GeneratedImageSelect = () => {
           transition={{ type: "timing", duration: 800 }}
         >
           <Pressable
-            onPress={() => setShowFullScreen(false)}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              setShowFullScreen(false);
+            }}
             style={globalstyles.fullScreen}
           >
             <MotiView
@@ -59,7 +63,10 @@ export const GeneratedImageSelect = () => {
               transition={{ delay: 300 }}
             >
               <Pressable
-                onPress={() => setShowFullScreen(false)}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  setShowFullScreen(false);
+                }}
                 style={styles.closeButton}
               >
                 <Ionicons name="close" size={24} color="white" />
@@ -87,7 +94,12 @@ export const GeneratedImageSelect = () => {
                 style={styles.mainImage}
               />
               <View style={styles.expandIcon}>
-                <Pressable onPress={() => setShowFullScreen(true)}>
+                <Pressable
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    setShowFullScreen(true);
+                  }}
+                >
                   <ExpandIcon />
                 </Pressable>
               </View>

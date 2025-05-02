@@ -15,6 +15,7 @@ import { Container } from "@/components/ScreenWrapper";
 import { StatusBar } from "expo-status-bar";
 import { CustomModal } from "@/components/ui/CustomModal";
 import { globalstyles } from "@/src/styles/globalstyles";
+import * as Haptics from "expo-haptics";
 
 export const ImageSelect = () => {
   const [showOptionsModal, setShowOptionsModal] = useState(false);
@@ -26,6 +27,8 @@ export const ImageSelect = () => {
 
   // Trigger animation on click
   const handleToggleIcons = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
     setShowIcons((prev) => !prev);
   };
 
@@ -77,7 +80,11 @@ export const ImageSelect = () => {
           >
             <Pressable
               // activeOpacity={1}
-              onPress={() => setShowFullScreen(false)}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+                setShowFullScreen(false);
+              }}
               style={globalstyles.fullScreen}
             >
               <MotiView
@@ -115,7 +122,13 @@ export const ImageSelect = () => {
                 style={styles.mainImage}
               />
               <View style={styles.expandIcon}>
-                <Pressable onPress={() => setShowFullScreen(true)}>
+                <Pressable
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+                    setShowFullScreen(true);
+                  }}
+                >
                   <ExpandIcon />
                 </Pressable>
               </View>
@@ -178,7 +191,10 @@ export const ImageSelect = () => {
 
                 <Pressable
                   style={styles.circleButton}
-                  onPress={() => setShowFullScreen(true)}
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    setShowFullScreen(true);
+                  }}
                 >
                   <Ionicons name="arrow-down" size={20} color="white" />
                 </Pressable>

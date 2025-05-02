@@ -1,9 +1,9 @@
 import React from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-import { LogoutIcon } from "@/assets/svg";
 import { fonts } from "@/hooks/useCacheResources";
 import * as SVGs from "../../../../assets/svg";
+import * as Haptics from "expo-haptics";
 
 type RowIconTitleProps = {
   title: string;
@@ -19,7 +19,13 @@ export const RowIconTitle: React.FC<RowIconTitleProps> = ({
   const Icon = SVGs[icon as keyof typeof SVGs];
 
   return (
-    <Pressable onPress={handlePress} style={styles.buttonWrap}>
+    <Pressable
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        handlePress();
+      }}
+      style={styles.buttonWrap}
+    >
       <Icon />
       <Text style={styles.title}>{title}</Text>
     </Pressable>

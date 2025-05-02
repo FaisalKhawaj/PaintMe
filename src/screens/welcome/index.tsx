@@ -7,6 +7,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { router } from "expo-router";
+import * as Haptics from "expo-haptics";
 
 export const Welcome = () => {
   const handleClickPhone = () => {
@@ -41,11 +42,21 @@ export const Welcome = () => {
             variation={ButtonVariation.secondary}
           />
           <Row gap={10} alignItems="center">
-            <Pressable style={styles.iconButton}>
+            <Pressable
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              }}
+              style={styles.iconButton}
+            >
               <AppleIcon />
             </Pressable>
 
-            <Pressable style={styles.iconButton}>
+            <Pressable
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              }}
+              style={styles.iconButton}
+            >
               <GoogleIcon />
             </Pressable>
           </Row>

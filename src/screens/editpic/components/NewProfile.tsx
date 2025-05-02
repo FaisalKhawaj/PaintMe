@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { globalstyles } from "@/src/styles/globalstyles";
+import * as Haptics from "expo-haptics";
 
 type NewProfileProps = {
   handleAddPhoto: () => void;
@@ -24,7 +25,12 @@ export const NewProfile: React.FC<NewProfileProps> = ({
         style={styles.img}
         source={{ uri: image }}
       >
-        <Pressable style={globalstyles.roundedIconButton} onPress={() => {}}>
+        <Pressable
+          style={globalstyles.roundedIconButton}
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          }}
+        >
           <MotiView
             animate={{
               scale: [1, 1.1, 1],

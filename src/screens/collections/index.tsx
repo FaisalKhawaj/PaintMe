@@ -16,6 +16,7 @@ import { router } from "expo-router";
 import { fonts } from "@/hooks/useCacheResources";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Ionicons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 
 export const Collections = () => {
   const collections = [
@@ -46,6 +47,8 @@ export const Collections = () => {
   ];
 
   const handleContinue = (title: string, color: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
     router.push({
       pathname: "/(main)/tabs/collection/opened-collections",
       params: { title, color },
@@ -59,7 +62,7 @@ export const Collections = () => {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={globalstyles.fullScreen}
         >
-          <TouchableOpacity style={styles.circleButton} onPress={() => { }}>
+          <TouchableOpacity style={styles.circleButton} onPress={() => {}}>
             <Ionicons name={"add-sharp"} size={36} color="#CCCCCC" />
           </TouchableOpacity>
           <ScrollView

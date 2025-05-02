@@ -22,6 +22,7 @@ import { CustomModal } from "@/components/ui/CustomModal";
 import { Container } from "@/components/ScreenWrapper";
 import { globalstyles } from "@/src/styles/globalstyles";
 import { ExpandIcon } from "@/assets/svg/ExpandIcon";
+import * as Haptics from "expo-haptics";
 
 export const ImageCollections = () => {
   const { showFullImage, setShowFullImage } = useImageContext();
@@ -72,7 +73,11 @@ export const ImageCollections = () => {
           transition={{ type: "timing", duration: 800 }}
         >
           <Pressable
-            onPress={() => setShowFullImage(false)}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+              setShowFullImage(false);
+            }}
             style={globalstyles.fullScreen}
           >
             <MotiView
@@ -90,10 +95,7 @@ export const ImageCollections = () => {
 
           {/* Center Bottom Button */}
           <TouchableOpacity
-            style={[
-              styles.circleButton,
-              styles.iconStyle
-            ]}
+            style={[styles.circleButton, styles.iconStyle]}
             onPress={() => setShowFullImage(false)}
           >
             <Ionicons name={"close"} size={20} color="white" />
@@ -124,7 +126,13 @@ export const ImageCollections = () => {
                 style={styles.mainImage}
               />
               <View style={styles.expandIcon}>
-                <Pressable onPress={() => setShowFullImage(true)}>
+                <Pressable
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+                    setShowFullImage(true);
+                  }}
+                >
                   <ExpandIcon />
                 </Pressable>
               </View>
@@ -235,12 +243,7 @@ export const ImageCollections = () => {
                 <Text style={styles.tagTextNormal}>pixel parade</Text>
               </MotiView>
             </View>
-            <Text
-              style={[
-                styles.description,
-                styles.descriptionText
-              ]}
-            >
+            <Text style={[styles.description, styles.descriptionText]}>
               Are you sure you want to remove this image from the collection?
             </Text>
             <Image
@@ -258,12 +261,7 @@ export const ImageCollections = () => {
                 <Text style={styles.tagTextNormal}>pixel parade</Text>
               </MotiView>
             </View>
-            <Text
-              style={[
-                styles.description,
-                styles.descriptionText
-              ]}
-            >
+            <Text style={[styles.description, styles.descriptionText]}>
               20 images
             </Text>
             <Spacer marginBottom={10} marginTop={30} />

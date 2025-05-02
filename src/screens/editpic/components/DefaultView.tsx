@@ -3,6 +3,7 @@ import { globalstyles } from "@/src/styles/globalstyles";
 import { Ionicons } from "@expo/vector-icons";
 import { MotiView } from "moti";
 import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
+import * as Haptics from "expo-haptics";
 
 type DefaultViewProps = {
   handleAddPhoto: () => void;
@@ -16,7 +17,12 @@ const DefaultView: React.FC<DefaultViewProps> = ({ handleAddPhoto }) => {
       style={styles.img}
       source={{ uri: "https://picsum.photos/200" }}
     >
-      <Pressable style={globalstyles.roundedIconButton} onPress={() => {}}>
+      <Pressable
+        style={globalstyles.roundedIconButton}
+        onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }}
+      >
         <MotiView
           animate={{
             scale: [1, 1.1, 1],

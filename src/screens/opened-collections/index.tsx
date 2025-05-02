@@ -19,6 +19,7 @@ import { Spacer } from "@/components/Spacer";
 import { ButtonVariation, LabelButton } from "@/components/LabelButton";
 import { CustomModal } from "@/components/ui/CustomModal";
 import { Container } from "@/components/ScreenWrapper";
+import * as Haptics from "expo-haptics";
 
 const images = [
   "https://picsum.photos/seed/picsum1/400/600",
@@ -40,6 +41,8 @@ export const OpenedCollections = () => {
   const [showImagePinched, setShowImagePinched] = useState(false);
 
   const handleImagePress = (imgUri: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
     router.push({
       pathname: "/(main)/tabs/collection/image-collections",
       params: { imageUrl: imgUri },

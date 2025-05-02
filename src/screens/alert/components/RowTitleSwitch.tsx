@@ -3,6 +3,7 @@ import { Pressable, Text } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import ToggleSwitch from "toggle-switch-react-native";
 import { fonts } from "@/hooks/useCacheResources";
+import * as Haptics from "expo-haptics";
 
 interface RowTitleSwitchProp {
   title: string;
@@ -17,6 +18,9 @@ export const RowTitleSwitch: React.FC<RowTitleSwitchProp> = ({
 }) => {
   return (
     <Pressable
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }}
       style={{
         flexDirection: "row",
         paddingVertical: 20,

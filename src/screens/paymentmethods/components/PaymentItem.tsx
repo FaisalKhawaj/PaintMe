@@ -3,6 +3,7 @@ import { Pressable, View, Text, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { fonts } from "@/hooks/useCacheResources";
 import * as SVGs from "../../../../assets/svg";
+import * as Haptics from "expo-haptics";
 
 type PaymentItemType = {
   title: string;
@@ -18,7 +19,12 @@ export const PaymentItem: React.FC<PaymentItemType> = ({
   const Icon = SVGs[icon as keyof typeof SVGs];
 
   return (
-    <Pressable style={styles.mainWrap}>
+    <Pressable
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }}
+      style={styles.mainWrap}
+    >
       <Icon />
       <View>
         <Text style={styles.title}>{title}</Text>
