@@ -72,7 +72,9 @@ export default function RootLayout() {
         options={{
           headerLeft: () => <HeaderRoundedBack />,
           headerShadowVisible: false,
+          headerBackground: () => <View style={{ backgroundColor: "#fff" }} />,
           headerTitleAlign: "center",
+
           title: "",
           headerTitle: () => (
             <TagText rotate="-10deg" title="alert" tagBgColor="#C8B6FF" />
